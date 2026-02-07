@@ -237,6 +237,68 @@ graph TD
 
 ---
 
+## Phase 7: Screenshot Placeholders
+
+After generating a chapter, insert HTML comment placeholders wherever a screenshot or visual capture should appear. Another agent (or human) will fill these in on a second pass.
+
+### Comment Format
+
+```markdown
+<!-- SCREENSHOT: [description of what to capture] -->
+```
+
+### Placement Rules
+
+Insert a screenshot placeholder:
+
+1. **After every query result** (code output table or description): capture the Memgraph Lab or terminal output
+2. **After mermaid diagrams**: capture the rendered graph visualization from Memgraph Lab (the live graph, not the mermaid render)
+3. **After key "aha" moments**: capture the query + result that reveals the insight
+4. **At the opening hook**: if the hook involves running a query, capture the surprising/broken result
+5. **For exercise verification**: capture the expected output so readers can compare
+
+### Examples
+
+After a query result:
+```markdown
+| name | connections |
+|------|------------|
+| Properties | 23 |
+| Encapsulation | 8 |
+
+<!-- SCREENSHOT: Memgraph Lab query result showing degree counts, sorted descending -->
+```
+
+After a mermaid diagram (to supplement with a real graph view):
+```markdown
+` ``mermaid
+graph LR
+    A[DangerousSetters] -->|CHALLENGES| B[Encapsulation]
+` ``
+
+<!-- SCREENSHOT: Memgraph Lab graph view of DangerousSetters neighborhood, expanded 1 hop -->
+```
+
+At an aha moment:
+```markdown
+Properties has 23 connections. Encapsulation has 8. The most connected concept is not the one you expected.
+
+<!-- SCREENSHOT: Memgraph Lab bar chart or query result showing Properties at the top of the degree list -->
+```
+
+### Description Guidelines
+
+The description inside each placeholder should be specific enough for another agent to:
+- Know which query to run (or reference the nearest code block)
+- Know which tool to capture from (Memgraph Lab, terminal, browser)
+- Know what the screenshot should emphasize (highlight, zoom, filter)
+
+Good: `<!-- SCREENSHOT: Memgraph Lab graph view after running the MATCH (c:Concept)-[r]-() query, showing the DangerousSetters cluster -->`
+
+Bad: `<!-- SCREENSHOT: graph view -->`
+
+---
+
 ## Voice Principles (Summary)
 
 See `reference/voice-guide.md` for the full guide. Key rules:
@@ -289,3 +351,5 @@ The goal is to strip LLM packaging while keeping substance and the author's voic
 - [ ] MkDocs admonitions used correctly (`!!!`, `???`)
 - [ ] Mermaid diagrams render (proper fencing)
 - [ ] Bragi prose cleanup pass applied (9 anti-LLM patterns checked)
+- [ ] Screenshot placeholders inserted (after query results, mermaid diagrams, aha moments)
+- [ ] Each placeholder has a specific, actionable description

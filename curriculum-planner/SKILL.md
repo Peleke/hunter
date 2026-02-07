@@ -269,6 +269,18 @@ These are the key voice rules applied during planning. See `reference/voice-guid
 
 ---
 
+## Screenshot Placeholders
+
+When planning visual hooks, note which ones should also get screenshot placeholders for post-processing. The chapter-generator inserts HTML comments at these locations:
+
+```markdown
+<!-- SCREENSHOT: [specific description of what to capture] -->
+```
+
+During curriculum planning, flag visual hooks that benefit from real screenshots (query results, graph visualizations, tool UI) vs. those that are self-contained (mermaid diagrams, markdown tables). This helps the chapter-generator place placeholders effectively, and a second-pass agent can fill them in.
+
+---
+
 ## Quality Checklist
 
 - [ ] All 5 elicitation dimensions covered
