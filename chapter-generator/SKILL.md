@@ -73,16 +73,10 @@ Create the file skeleton:
 
 ```markdown
 ---
-title: "Chapter N.M: [Title]"
+title: "[Title]"
 ---
 
 # [Title]
-
-**Part [P]: [Series Title]** | Chapter [M] of [Total]
-
-**Prerequisites**: [Prior chapters or "None"]
-
-**Time**: ~[X] minutes
 
 ---
 ```
