@@ -2,6 +2,11 @@
 name: llms-txt-generator
 description: Generate llms.txt and llms-full.txt files for any MkDocs documentation site, following the llms.txt standard. Creates a curated index of doc pages and a MkDocs build hook that auto-generates the full inlined version from source markdown. Use when adding AI-queryable docs to a project with an existing MkDocs site.
 license: Complete terms in LICENSE.txt
+metadata:
+  openclaw:
+    emoji: "\U0001F916"
+    requires:
+      bins: ["python3"]
 ---
 
 # llms.txt Generator

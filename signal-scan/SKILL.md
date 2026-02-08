@@ -2,6 +2,9 @@
 name: signal-scan
 description: Product signal scanner -- identifies market opportunities by analyzing pain points, demand, spend, sentiment, competitive landscape, and audience signals across Reddit, social media, course marketplaces, and other sources. Use when scanning a domain for product opportunities, running a market analysis, or identifying what to build and sell next.
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\U0001F4E1"
 ---
 
 # Signal Scan

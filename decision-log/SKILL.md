@@ -2,6 +2,9 @@
 name: decision-log
 description: Structured product decision engine -- takes signal scan output and operator preferences, applies the Signal-to-Decision Pipeline (SDP) framework, and produces a scored, filtered, bias-checked decision record with pre-mortem analysis and kill criteria. Use when choosing which opportunity to pursue from a completed signal scan.
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\u2696\uFE0F"
 ---
 
 # Decision Log

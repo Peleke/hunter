@@ -2,6 +2,9 @@
 name: hunter-log
 description: Persistence layer for the hunter product discovery pipeline. Takes PipelineEnvelope JSON from any pipeline skill (signal-scan, decision-log, persona-extract, offer-scope) and saves it as structured, Obsidian-compatible markdown with proper frontmatter, tags, cross-links, session tracking, and kanban board updates.
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\U0001F4D2"
 ---
 
 # Hunter Log

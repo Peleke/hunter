@@ -2,6 +2,11 @@
 name: mkdocs-site-generator
 description: Generate a complete MkDocs documentation site with GitHub Pages CI/CD for any TypeScript/Node.js codebase. Covers discovery, architecture, scaffold, content generation, CI/CD setup, and cross-reference verification. Use when setting up docs for a new or existing project.
 license: Complete terms in LICENSE.txt
+metadata:
+  openclaw:
+    emoji: "\U0001F4DA"
+    requires:
+      bins: ["python3", "pip", "gh"]
 ---
 
 # MkDocs Site Generator

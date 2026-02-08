@@ -1,6 +1,9 @@
 ---
 name: sketches
 description: Create hand-drawn-style visual sketches, wireframes, and diagrams using inline SVG. Produces rough, sketchy visuals with a whiteboard/napkin aesthetic (think Balsamiq or Excalidraw). Use when users ask to sketch, wireframe, mock up, diagram, or visually explain something -- including UI wireframes, architecture diagrams, flowcharts, process diagrams, concept sketches, and brainstorming visuals. Also use when users say "draw", "sketch", "wireframe", "mock up", "diagram", or "visualize".
+metadata:
+  openclaw:
+    emoji: "\u270F\uFE0F"
 ---
 
 # Sketches

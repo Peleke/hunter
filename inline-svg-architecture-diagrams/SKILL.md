@@ -2,6 +2,9 @@
 name: inline-svg-architecture-diagrams
 description: Generate production-quality inline SVG architecture diagrams with theme-aware CSS variables, animated flow lines, glow effects, feedback loops, and responsive layout. No external dependencies, no build steps, no image files. Use when creating system architecture visuals that integrate with a design system.
 license: Complete terms in LICENSE.txt
+metadata:
+  openclaw:
+    emoji: "\U0001F3D7\uFE0F"
 ---
 
 # Inline SVG Architecture Diagrams

@@ -2,6 +2,9 @@
 name: swot-analysis
 description: Evidence-grounded SWOT analysis engine -- takes persona extraction output, signal scan data, format research, and market hypothesis, then produces a brutally honest Strengths/Weaknesses/Opportunities/Threats analysis with verdict (proceed/pivot/kill), risk registry, and moat assessment. Use when stress-testing a product hypothesis before committing to a build spec.
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\U0001F50D"
 ---
 
 # SWOT Analysis

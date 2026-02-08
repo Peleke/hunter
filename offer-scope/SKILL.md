@@ -2,6 +2,9 @@
 name: offer-scope
 description: Offer scoping engine -- takes persona extraction output (pain stories, decision points, buying triggers, archetypes) and signal scan SPEND data, then produces a complete 1-day build spec with positioning, distribution plan, and revenue model. Use when converting validated persona insights into a shippable product spec.
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\U0001F3AF"
 ---
 
 # Offer Scope

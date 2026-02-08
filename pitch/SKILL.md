@@ -2,6 +2,9 @@
 name: pitch
 description: "Go-to-market launch engine -- takes offer-scope build spec (positioning, distribution plan, revenue model, kill criteria) plus persona data and SWOT analysis, then produces the complete launch kit: landing page copy, launch posts, GitHub product README, email sequence, launch checklist, A/B test spec, and refined kill criteria. Use when converting a validated offer spec into ready-to-execute go-to-market materials."
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\U0001F680"
 ---
 
 # Pitch

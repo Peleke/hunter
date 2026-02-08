@@ -1,6 +1,11 @@
 ---
 name: issue
 description: Draft well-structured GitHub issues with clear titles, structured descriptions, acceptance criteria, and appropriate labels. Use this skill when a user asks to create, write, or draft a GitHub issue, bug report, feature request, task ticket, or RFC/proposal. Also use when a user asks to file an issue, open a ticket, or report a bug.
+metadata:
+  openclaw:
+    emoji: "\U0001F3AB"
+    requires:
+      bins: ["gh"]
 ---
 
 # GitHub Issue Drafting

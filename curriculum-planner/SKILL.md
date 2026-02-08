@@ -1,6 +1,9 @@
 ---
 name: curriculum-planner
 description: Interactive elicitation protocol for designing tutorial series. Triggers on "plan a tutorial", "design a curriculum", "I want to teach [topic]", "/curriculum-plan". Runs structured elicitation across 5 dimensions, produces YAML outline + per-chapter specs ready for the chapter-generator skill.
+metadata:
+  openclaw:
+    emoji: "\U0001F5FA\uFE0F"
 ---
 
 # Curriculum Planner

@@ -8,6 +8,11 @@ description: >
   writing ideas from recent engineering work, or populate their Obsidian vault with
   content tasks. Invoked via /content-planner or when user asks about content
   scheduling, writing plans, or "what should I write about."
+metadata:
+  openclaw:
+    emoji: "\U0001F4F0"
+    requires:
+      bins: ["gh", "python3"]
 ---
 
 # Content Planner

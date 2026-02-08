@@ -1,6 +1,9 @@
 ---
 name: chapter-generator
 description: Generate a single tutorial chapter from a structured spec. Triggers on "generate chapter", "create the [chapter] tutorial", "write chapter [N]", "/chapter-gen". Takes a chapter spec (from curriculum-planner or inline) and produces a Markdown file following the configured voice guide, with MkDocs-compatible formatting.
+metadata:
+  openclaw:
+    emoji: "\u270D\uFE0F"
 ---
 
 # Chapter Generator

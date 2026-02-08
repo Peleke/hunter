@@ -2,6 +2,9 @@
 name: persona-extract
 description: Persona extraction engine -- takes decision-log output and signal scan data, then produces deep persona research with real stories, decision points, Four Forces analysis, and offer mapping. Uses web search to find real evidence. Use when converting validated market signals into evidence-based buyer personas grounded in real stories.
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\U0001F464"
 ---
 
 # Persona Extract

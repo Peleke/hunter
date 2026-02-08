@@ -2,6 +2,9 @@
 name: skool-pitch
 description: Skool-specific community pitch engine -- takes a topic, operator edge, and target audience (with optional persona and signal scan data from the hunter pipeline) and produces a complete Skool community plan with concept, competitive landscape, gamification design, pricing, content architecture, launch playbook (including Skool Games and affiliate strategy), economics, value ladder, and risk assessment. General-purpose -- works for any topic from DevOps to watercolor painting.
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\U0001F393"
 ---
 
 # Skool Pitch

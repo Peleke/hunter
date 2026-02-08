@@ -2,6 +2,9 @@
 name: community-pitch
 description: Community pitch engine -- takes persona extraction output and signal scan data, then produces a complete paid community plan with concept, platform recommendation, membership tiers, content cadence, launch plan, economics, community structure, and bundling strategy. Use when converting validated persona insights into a recurring-revenue community business (primarily Skool, but platform-agnostic).
 license: MIT
+metadata:
+  openclaw:
+    emoji: "\U0001F3D8\uFE0F"
 ---
 
 # Community Pitch
