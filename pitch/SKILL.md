@@ -91,14 +91,14 @@ Output: Report of what was deployed and where
 
 ### Parsing Contract
 
-The deploy-only mode reads the pitch markdown and locates content by H2 section headers. Expected sections and their parsers:
+The deploy-only mode reads the pitch markdown and locates content by H2 section headers. The pitch doc may use either short headers (`## Launch Posts`) or phase-numbered headers (`## Phase 2: Launch Posts`). Match on the section name, ignoring any `Phase N:` prefix.
 
-| Pitch Section | Header | Parser | Deploy Phase |
+| Pitch Section | Header (either format) | Parser | Deploy Phase |
 |---|---|---|---|
-| Launch Posts | `## Launch Posts` | Split by `### {Platform}: {Title}` or `### Twitter/X Thread` | 2.4 (Obsidian seeds) |
-| Email Sequence | `## Email Sequence` | Split by `### Email {N}: {Subject} (Day {N})` | 4.6 (individual files) |
-| Launch Checklist | `## Launch Checklist` | Split by `### Pre-Launch`, `### Launch Day`, `### Week 1`, `### Ongoing Cadence`, `### Month 2-3 Growth` | 5.6 (Obsidian kanban) |
-| Kill Criteria | `## Kill Criteria` | Read `### Week 1`, `### Month 1`, `### Month 3` thresholds | 7.6 (Obsidian Tasks) |
+| Launch Posts | `## Launch Posts` or `## Phase 2: Launch Posts` | Split by `### {Platform}: {Title}`, `### Reddit r/{sub} Post`, or `### Twitter/X Thread` | 2.4 (Obsidian seeds) |
+| Email Sequence | `## Email Sequence` or `## Phase 4: Email Sequence` | Split by `### Email {N}: {Subject} (Day {N})` | 4.6 (individual files) |
+| Launch Checklist | `## Launch Checklist` or `## Phase 5: Launch Checklist` | Split by `### Pre-Launch`, `### Launch Day`, `### Week 1`, `### Ongoing Cadence`, `### Month 2-3 Growth` | 5.6 (Obsidian kanban) |
+| Kill Criteria | `## Kill Criteria` or `## Phase 7: Kill Criteria` | Read `### 7.1 Week 1 Threshold`, `### 7.2 Month 1 Threshold`, `### 7.3 Month 3 Threshold` (also accepts unnumbered `### Week 1`, etc.) | 7.6 (Obsidian Tasks) |
 
 **If a section is missing or cannot be parsed, skip that deployment phase and warn the operator.** Do not fail the entire deploy because one section is malformed.
 
