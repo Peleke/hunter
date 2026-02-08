@@ -292,6 +292,36 @@ LinkedIn-specific formatting and tone:
 - Follow platform norms: no self-promo spam on Reddit (provide value first, link second), no clickbait on LinkedIn (be direct), no engagement-bait on Twitter (be authentic).
 - Each post must be ready to publish. Not an outline, not a draft. The final words.
 
+### 2.4 Obsidian Seed Output
+
+After generating launch posts, write each post as a **content seed** to the Obsidian vault. These are NOT finished briefs -- they are raw seeds for the operator to review and refine. The `content-planner` skill picks these up later for full brief generation.
+
+Write each post to: `{vault}/Writing/Content-Briefs/{product-slug}-{platform}-seed-{YYYY-MM-DD}.md`
+
+Frontmatter:
+```yaml
+---
+type: content-brief
+date: YYYY-MM-DD
+status: backlog
+tags:
+  - content/brief
+  - content/channel/{platform}
+  - hunter/domain/{domain-slug}
+source_skill: pitch
+pitch_ref: "{pitch-slug}"
+platform: reddit | linkedin | twitter
+---
+```
+
+Body: The full post text from Phase 2, preceded by a `## Seed Context` section with:
+- Target platform and subreddit/hashtags
+- Persona being addressed
+- Key offer-scope positioning points used
+- Suggested posting time (from launch checklist if available)
+
+These seeds flow into the content-planner pipeline: seed → operator review (via PR) → content-planner generates full brief → schedule → publish.
+
 ---
 
 ## Phase 3: GitHub Product README
@@ -418,6 +448,45 @@ Generate the full README.md content that combines the product structure with con
 - The free preview must be genuinely valuable. This is the "give 80%" principle in action.
 - Markdown formatting must be flawless. Broken tables, inconsistent headers, or missing code fences will cost credibility.
 
+### Phase 3c: Hero Image Generation
+
+After creating the README, generate a hero image for the product repo.
+
+**If ComfyUI MCP is available:**
+1. Use `mcp__comfyui__generate_image` to generate a product-appropriate hero image
+2. Prompt should match the product domain: for DevOps/infrastructure, use isometric technical illustrations with dark backgrounds and teal/blue accents; for programming, use code-themed abstract art; for security, use shield/lock motifs
+3. Dimensions: 1280x640 (GitHub README hero ratio)
+4. Save to the product branch root as `hero.png`
+5. Reference in README: `![{Product Name}](hero.png)` immediately after the H1 title
+
+**If ComfyUI MCP is NOT available:**
+Insert an HTML comment in the README immediately after the H1 title with the image intent:
+```html
+<!-- IMAGE_INTENT: {describe the ideal hero image -- style, colors, elements, mood}
+     PROMPT: {the exact ComfyUI prompt to use when generation becomes available}
+     DIMENSIONS: 1280x640 -->
+```
+
+This allows a future run (or a human designer) to generate the image from the intent.
+
+### Phase 3d: Launchpad Branch + PR
+
+After generating the README and product structure, deploy to the `launchpad` repo:
+
+1. **Clone `launchpad`**: `git clone https://github.com/Peleke/launchpad.git`
+2. **Create product branch**: `git checkout -b {product-slug}`
+3. **Scaffold the directory structure** from Phase 3a: create all directories and placeholder READMEs
+4. **Write the full README.md** from Phase 3b
+5. **Add hero image** from Phase 3c (or the HTML comment fallback)
+6. **Add scaffolding files**: LICENSE, CONTRIBUTING.md, issue templates
+7. **Commit and push** the branch
+8. **Open a PR against main** using `gh pr create`:
+   - Title: `{Product Name}: Product Structure + README + Hero`
+   - Body: Product summary, file list, review checklist with checkboxes, pipeline refs (offer_ref, persona_ref, swot_ref)
+   - The PR is the operator's review surface for line-by-line feedback
+
+The PR stays open until the operator reviews and merges. The operator can comment on specific files, and the agent can address feedback in subsequent commits to the same branch.
+
 ---
 
 ## Phase 4: Email Sequence
@@ -485,6 +554,29 @@ Generate 3-5 emails for the post-purchase nurture sequence. These build trust, d
 - Each email has ONE job. Do not cram multiple CTAs. Do not ask them to buy something AND join a community AND share on social media.
 - Tone: practitioner-to-practitioner, not marketer-to-mark. You are someone who builds production systems writing to someone else who builds production systems.
 - No fake urgency. No countdown timers. No "this offer expires." The product is good. The emails prove it. That is the selling.
+
+### 4.6 Email File Output
+
+After generating the full email sequence, split each email into its own file on the launchpad product branch:
+
+```
+{product-branch}/
+└── emails/
+    ├── README.md              # Sequence overview: timing, purpose of each email
+    ├── email-1-welcome.md     # Day 0: Welcome / Delivery
+    ├── email-2-quick-win.md   # Day 2: Quick Win
+    ├── email-3-story.md       # Day 4: Story / Credibility
+    ├── email-4-objection.md   # Day 6: Objection Handler
+    └── email-5-community.md   # Day 7: Community Invite
+```
+
+Each email file contains:
+- Subject line
+- Full body copy (ready to paste into ConvertKit/Buttondown)
+- Send timing (day + recommended time)
+- Single job description (what this email is supposed to accomplish)
+
+The `emails/README.md` contains the sequence overview: timing map, purpose of each email, and notes on tone/voice for anyone editing later.
 
 ---
 
@@ -560,6 +652,69 @@ Based on what is working:
 - If email is converting: optimize signup funnel, create additional lead magnets
 - If GitHub is driving traffic: invest in README improvements, create issues for community contribution
 - If nothing is converting: revisit kill criteria. Is it time to pivot?
+
+### 5.6 Obsidian Kanban Output
+
+After generating the launch checklist, write it as an Obsidian Kanban board to the vault:
+
+**Path:** `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-launch-checklist.kanban.md`
+
+Use the Obsidian Kanban plugin format:
+
+```markdown
+---
+type: kanban
+date: YYYY-MM-DD
+tags:
+  - hunter/pitch
+  - hunter/domain/{domain-slug}
+pitch_ref: "{pitch-slug}"
+kanban-plugin: basic
+---
+
+## Pre-Launch (Days -7 to -1)
+
+- [ ] Set up payment processing (Gumroad/LemonSqueezy) @{date}
+- [ ] Set up email tool (ConvertKit/Buttondown) @{date}
+- [ ] Create landing page @{date}
+- [ ] Set up GitHub repo from launchpad branch @{date}
+- [ ] Prepare all launch posts as drafts @{date}
+- [ ] Test full funnel: landing page → payment → delivery → email 1 @{date}
+
+## Launch Day
+
+- [ ] 8 AM: Final checks -- all links work @{launch_date}
+- [ ] 9 AM: Publish primary channel post @{launch_date}
+- [ ] 10 AM: Publish LinkedIn post @{launch_date}
+- [ ] 11 AM: Publish Twitter/X thread @{launch_date}
+- [ ] 12 PM: First engagement check @{launch_date}
+- [ ] 4 PM: Second engagement check @{launch_date}
+- [ ] 8 PM: End-of-day engagement pass @{launch_date}
+
+## Week 1
+
+- [ ] Day 1: Engage all comments, send thank-you DMs @{date+1}
+- [ ] Day 2: Post follow-up comment on primary channel @{date+2}
+- [ ] Day 3: Cross-post to secondary channel @{date+3}
+- [ ] Day 4: Publish supporting content piece @{date+4}
+- [ ] Day 5: Review sales data @{date+5}
+- [ ] Day 6: Double down on working channel @{date+6}
+- [ ] Day 7: Week 1 retrospective vs kill criteria @{date+7}
+
+## Ongoing (Weeks 2-4)
+
+- [ ] 2x/week value-first posts on primary channel
+- [ ] 3x/week LinkedIn short-form posts
+- [ ] 1x/week DEV.to or blog article
+- [ ] Daily community engagement (15 min)
+- [ ] Weekly metrics check (Friday)
+- [ ] Weekly GitHub repo update
+
+## Complete
+
+```
+
+Replace `@{date}` placeholders with actual dates based on the operator's target launch date. If no launch date is specified, use relative dates (e.g., `@{T-7}`, `@{T-0}`, `@{T+1}`).
 
 ---
 
@@ -665,19 +820,40 @@ Specific conditions that trigger a strategy change vs a full kill:
 - Kill criteria must be written BEFORE launch and agreed to BEFORE emotional investment builds.
 - Distinguish between "iterate" (the mechanism needs tuning), "pivot" (the approach needs changing), and "kill" (the opportunity is not viable).
 
+### 7.6 Obsidian Task Output
+
+After generating kill criteria, write review reminder tasks to the pitch vault document using Obsidian Tasks plugin format. Append these to the pitch markdown under a `## Review Reminders` section:
+
+```markdown
+## Review Reminders
+
+> [!warning] These are pre-committed review dates. Check the numbers. Do not rationalize.
+
+- [ ] **Week 1 review**: Check units sold >= {week1_threshold}, launch post engagement, landing page visitors 📅 {launch_date + 7} #hunter/review
+- [ ] **Month 1 review**: Check cumulative units >= {month1_threshold}, revenue >= ${month1_revenue}, email list >= {email_threshold}, GitHub stars >= {stars_threshold} 📅 {launch_date + 30} #hunter/review
+- [ ] **Month 3 review**: Check growth trajectory (MoM positive?), cumulative units >= {month3_threshold}, community viability 📅 {launch_date + 90} #hunter/review
+- [ ] **Time investment audit**: Total hours invested post-build. If > 40 hours and < 10 sales, trigger kill criteria review 📅 {launch_date + 30} #hunter/review
+```
+
+Replace all `{placeholder}` values with the actual numbers from Phase 7 thresholds. The `📅` date and `#hunter/review` tag make these queryable by Obsidian Tasks and Dataview.
+
+If the operator has not specified a launch date, use `📅 TBD` and note that dates should be filled in when a launch date is set.
+
 ---
 
 ## Output
 
-The pitch produces two files, saved to the Obsidian vault:
+The pitch produces multiple output artifacts across the vault and launchpad repo:
 
-**Vault path:** `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/Admin/Product-Discovery/Pitches/`
+**Vault path:** `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/`
 
-### 1. JSON Spec: `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-pitch-{YYYY-MM-DD}.json`
+### Primary Outputs (Vault)
+
+#### 1. JSON Spec: `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-pitch-{YYYY-MM-DD}.json`
 
 Structured data following the schema in [references/output-schema.json](references/output-schema.json). Must validate against that schema.
 
-### 2. Markdown Summary: `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-pitch-{YYYY-MM-DD}.md`
+#### 2. Markdown Summary: `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-pitch-{YYYY-MM-DD}.md`
 
 Human-readable launch kit with the following structure:
 
@@ -853,15 +1029,62 @@ signal_scan_ref: "{signal-scan-slug}"
 
 ---
 
+### Deployment Outputs (Launchpad Repo + Vault)
+
+#### 3. Launchpad Product Branch: `github.com/Peleke/launchpad` branch `{product-slug}`
+- Full product directory structure from Phase 3a
+- Product README from Phase 3b
+- Hero image from Phase 3c (or HTML comment with image intent)
+- `emails/` directory with individual email files from Phase 4.6
+- PR opened against `main` for operator review (Phase 3d)
+
+#### 4. Content Seeds: `{vault}/Writing/Content-Briefs/{product-slug}-{platform}-seed-{YYYY-MM-DD}.md`
+- One file per launch post (Phase 2.4)
+- Frontmatter: `type: content-brief`, `status: backlog`, platform tag
+- Picked up by content-planner for full brief generation after operator review
+
+#### 5. Launch Checklist Kanban: `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-launch-checklist.kanban.md`
+- Obsidian Kanban board with Pre-Launch, Launch Day, Week 1, Ongoing columns (Phase 5.6)
+- Tasks have dates, checkable on mobile via iCloud sync
+
+#### 6. Review Reminders: Appended to pitch markdown in vault
+- Obsidian Tasks format with `📅` dates and `#hunter/review` tags (Phase 7.6)
+- Week 1, Month 1, Month 3 review dates
+- Queryable by Obsidian Tasks and Dataview plugins
+
+#### 7. Pipeline Tracker: `{vault}/Admin/Product-Discovery/Pipeline.md`
+- Table of all products with branch links, preview URLs, status
+- Updated by pitch skill when creating a new product
+- Format:
+
+```markdown
+| Product | Branch | Preview URL | Price | Status | Pitch Date |
+|---------|--------|-------------|-------|--------|------------|
+| {name} | [{slug}](https://github.com/Peleke/launchpad/tree/{slug}) | [Preview]({vercel-url}) | ${price} | spec | {date} |
+```
+
+---
+
 ## Vault Output Contract
 
-Both output files are written to the Obsidian vault (iCloud-synced):
+All vault output files are written to the Obsidian vault (iCloud-synced):
 
 ```
-/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/Admin/Product-Discovery/Pitches/
+/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/
 ```
 
+**Pitch files:** `Admin/Product-Discovery/Pitches/`
 - Filename format: `{product-slug}-pitch-{YYYY-MM-DD}.md` and `{product-slug}-pitch-{YYYY-MM-DD}.json`
+
+**Content seeds:** `Writing/Content-Briefs/`
+- Filename format: `{product-slug}-{platform}-seed-{YYYY-MM-DD}.md`
+
+**Launch kanban:** `Admin/Product-Discovery/Pitches/`
+- Filename format: `{product-slug}-launch-checklist.kanban.md`
+
+**Pipeline tracker:** `Admin/Product-Discovery/Pipeline.md`
+
+**Rules:**
 - If a file already exists at the target path: APPEND under `## Update: {ISO timestamp}`, do NOT overwrite
 - Frontmatter MUST include: `type: pitch`, `date`, `status: draft`, `tags` (minimum: `hunter/pitch`, `hunter/domain/{slug}`)
 
@@ -907,3 +1130,10 @@ Run this checklist before delivering the pitch:
 - [ ] JSON output validates against `references/output-schema.json`
 - [ ] Markdown output has correct frontmatter (type: pitch, date, status: draft, tags, all refs)
 - [ ] Both files are saved to vault `Admin/Product-Discovery/Pitches/`
+- [ ] Launchpad branch created with product structure, README, hero image, and emails/
+- [ ] PR opened against launchpad main with review checklist
+- [ ] Content seeds written to `Writing/Content-Briefs/` with correct frontmatter
+- [ ] Launch checklist written as Obsidian kanban with dated tasks
+- [ ] Kill criteria review reminders appended with Obsidian Tasks format (📅 dates, #hunter/review)
+- [ ] Pipeline tracker updated with new product row
+- [ ] All prose content reviewed by buildlog_gauntlet Bragi persona (all rules)
