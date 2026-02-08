@@ -240,6 +240,25 @@ Every skill output wraps in:
 
 ---
 
+## Prose Quality Gate
+
+**MANDATORY**: Any skill that produces prose content (landing page copy, launch posts, README copy, email sequences, content briefs, pitch summaries) MUST run `buildlog_gauntlet` with the **Bragi** persona and **ALL rules** before finalizing output. This applies to:
+- `pitch` (Phases 1, 2, 3b, 4)
+- `community-pitch` / `skool-pitch` (all copy sections)
+- `content-planner` (content briefs and drafts)
+- Any future skill that generates human-facing prose
+
+Workflow:
+1. Generate the prose draft
+2. Run `buildlog_gauntlet_rules()` to load all reviewer personas
+3. Run the Bragi persona with all rules against the prose
+4. Address all issues flagged by Bragi
+5. Re-run until clean (or note unresolved items with justification)
+
+Bragi reviews for: voice consistency, rhythm, clarity, cliche avoidance, audience register, and emotional precision. This is the quality floor for anything that leaves the pipeline.
+
+---
+
 ## Migration Path
 
 This vault-as-database is designed for eventual migration to a real backend:

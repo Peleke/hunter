@@ -45,6 +45,91 @@ This skill consumes the output of `offer-scope`, `persona-extract`, `swot-analys
 - "Generate the go-to-market package"
 - "Turn this offer scope into launch-ready materials"
 - "/pitch [offer-scope output]"
+- "Deploy artifacts from [pitch doc]"
+- "Split the pitch into deployable files"
+- "/pitch --deploy-only [pitch-slug or path]"
+
+---
+
+## Deploy-Only Mode
+
+Reads an existing pitch document from the vault and splits/deploys its artifacts without re-generating content. Use when:
+- A pitch was generated before the deployment extensions existed
+- You want to re-deploy artifacts after editing the pitch document
+- Testing the deployment pipeline against an existing pitch
+
+### Deploy-Only Input
+
+One of:
+- **Pitch slug**: e.g., `devops-decision-kit-pitch-2026-02-08` (searches `Admin/Product-Discovery/Pitches/`)
+- **Full vault path**: e.g., `Admin/Product-Discovery/Pitches/devops-decision-kit-pitch-2026-02-08.md`
+- **Absolute path**: the full filesystem path to the pitch markdown
+
+Optional:
+- **Launch date**: ISO date for kanban task dates. If omitted, uses relative dates (`T-7`, `T+0`, `T+1`, etc.)
+- **Skip list**: Deployment phases to skip (e.g., `--skip emails,kanban` if those are already deployed)
+
+### Deploy-Only Workflow
+
+```
+Existing pitch markdown (from vault)
+    |
+Step 1: Parse pitch document into sections
+    |
+Step 2: Check what is already deployed (launchpad branch? seeds exist? kanban exists?)
+    |
+Step 3: Deploy missing artifacts only
+    |    ├── Phase 2.4: Launch posts → Obsidian content seeds
+    |    ├── Phase 4.6: Email sequence → individual files on launchpad branch
+    |    ├── Phase 5.6: Launch checklist → Obsidian kanban
+    |    └── Phase 7.6: Kill criteria → Obsidian Tasks on pitch doc
+    |
+Step 4: Update Pipeline tracker
+    |
+Output: Report of what was deployed and where
+```
+
+### Parsing Contract
+
+The deploy-only mode reads the pitch markdown and locates content by H2 section headers. Expected sections and their parsers:
+
+| Pitch Section | Header | Parser | Deploy Phase |
+|---|---|---|---|
+| Launch Posts | `## Launch Posts` | Split by `### {Platform}: {Title}` or `### Twitter/X Thread` | 2.4 (Obsidian seeds) |
+| Email Sequence | `## Email Sequence` | Split by `### Email {N}: {Subject} (Day {N})` | 4.6 (individual files) |
+| Launch Checklist | `## Launch Checklist` | Split by `### Pre-Launch`, `### Launch Day`, `### Week 1`, `### Ongoing Cadence`, `### Month 2-3 Growth` | 5.6 (Obsidian kanban) |
+| Kill Criteria | `## Kill Criteria` | Read `### Week 1`, `### Month 1`, `### Month 3` thresholds | 7.6 (Obsidian Tasks) |
+
+**If a section is missing or cannot be parsed, skip that deployment phase and warn the operator.** Do not fail the entire deploy because one section is malformed.
+
+### Deploy-Only Checks
+
+Before deploying each artifact:
+
+1. **Content seeds** (Phase 2.4): Check if `{vault}/Writing/Content-Briefs/{product-slug}-{platform}-seed-*.md` already exists. If yes, skip and warn (or append under `## Update: {timestamp}` per conventions).
+2. **Email files** (Phase 4.6): Check if `emails/` directory exists on the launchpad branch. If yes, skip and warn. If the branch does not exist, warn that Phase 3d (launchpad branch creation) should run first.
+3. **Kanban** (Phase 5.6): Check if `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-launch-checklist.kanban.md` exists. If yes, skip and warn.
+4. **Review reminders** (Phase 7.6): Check if the pitch markdown already has a `## Review Reminders` section. If yes, skip and warn.
+
+### Deploy-Only Output
+
+Returns a deployment report:
+
+```json
+{
+  "pitch_ref": "devops-decision-kit-pitch-2026-02-08",
+  "deployed": {
+    "content_seeds": ["path/to/seed-1.md", "path/to/seed-2.md"],
+    "email_files": ["emails/email-1-welcome.md", ...],
+    "kanban": "path/to/launch-checklist.kanban.md",
+    "review_reminders": "appended to pitch markdown"
+  },
+  "skipped": {
+    "kanban": "already exists at path/to/..."
+  },
+  "warnings": ["No launch date specified; using relative dates"]
+}
+```
 
 ---
 
@@ -1137,3 +1222,4 @@ Run this checklist before delivering the pitch:
 - [ ] Kill criteria review reminders appended with Obsidian Tasks format (📅 dates, #hunter/review)
 - [ ] Pipeline tracker updated with new product row
 - [ ] All prose content reviewed by buildlog_gauntlet Bragi persona (all rules)
+- [ ] Deploy-only mode: all deployment phases either succeeded or were skipped with warnings (no silent failures)
