@@ -1,3 +1,8 @@
+---
+name: hunter-conventions
+description: "Shared conventions for the hunter product-discovery pipeline: canonical paths, frontmatter contracts, folder-to-type mapping, statuses, tags, cross-references, and the PipelineEnvelope schema."
+---
+
 # Hunter Pipeline Conventions
 ## Preamble — loaded by every skill in the hunter pipeline
 
