@@ -495,3 +495,4 @@ Run this checklist before delivering the decision record:
 - [ ] JSON output validates against `references/output-schema.json`
 - [ ] Markdown output has correct frontmatter (type, date, status, tags, signal_scan_ref)
 - [ ] Both files are saved to vault `Admin/Product-Discovery/Decisions/`
+- [ ] Pipeline kanban updated: move card to "Decision Made" column (see _conventions.md Pipeline Kanban Contract)

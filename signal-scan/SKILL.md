@@ -278,3 +278,4 @@ Run this checklist before delivering the scan:
 - [ ] Distribution recommendations are specific and actionable
 - [ ] Landing page copy hooks use actual PAIN language from the scan
 - [ ] Both JSON and markdown files are saved to vault `Admin/Product-Discovery/Signal-Scans/`
+- [ ] Pipeline kanban updated: add card to "Signal Scanned" column (see _conventions.md Pipeline Kanban Contract)

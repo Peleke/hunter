@@ -221,6 +221,52 @@ Every skill:
 2. Produces JSON output (PipelineEnvelope)
 3. Calls hunter-log to persist to the vault (OR writes directly following these conventions)
 4. Links backward to upstream artifacts via `*_ref` fields in frontmatter
+5. Updates Pipeline.kanban.md (see Pipeline Kanban Contract below)
+
+---
+
+## Pipeline Kanban Contract
+
+**Path:** `{vault}/Admin/Product-Discovery/Pipeline.kanban.md`
+
+The Pipeline kanban tracks every product idea from scan to shipped/killed. Skills that advance the pipeline stage MUST move the card as part of their output step.
+
+### Columns and Owning Skills
+
+| Column | Moved here by | Card format |
+|--------|---------------|-------------|
+| Signal Scanned | `signal-scan` | `- [ ] {product-or-domain-name}` |
+| Decision Made | `decision-log` | `- [ ] {opportunity-name} — [[decision-ref]]` |
+| Persona Researched | `persona-extract` | `- [ ] {opportunity-name} — [[persona-ref]]` |
+| Offer Scoped | `offer-scope` | `- [ ] [[offer-ref\|Product Name ($price)]]` |
+| Building | operator (manual) | `- [ ] [[pitch-ref\|Product Name ($price)]] — launch date: YYYY-MM-DD` |
+| Shipped | operator (manual) | `- [ ] [[pitch-ref\|Product Name]] — shipped YYYY-MM-DD` |
+| Killed | operator or kill criteria | `- [ ] ~~Product Name~~ — killed YYYY-MM-DD: {reason}` |
+
+### How to Move a Card
+
+1. Read `Pipeline.kanban.md`
+2. Find the card by product/opportunity name (substring match is fine)
+3. Remove the `- [ ]` line from the current column
+4. Add the updated `- [ ]` line under the new column header
+5. If the card does not exist yet (first time in pipeline), add it to the appropriate column
+
+### Skills That Do NOT Move the Card
+
+- `swot-analysis`: runs between persona and offer, does not advance the pipeline stage (card stays in "Persona Researched")
+- `pitch`: the pitch generates launch materials but does not mean the operator has committed to launching. Card stays in "Offer Scoped" until the operator sets a launch date and moves it to "Building" manually.
+- `content-planner`: operates on a separate content pipeline, does not touch the product discovery kanban
+
+### Card Lifecycle Example
+
+```
+Monday:    signal-scan adds    "- [ ] DevOps education gap"                      → Signal Scanned
+Monday:    decision-log moves  "- [ ] DevOps Decision Kit — [[decision-ref]]"    → Decision Made
+Tuesday:   persona-extract moves "- [ ] DevOps Decision Kit — [[persona-ref]]"   → Persona Researched
+Wednesday: offer-scope moves   "- [ ] [[offer-ref|DevOps Decision Kit ($29)]]"   → Offer Scoped
+Thursday:  pitch runs, card stays in Offer Scoped (PR open, launch date TBD)
+Friday:    operator moves      "- [ ] [[pitch-ref|DevOps Decision Kit ($29)]] — launch date: 2026-02-17" → Building
+```
 
 ---
 

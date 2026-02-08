@@ -464,3 +464,4 @@ Run this checklist before delivering the extraction:
 - [ ] Markdown output includes correct frontmatter (type, date, status, tags, refs)
 - [ ] Markdown is saved to vault at `Admin/Product-Discovery/Personas/`
 - [ ] All upstream references (decision_ref, signal_scan_ref) are linked
+- [ ] Pipeline kanban updated: move card to "Persona Researched" column (see _conventions.md Pipeline Kanban Contract)
