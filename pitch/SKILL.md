@@ -83,6 +83,7 @@ Step 2: Check what is already deployed (launchpad branch? seeds exist? kanban ex
     |
 Step 3: Deploy missing artifacts only
     |    ├── Phase 2.4: Launch posts → Obsidian content seeds
+    |    ├── Phase 3e: Landing page copy → index.html on launchpad branch
     |    ├── Phase 4.6: Email sequence → individual files on launchpad branch
     |    ├── Phase 5.6: Launch checklist → Obsidian kanban
     |    └── Phase 7.6: Kill criteria → Obsidian Tasks on pitch doc
@@ -98,6 +99,7 @@ The deploy-only mode reads the pitch markdown and locates content by H2 section 
 
 | Pitch Section | Header (either format) | Parser | Deploy Phase |
 |---|---|---|---|
+| Landing Page Copy | `## Landing Page Copy` or `## Phase 1: Landing Page Copy` | Read all subsections (### Headline through ### Call to Action) and pass to Phase 3e HTML generator | 3e (index.html on launchpad branch) |
 | Launch Posts | `## Launch Posts` or `## Phase 2: Launch Posts` | Split by `### {Platform}: {Title}`, `### Reddit r/{sub} Post`, or `### Twitter/X Thread` | 2.4 (Obsidian seeds) |
 | Email Sequence | `## Email Sequence` or `## Phase 4: Email Sequence` | Split by `### Email {N}: {Subject} (Day {N})` | 4.6 (individual files) |
 | Launch Checklist | `## Launch Checklist` or `## Phase 5: Launch Checklist` | Split by `### Pre-Launch`, `### Launch Day`, `### Week 1`, `### Ongoing Cadence`, `### Month 2-3 Growth` | 5.6 (Obsidian kanban) |
@@ -110,9 +112,10 @@ The deploy-only mode reads the pitch markdown and locates content by H2 section 
 Before deploying each artifact:
 
 1. **Content seeds** (Phase 2.4): Check if `{vault}/Writing/Content-Briefs/{product-slug}-{platform}-seed-*.md` already exists. If yes, skip and warn (or append under `## Update: {timestamp}` per conventions).
-2. **Email files** (Phase 4.6): Check if `emails/` directory exists on the launchpad branch. If yes, skip and warn. If the branch does not exist, warn that Phase 3d (launchpad branch creation) should run first.
-3. **Kanban** (Phase 5.6): Check if `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-launch-checklist.kanban.md` exists. If yes, skip and warn.
-4. **Review reminders** (Phase 7.6): Check if the pitch markdown already has a `## Review Reminders` section. If yes, skip and warn.
+2. **Landing page HTML** (Phase 3e): Check if `index.html` exists on the launchpad branch root. If yes, skip and warn. If the branch does not exist, warn that Phase 3d (launchpad branch creation) should run first.
+3. **Email files** (Phase 4.6): Check if `emails/` directory exists on the launchpad branch. If yes, skip and warn. If the branch does not exist, warn that Phase 3d (launchpad branch creation) should run first.
+4. **Kanban** (Phase 5.6): Check if `{vault}/Admin/Product-Discovery/Pitches/{product-slug}-launch-checklist.kanban.md` exists. If yes, skip and warn.
+5. **Review reminders** (Phase 7.6): Check if the pitch markdown already has a `## Review Reminders` section. If yes, skip and warn.
 
 ### Deploy-Only Output
 
@@ -122,6 +125,7 @@ Returns a deployment report:
 {
   "pitch_ref": "devops-decision-kit-pitch-2026-02-08",
   "deployed": {
+    "landing_page_html": "index.html (on {product-slug} branch)",
     "content_seeds": ["path/to/seed-1.md", "path/to/seed-2.md"],
     "email_files": ["emails/email-1-welcome.md", ...],
     "kanban": "path/to/launch-checklist.kanban.md",
@@ -236,7 +240,7 @@ Phase 1: Landing Page Copy (complete, ready to paste)
     |
 Phase 2: Launch Posts (platform-specific, ready to publish)
     |
-Phase 3: GitHub Product README (Phase 3a: product structure + Phase 3b: README copy)
+Phase 3: GitHub Product Repo (3a: structure + 3b: README + 3c: hero + 3d: branch/PR + 3e: landing page HTML)
     |
 Phase 4: Email Sequence (3-5 emails, post-purchase nurture)
     |
@@ -574,6 +578,138 @@ After generating the README and product structure, deploy to the `launchpad` rep
    - The PR is the operator's review surface for line-by-line feedback
 
 The PR stays open until the operator reviews and merges. The operator can comment on specific files, and the agent can address feedback in subsequent commits to the same branch.
+
+### Phase 3e: Landing Page HTML
+
+After the launchpad branch exists (Phase 3d), generate a complete, single-file `index.html` from the Phase 1 landing page copy and commit it to the branch root. Vercel auto-deploys every branch, so this file immediately becomes a live landing page at the branch preview URL.
+
+**This phase converts Phase 1 copy into a deployable page. It does NOT rewrite copy.** The HTML is a faithful rendering of the Phase 1 output. If the copy needs revision, revise Phase 1 first, then re-run Phase 3e.
+
+#### 3e.1 Design System
+
+Generate a single `<style>` tag inside `<head>` with these design tokens and components. No external CSS, no JavaScript frameworks, no CDN links. The page must work as a standalone file with zero dependencies.
+
+**Color tokens (CSS custom properties on `:root`):**
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--bg` | `#0d1117` | Page background |
+| `--surface` | `#161b22` | Cards, blockquotes, FAQ panels |
+| `--border` | `#30363d` | All borders |
+| `--text` | `#e6edf3` | Primary text |
+| `--text-muted` | `#8b949e` | Secondary text, descriptions, citations |
+| `--accent` | `#58a6ff` | Links, module names, interactive highlights |
+| `--accent-hover` | `#79c0ff` | Link hover state |
+| `--green` | `#3fb950` | Primary CTA buttons, "after" cards, checkmarks |
+| `--orange` | `#d29922` | Warning or emphasis accents |
+| `--red` | `#f85149` | "Before" cards, problem emphasis |
+
+**Typography:**
+- Font stack: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif`
+- Line height: `1.6`
+- `-webkit-font-smoothing: antialiased`
+- Hero h1: `2.8rem`, weight `800`, letter-spacing `-0.02em`
+- Section h2: `1.8rem`, weight `700`, letter-spacing `-0.01em`
+- Body text: `1.05rem`, color `var(--text-muted)`
+
+**Layout:**
+- `.container`: max-width `720px`, centered, `24px` horizontal padding
+- Sections separated by `border-top: 1px solid var(--border)` with `60px` vertical padding
+- Mobile breakpoint at `640px`: reduce h1 to `2rem`, container padding to `16px`, collapse grids to single column
+
+#### 3e.2 Section-to-HTML Mapping
+
+Each Phase 1 section maps to a semantic HTML block. Generate every section that Phase 1 produced. If a section is empty or was not generated in Phase 1, skip it -- do not generate placeholder content.
+
+| Phase 1 Section | HTML Element | Key Styling |
+|-----------------|-------------|-------------|
+| **Headline + Subheadline** | `<header class="hero">` containing `<h1>` and `<p class="sub">` | Centered, `80px` top padding, `60px` bottom |
+| **Primary + Secondary CTA** | `<div class="cta-group">` with `<a class="btn btn-primary">` and `<a class="btn btn-secondary">` | Flex row, centered, wraps on mobile. Primary: green bg, black text. Secondary: surface bg with border. |
+| **Problem Section** | `<section>` with prose `<p>` tags and `<blockquote>` elements | Blockquotes: `3px` left border in accent color, surface bg, `6px` right border-radius. Attribution in `<cite>`. |
+| **Solution / Before-After** | `<section>` with `.before-after` grid (`1fr 1fr`) containing `.ba-card.before` and `.ba-card.after` | Before: red-tinted border/heading. After: green-tinted. Collapse to single column on mobile. |
+| **How It Works** | `<ol class="steps">` with `<li>` items | CSS counter with numbered circles (accent text, surface bg) positioned left of each step. |
+| **What's Inside / Modules** | `<table class="modules-table">` with `<thead>` and `<tbody>` | First column: accent color, `600` weight, no-wrap. Last column: muted, smaller. Hover: surface bg. |
+| **Social Proof / Credibility** | `<section>` with `<div class="cred">` | Surface bg, bordered card, `28px` padding. |
+| **Pricing** | `<section>` with `.pricing-cards` grid (`1fr 1fr`) | Each card: surface bg, bordered. Featured: green border. Price: `2rem` weight `800`. Checkmark list via `li::before`. |
+| **Comparison List** | `<ul class="compare-list">` | Flexbox rows, space-between, border-bottom separator. |
+| **FAQ** | `<details>` elements with `<summary>` and `<div>` | Surface bg, bordered, `6px` radius. Custom marker: `+`/`−`. No default webkit marker. |
+| **Final CTA** | `<div class="final-cta">` with h2 + `<p>` + `.cta-group` | Centered, `60px` padding, mirrors hero CTA. |
+| **Footer** | `<footer>` | Centered, muted, `40px` padding. Links to GitHub and author. |
+
+#### 3e.3 Open Graph and Meta Tags
+
+Generate in `<head>`:
+
+```html
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{Product Name} — {Headline (truncated to ~60 chars)}</title>
+<meta name="description" content="{Subheadline, max 160 chars}">
+<meta property="og:title" content="{Product Name} — {Headline}">
+<meta property="og:description" content="{Subheadline}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://launchpad-git-{product-slug}-kwayet-fs-projects.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{Product Name} — {Headline}">
+<meta name="twitter:description" content="{Subheadline}">
+```
+
+If a hero image was generated in Phase 3c, add `og:image` and `twitter:image` tags pointing to `/hero.png`. If not, omit them rather than linking to a nonexistent file.
+
+#### 3e.4 CTA Link Targets
+
+| CTA | Link Target | Fallback |
+|-----|------------|----------|
+| Primary ("Clone the Repo", "Get the Kit") | `https://github.com/Peleke/launchpad/tree/{product-slug}` | `#` with `<!-- TODO: update link -->` |
+| Secondary ("Join the Community") | Skool community URL if known | `#community` anchor to pricing section |
+| Email signup | ConvertKit/Buttondown URL if known | `#` with `<!-- TODO: add signup link -->` |
+
+Every placeholder link must have an HTML comment explaining what URL to replace it with.
+
+#### 3e.5 Content Fidelity Rules
+
+- **Do not rewrite copy.** The HTML renders Phase 1 copy verbatim.
+- **Typographic entities required.** Straight quotes → curly (`&ldquo;`/`&rdquo;`, `&lsquo;`/`&rsquo;`), hyphens → em-dashes (`&mdash;`), three dots → ellipsis (`&hellip;`).
+- **Preserve all persona quotes.** Every blockquote must include quote text in `<p>` and attribution in `<cite>` with em-dash prefix.
+- **Preserve the module/feature table exactly.** Same columns, same rows as Phase 1.
+- **Preserve all FAQ items.** Each FAQ becomes one `<details>/<summary>` element. Do not merge or split.
+
+#### 3e.6 Responsive Behavior
+
+The `@media (max-width: 640px)` breakpoint must:
+- Reduce hero h1 to `2rem`, subtitle to `1.05rem`
+- Collapse `.before-after` and `.pricing-cards` grids to single column
+- Tighten module table padding (`10px 8px`) and font (`0.85rem`)
+- Reduce container padding to `16px`
+- No horizontal scrolling at any viewport width down to `320px`
+
+#### 3e.7 File Output
+
+Write `index.html` to the launchpad product branch root alongside `README.md`. If Phase 3d already ran and the branch exists, commit and push. If the PR is already open, this becomes an additional commit on the same PR.
+
+#### 3e.8 Validation Checklist
+
+- [ ] Valid HTML5 (`<!DOCTYPE html>`, `<html lang="en">`)
+- [ ] All CSS inline in a single `<style>` tag -- no external stylesheets
+- [ ] No JavaScript -- pure HTML + CSS
+- [ ] No external dependencies -- no CDN, no Google Fonts, no analytics
+- [ ] All Phase 1 sections present (unless empty in Phase 1)
+- [ ] All persona quotes as `<blockquote>` with `<cite>`
+- [ ] Module/feature table matches Phase 1 exactly
+- [ ] All FAQs as `<details>/<summary>`
+- [ ] Both CTAs in hero and final CTA sections
+- [ ] Open Graph meta tags with correct product name and description
+- [ ] Mobile responsive at 640px (no horizontal scroll, grids collapse)
+- [ ] All placeholder links have HTML comments
+- [ ] Typographic entities used throughout
+- [ ] File under 30KB
+
+#### Landing Page HTML Rules
+
+- Page must render correctly as local file (`file://`) AND served by Vercel
+- Page must look complete without hero image (no broken image placeholder)
+- Semantic HTML: `<header>`, `<section>`, `<footer>`, `<blockquote>`, `<details>`, `<summary>`, `<table>`, `<cite>`
+- Dark theme is non-negotiable. All launchpad products use the same visual identity.
 
 ---
 
@@ -1030,6 +1166,16 @@ signal_scan_ref: "{signal-scan-slug}"
 
 ---
 
+## Landing Page HTML
+
+**File**: `index.html` (on `{product-slug}` branch)
+**Preview URL**: [{vercel-preview-url}]({vercel-preview-url})
+**Sections rendered**: [list of sections from Phase 1 that were converted to HTML]
+**Hero image in OG tags**: Yes/No
+**File size**: {N} bytes
+
+---
+
 ## Email Sequence
 
 ### Email 1: [Subject Line] (Day 0)
@@ -1126,6 +1272,13 @@ signal_scan_ref: "{signal-scan-slug}"
 - `emails/` directory with individual email files from Phase 4.6
 - PR opened against `main` for operator review (Phase 3d)
 
+#### 3b. Landing Page HTML: `index.html` on launchpad branch root
+- Single-file HTML landing page generated from Phase 1 copy (Phase 3e)
+- Dark theme, mobile responsive, zero dependencies
+- Open Graph meta tags for social sharing
+- Immediately deployable via Vercel branch preview
+- Preview URL: `https://launchpad-git-{product-slug}-kwayet-fs-projects.vercel.app`
+
 #### 4. Content Seeds: `{vault}/Writing/Content-Briefs/{product-slug}-{platform}-seed-{YYYY-MM-DD}.md`
 - One file per launch post (Phase 2.4)
 - Frontmatter: `type: content-brief`, `status: backlog`, platform tag
@@ -1219,6 +1372,10 @@ Run this checklist before delivering the pitch:
 - [ ] Markdown output has correct frontmatter (type: pitch, date, status: draft, tags, all refs)
 - [ ] Both files are saved to vault `Admin/Product-Discovery/Pitches/`
 - [ ] Launchpad branch created with product structure, README, hero image, and emails/
+- [ ] Landing page index.html generated from Phase 1 copy and committed to launchpad branch
+- [ ] Landing page renders at mobile (640px) and desktop, no horizontal scroll
+- [ ] Landing page has zero external dependencies (no CDN, no JS, no external CSS)
+- [ ] Open Graph meta tags present with product name, description, and hero image URL (if hero exists)
 - [ ] PR opened against launchpad main with review checklist
 - [ ] Content seeds written to `Writing/Content-Briefs/` with correct frontmatter
 - [ ] Launch checklist written as Obsidian kanban with dated tasks

@@ -552,7 +552,247 @@ These are dark-mode defaults. The point of CSS variables is that light-mode them
 
 ---
 
+## Style Variant: Portfolio Hand-Drawn
+
+> External `.svg` files with a hand-drawn, sketchy aesthetic. Transparent background, Caveat cursive font, wobbly path-based shapes, `feTurbulence` displacement filter. No CSS variables, no grid backgrounds, no build steps.
+
+### When to Use This Style
+
+- Portfolio articles, blog posts, writing collections
+- Diagrams that sit inside prose content (not dashboards or app UIs)
+- Visual storytelling where warmth and approachability matter
+- Any context where the rigid CSS-variable system feels too "enterprise"
+
+### Color Palette (Hardcoded — No CSS Variables)
+
+| Role | Value | Usage |
+|------|-------|-------|
+| Primary text | `#e0e0e0` | Labels, titles, main content |
+| Muted text | `#888888` | Captions, annotations, sub-labels |
+| Accent | `rgb(168,85,247)` | Borders, highlights, numbered callouts, animated elements |
+| Accent fill | `rgba(168,85,247,0.08)` | Box backgrounds (subtle) |
+| Accent fill (glow) | `rgba(168,85,247,0.12-0.14)` | Highlighted/glowing box backgrounds |
+| Success | `#4ade80` | Accept, positive signals |
+| Danger | `#f87171` | Reject, negative signals, warnings |
+| Background | transparent | SVG has no background — inherits from page |
+
+### Typography
+
+All text uses:
+```
+font-family="'Caveat', 'Comic Sans MS', cursive"
+```
+
+No monospace. No sans-serif. Everything is hand-drawn cursive.
+
+| Element | Size | Weight | Fill |
+|---------|------|--------|------|
+| Diagram title | 20-22px | bold | `#e0e0e0` |
+| Section headers / labels | 15px | bold | `#e0e0e0` |
+| Body text / descriptions | 12-13px | normal | `#888888` |
+| Annotations / captions | 10-11px | normal | `#888888` |
+| Accent annotations | 12px | normal | `rgb(168,85,247)` |
+
+### Filter Definitions
+
+**Roughen filter** — Applies to box paths for hand-drawn wobble:
+```xml
+<filter id="roughen" x="-2%" y="-2%" width="104%" height="104%">
+  <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="2" result="noise" seed="3"/>
+  <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+```
+
+Vary the `seed` value (1-10) per diagram for different wobble patterns. Keep `scale` between 1.0-1.2.
+
+**Glow filter** — For emphasized/highlighted elements:
+```xml
+<filter id="glow">
+  <feGaussianBlur stdDeviation="3" result="blur"/>
+  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+```
+
+### Arrow Markers
+
+Open chevron style — not filled triangles. Stroke-only, rounded caps:
+```xml
+<marker id="arrow" viewBox="0 0 12 10" refX="10" refY="5"
+        markerWidth="8" markerHeight="6" orient="auto-start-reverse"
+        fill="none" stroke="#e0e0e0" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round">
+  <path d="M 1,1 L 10,5 L 1,9"/>
+</marker>
+```
+
+Color variants (same shape, different stroke):
+- `id="arrow-purple"` → `stroke="rgb(168,85,247)"`
+- `id="arrow-green"` → `stroke="#4ade80"`
+- `id="arrow-red"` → `stroke="#f87171"`
+
+### Wobbly Box Technique
+
+Use `<path>` with slightly irregular coordinates instead of `<rect>`:
+
+```xml
+<!-- WRONG: rigid rectangle -->
+<rect x="132" y="68" width="430" height="60" rx="8"/>
+
+<!-- RIGHT: organic wobbly path -->
+<path d="M 132,68 C 230,65 430,71 562,67
+         C 565,85 563,105 565,128
+         C 430,131 230,127 132,131
+         C 129,113 131,87 129,68"
+      stroke="rgb(168,85,247)" stroke-width="2" fill="rgba(168,85,247,0.08)"
+      stroke-linecap="round" stroke-linejoin="round"/>
+```
+
+Key technique: Each control point varies **±3px** from the "perfect" rectangle coordinates. The `C` (cubic bezier) commands create subtle organic curves. Always use `stroke-linecap="round"` and `stroke-linejoin="round"`.
+
+### Organic Touches
+
+These details make the difference between "SVG diagram" and "hand-drawn sketch":
+
+- **Slight rotation transforms**: `transform="rotate(-0.4, cx, cy)"` on groups — vary between ±0.3° and ±0.8°
+- **Title underline**: Wobbly `<path>` under title text, not a `<line>` — slightly off-center, accent color at 0.5 opacity
+- **Decorative margin sketches**: Tiny illustrations at 0.25-0.35 opacity (mini knowledge graphs, beta curves, coffee cups, etc.)
+- **Numbered callouts**: Purple filled circles with white bold numbers
+- **Animated dashed lines**: `stroke-dasharray="8 5"` with `<animate>` on `stroke-dashoffset`
+- **Bottom caption**: Muted italic-feeling observation, `font-size="11"`, `fill="#888888"`, `opacity="0.6"`
+
+### Numbered Callout Pattern
+
+```xml
+<circle cx="108" cy="82" r="14" fill="rgb(168,85,247)" stroke="none" opacity="0.9"/>
+<text x="108" y="87" text-anchor="middle"
+      font-family="'Caveat', 'Comic Sans MS', cursive"
+      font-size="14" fill="white" font-weight="bold">1</text>
+```
+
+### Standard Layout
+
+- `viewBox="0 0 672 {height}"` — 672px wide to match content column
+- External `.svg` files in `public/diagrams/`, referenced via `<img src="/diagrams/name.svg">`
+- Include `xmlns="http://www.w3.org/2000/svg"` on root `<svg>` element
+- No `width`/`height` attributes — let the img container control sizing
+
+### Quality Checklist (Hand-Drawn Style)
+
+- [ ] All colors hardcoded (zero CSS variables)
+- [ ] Font is Caveat/cursive throughout — no monospace, no sans-serif
+- [ ] Boxes use `<path>` not `<rect>` — visibly wobbly
+- [ ] `roughen` filter applied to box paths where appropriate
+- [ ] Background is transparent (no grid pattern, no fill on root)
+- [ ] At least one decorative margin sketch (graph, curve, icon)
+- [ ] Slight rotation transforms on groups (±0.3° to ±0.8°)
+- [ ] Title has wobbly underline path
+- [ ] Animations are subtle and loop smoothly
+- [ ] Caption text at bottom in muted `#888888` at reduced opacity
+
+### Full Example: Feedback Loop Diagram
+
+From `portfolio/public/diagrams/feedback-loop.svg` — a 6-step vertical flow with feedback arc, decorative margin sketches, and accent annotations:
+
+```xml
+<svg viewBox="0 0 672 920" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="roughen" x="-2%" y="-2%" width="104%" height="104%">
+      <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="2" result="noise" seed="3"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 12 10" refX="10" refY="5"
+            markerWidth="8" markerHeight="6" orient="auto-start-reverse"
+            fill="none" stroke="#e0e0e0" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 1,1 L 10,5 L 1,9"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 12 10" refX="10" refY="5"
+            markerWidth="8" markerHeight="6" orient="auto-start-reverse"
+            fill="none" stroke="rgb(168,85,247)" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 1,1 L 10,5 L 1,9"/>
+    </marker>
+  </defs>
+
+  <!-- TITLE with wobbly underline -->
+  <text x="336" y="38" text-anchor="middle"
+        font-family="'Segoe Print', 'Comic Sans MS', 'Caveat', cursive"
+        font-size="22" fill="#e0e0e0" font-weight="bold"
+        transform="rotate(-0.6, 336, 38)">
+    Qortex Feedback Loop
+  </text>
+  <path d="M 182,46 C 230,48 340,44 490,47"
+        stroke="rgb(168,85,247)" stroke-width="1.5" fill="none"
+        stroke-linecap="round" opacity="0.6"/>
+
+  <!-- STEP: Numbered callout + wobbly box + labels -->
+  <g transform="rotate(-0.4, 336, 100)">
+    <circle cx="108" cy="82" r="14" fill="rgb(168,85,247)" stroke="none" opacity="0.9"/>
+    <text x="108" y="87" text-anchor="middle"
+          font-family="'Segoe Print', 'Comic Sans MS', cursive"
+          font-size="14" fill="white" font-weight="bold">1</text>
+
+    <path d="M 132,68 C 230,65 430,71 562,67
+             C 565,85 563,105 565,128
+             C 430,131 230,127 132,131
+             C 129,113 131,87 129,68"
+          stroke="rgb(168,85,247)" stroke-width="2" fill="rgba(168,85,247,0.08)"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text x="348" y="92" text-anchor="middle"
+          font-family="'Segoe Print', 'Comic Sans MS', cursive"
+          font-size="15" fill="#e0e0e0" font-weight="bold">Query Arrives</text>
+    <text x="348" y="114" text-anchor="middle"
+          font-family="'Segoe Print', 'Comic Sans MS', cursive"
+          font-size="12" fill="#888888">vector similarity finds seed concepts</text>
+  </g>
+
+  <!-- ARROW between steps -->
+  <path d="M 336,134 C 338,150 334,162 336,176"
+        stroke="#e0e0e0" stroke-width="2" fill="none"
+        stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <!-- ... more steps ... -->
+
+  <!-- FEEDBACK ARC: loops back from bottom to top -->
+  <path d="M 128,790 C 78,788 42,760 38,700
+           C 34,580 36,400 36,260
+           C 36,160 42,100 62,82
+           C 72,73 90,70 108,68"
+        stroke="rgb(168,85,247)" stroke-width="2.2" fill="none"
+        stroke-linecap="round" stroke-dasharray="8 5"
+        opacity="0.7" filter="url(#glow)"
+        marker-end="url(#arrow-purple)"/>
+
+  <!-- DECORATIVE: Mini knowledge graph in margin -->
+  <g transform="translate(580, 210)" opacity="0.35">
+    <circle cx="0" cy="0" r="5" fill="rgb(168,85,247)" stroke="#e0e0e0" stroke-width="1"/>
+    <circle cx="30" cy="-20" r="4" fill="rgb(168,85,247)" stroke="#e0e0e0" stroke-width="1"/>
+    <circle cx="35" cy="15" r="4" fill="rgb(168,85,247)" stroke="#e0e0e0" stroke-width="1"/>
+    <path d="M 4,0 C 15,-8 22,-16 27,-18" stroke="#e0e0e0" stroke-width="0.8" fill="none"/>
+    <path d="M 4,3 C 15,8 28,12 32,14" stroke="#e0e0e0" stroke-width="0.8" fill="none"/>
+  </g>
+
+  <!-- BOTTOM CAPTION -->
+  <text x="336" y="910" text-anchor="middle"
+        font-family="'Segoe Print', 'Comic Sans MS', cursive"
+        font-size="11" fill="#888888" opacity="0.6">
+    each cycle sharpens the graph — good paths get stronger, bad paths decay
+  </text>
+</svg>
+```
+
+Also see: `portfolio/public/diagrams/broken-loop-vs-pipeline.svg`, `parking-lot-timeline.svg`, `pipeline-architecture.svg`, `ppr-traversal.svg`, `convergence-plot.svg`
+
+---
+
 ## Reference Implementation
+
+### Design System Style (CSS Variables)
 
 See `portfolio/src/pages/lab.astro` — Five-layer agent architecture diagram with:
 - 5 vertically stacked layers with mini-icons
@@ -563,3 +803,13 @@ See `portfolio/src/pages/lab.astro` — Five-layer agent architecture diagram wi
 - Glow filter + pulse ring on the core (Learning) layer
 - Clickable layers linking to project doc sites
 - Full hover interaction CSS
+
+### Hand-Drawn Style (Hardcoded Colors)
+
+See `portfolio/public/diagrams/` — External SVG files for blog articles:
+- `feedback-loop.svg` — 6-step vertical flow with feedback arc and margin decorations
+- `ppr-traversal.svg` — Animated graph traversal with CSS keyframes
+- `convergence-plot.svg` — Hand-drawn chart with wobbly axes and data curves
+- `broken-loop-vs-pipeline.svg` — Side-by-side comparison with animated loop
+- `pipeline-architecture.svg` — Numbered pipeline stages with I/O annotations
+- `parking-lot-timeline.svg` — Horizontal timeline with alternating above/below labels
