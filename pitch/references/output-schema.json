@@ -12,6 +12,7 @@
     "landing_page",
     "launch_posts",
     "github_readme",
+    "landing_page_html",
     "email_sequence",
     "launch_checklist",
     "ab_test_spec",
@@ -230,6 +231,50 @@
         "readme_content": {
           "type": "string",
           "description": "The full README.md content. Includes hero section, product structure preview, decision framework preview (the free 80%), CTA sections, social proof, contributing, and license."
+        }
+      }
+    },
+    "landing_page_html": {
+      "type": "object",
+      "description": "Metadata about the generated landing page HTML file. The actual HTML is written to the launchpad branch, not embedded in the JSON output.",
+      "required": ["file_path", "vercel_preview_url", "sections_rendered", "has_hero_image"],
+      "properties": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to index.html on the launchpad branch (always 'index.html' at branch root)"
+        },
+        "vercel_preview_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The Vercel branch preview URL where the page is live"
+        },
+        "sections_rendered": {
+          "type": "array",
+          "description": "List of Phase 1 sections that were rendered into HTML",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hero",
+              "problem",
+              "solution_before_after",
+              "how_it_works",
+              "modules_table",
+              "credibility",
+              "pricing",
+              "comparison",
+              "faq",
+              "final_cta",
+              "footer"
+            ]
+          }
+        },
+        "has_hero_image": {
+          "type": "boolean",
+          "description": "Whether og:image and twitter:image meta tags reference an actual hero.png"
+        },
+        "file_size_bytes": {
+          "type": "integer",
+          "description": "Size of the generated index.html in bytes. Should be under 30720 (30KB)."
         }
       }
     },

@@ -56,6 +56,7 @@ Every document type maps to exactly one folder. This is the "table" in our vault
 | Content Brief | `Writing/Content-Briefs/` | `content-planner` |
 | Content Board | `Writing/Content-Plan.kanban.md` | `content-planner` |
 | Draft | `Writing/Drafts/` | `content-planner` / manual |
+| Wild Index | `Writing/From-The-Wild/` | `wild-scan` |
 | Research Note | `Writing/Research/` | manual |
 
 **Rules:**
@@ -73,7 +74,7 @@ Every document MUST have YAML frontmatter with AT MINIMUM these fields:
 ```yaml
 type: string        # one of: signal-scan | decision | persona | swot-analysis |
                     # offer-spec | pitch | community-pitch | skool-pitch |
-                    # session | content-brief | lead |
+                    # session | content-brief | wild-index | lead |
                     # conversation | draft | research-note
 date: YYYY-MM-DD    # creation date
 status: string      # see valid statuses below
@@ -97,6 +98,7 @@ tags: string[]      # MUST include hunter/{type} or content/{type} at minimum
 | lead | `cold`, `warm`, `hot`, `converted`, `lost` |
 | conversation | `active`, `stale`, `closed` |
 | draft | `wip`, `review`, `final` |
+| wild-index | `active`, `archived` |
 | research-note | `active`, `archived` |
 
 ### Tag Hierarchy
@@ -135,8 +137,9 @@ hunter/
 
 content/
 ├── brief             # all content briefs
+├── from-the-wild     # wild-scan quote indices
 ├── series/
-│   └── {slug}        # e.g., memory-gap, building-in-public
+│   └── {slug}        # e.g., memory-gap, building-in-public, from-the-wild
 ├── channel/
 │   ├── linkedin
 │   ├── blog
@@ -218,7 +221,12 @@ signal-scan ──→ decision-log ──→ persona-extract ──→ swot-anal
                                         └──→ content-planner
                                                     │
                                               (reads both pipelines
-                                               + GitHub + buildlog)
+                                               + GitHub + buildlog
+                                               + wild-scan indices)
+
+wild-scan ──→ Writing/From-The-Wild/ (quote indices)
+         └──→ Writing/Content-Briefs/ (series: "From the Wild")
+              └──→ content-planner picks these up
 ```
 
 Every skill:
