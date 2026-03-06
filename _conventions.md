@@ -57,6 +57,7 @@ Every document type maps to exactly one folder. This is the "table" in our vault
 | SWOT Analysis | `Admin/Product-Discovery/SWOT/` | `swot-analysis` |
 | Offer Spec | `Admin/Product-Discovery/Offers/` | `offer-scope` |
 | Pitch | `Admin/Product-Discovery/Pitches/` | `pitch` |
+| Landing Page | `Admin/Product-Discovery/Landing-Pages/` | `landing-page` |
 | Community Pitch | `Admin/Product-Discovery/Offers/` | `community-pitch` |
 | Skool Pitch | `Admin/Product-Discovery/Offers/` | `skool-pitch` |
 | Session Log | `Admin/Product-Discovery/Sessions/` | `hunter-log` |
@@ -86,9 +87,9 @@ Every document MUST have YAML frontmatter with AT MINIMUM these fields:
 ### Required (all types)
 ```yaml
 type: string        # one of: signal-scan | decision | persona | swot-analysis |
-                    # offer-spec | pitch | community-pitch | skool-pitch |
-                    # session | content-brief | wild-index | lead |
-                    # conversation | draft | research-note
+                    # offer-spec | pitch | landing-page | community-pitch |
+                    # skool-pitch | session | content-brief | wild-index |
+                    # lead | conversation | draft | research-note
 date: YYYY-MM-DD    # creation date
 status: string      # see valid statuses below
 tags: string[]      # MUST include hunter/{type} or content/{type} at minimum
@@ -104,6 +105,7 @@ tags: string[]      # MUST include hunter/{type} or content/{type} at minimum
 | swot-analysis | `complete`, `partial` |
 | offer-spec | `spec`, `building`, `shipped`, `killed` |
 | pitch | `draft`, `review`, `final`, `shipped` |
+| landing-page | `draft`, `review`, `live`, `killed` |
 | community-pitch | `spec`, `building`, `launched`, `killed` |
 | skool-pitch | `spec`, `building`, `launched`, `killed` |
 | session | `in-progress`, `complete` |
@@ -126,6 +128,7 @@ hunter/
 ├── swot              # all SWOT analyses
 ├── offer             # all offer specs
 ├── pitch             # all pitches (go-to-market packages)
+├── landing-page      # all landing pages (deployed HTML from pitch)
 ├── community         # all community pitches
 ├── skool             # all Skool-specific pitches
 ├── session           # all session logs
@@ -226,7 +229,7 @@ This is the vault-as-database pattern:
 ## Pipeline Data Flow
 
 ```
-signal-scan ──→ decision-log ──→ persona-extract ──→ swot-analysis ──→ offer-scope ──→ pitch ──→ one-pager ──→ hunter-log
+signal-scan ──→ decision-log ──→ persona-extract ──→ swot-analysis ──→ offer-scope ──→ pitch ──→ landing-page ──→ one-pager ──→ hunter-log
                                         │                                    │
                                         │                              community-pitch ──→ hunter-log
                                         │                              skool-pitch ──→ hunter-log
@@ -264,6 +267,7 @@ Skills that perform extensive web search or analysis SHOULD declare `context: fo
 | reddit-harvest | Yes | Playwright session |
 | offer-scope | No | Reads upstream, no search |
 | pitch | No | Generates from data |
+| landing-page | No | Renders pitch copy as HTML |
 | hunter-log | No | Pure I/O |
 
 ---
@@ -307,6 +311,8 @@ The Pipeline kanban tracks every product idea from scan to shipped/killed. Skill
 
 - `swot-analysis`: runs between persona and offer, does not advance the pipeline stage (card stays in "Persona Researched")
 - `pitch`: the pitch generates launch materials but does not mean the operator has committed to launching. Card stays in "Offer Scoped" until the operator sets a launch date and moves it to "Building" manually.
+- `landing-page`: renders pitch copy as HTML and deploys to launchpad branch. Card stays in whatever column pitch left it in (typically "Offer Scoped").
+- `one-pager`: generates a PDF one-pager from pitch data. Card stays in whatever column pitch left it in.
 - `content-planner`: operates on a separate content pipeline, does not touch the product discovery kanban
 
 ### Card Lifecycle Example
@@ -327,7 +333,7 @@ Friday:    operator moves      "- [ ] [[pitch-ref|DevOps Decision Kit ($29)]] �
 Every skill output wraps in:
 ```json
 {
-  "skill": "signal-scan | decision-log | persona-extract | swot-analysis | offer-scope | pitch | one-pager | community-pitch | skool-pitch | content-planner",
+  "skill": "signal-scan | decision-log | persona-extract | swot-analysis | offer-scope | pitch | landing-page | one-pager | community-pitch | skool-pitch | content-planner",
   "version": "1.0",
   "session_id": "session-YYYY-MM-DD-NNN",
   "timestamp": "ISO 8601",

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LandingPageOutput",
+  "description": "Output schema for the landing-page skill. Wraps in a PipelineEnvelope.",
+  "type": "object",
+  "required": [
+    "landing_page_id",
+    "date",
+    "product_name",
+    "pitch_ref",
+    "html_file_path",
+    "branch_name",
+    "file_size_bytes",
+    "has_hero_image",
+    "og_tags",
+    "sections_rendered",
+    "responsive_validated",
+    "vault_note_path"
+  ],
+  "properties": {
+    "landing_page_id": {
+      "type": "string",
+      "description": "Unique identifier: {product-slug}-landing-page-{YYYY-MM-DD}",
+      "pattern": "^[a-z0-9-]+-landing-page-\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Generation date in YYYY-MM-DD format"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Human-readable product name"
+    },
+    "pitch_ref": {
+      "type": "string",
+      "description": "Slug of the upstream pitch document (without extension)"
+    },
+    "html_file_path": {
+      "type": "string",
+      "description": "Path to index.html on the launchpad branch (always 'index.html')",
+      "const": "index.html"
+    },
+    "branch_name": {
+      "type": "string",
+      "description": "Git branch name on the launchpad repo (product-slug)"
+    },
+    "file_size_bytes": {
+      "type": "integer",
+      "description": "Size of the generated index.html in bytes",
+      "maximum": 30720
+    },
+    "has_hero_image": {
+      "type": "boolean",
+      "description": "Whether hero.png exists on the branch and og:image tags were added"
+    },
+    "og_tags": {
+      "type": "object",
+      "description": "Open Graph meta tag values used in the page",
+      "required": ["title", "description"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "og:title value"
+        },
+        "description": {
+          "type": "string",
+          "description": "og:description value, max 160 characters",
+          "maxLength": 160
+        },
+        "image": {
+          "type": "string",
+          "description": "og:image URL (only present if hero image exists)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sections_rendered": {
+      "type": "array",
+      "description": "List of section types that were rendered in the HTML",
+      "items": {
+        "type": "string",
+        "enum": [
+          "hero",
+          "cta-group",
+          "problem",
+          "solution",
+          "how-it-works",
+          "modules",
+          "social-proof",
+          "pricing",
+          "faq",
+          "final-cta",
+          "footer"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "responsive_validated": {
+      "type": "boolean",
+      "description": "Whether the page was validated for mobile responsiveness (640px breakpoint, no horizontal scroll to 320px)"
+    },
+    "vault_note_path": {
+      "type": "string",
+      "description": "Vault-relative path to the reference note in Obsidian",
+      "pattern": "^Admin/Product-Discovery/Landing-Pages/.+\\.md$"
+    },
+    "preview_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Vercel branch preview URL"
+    },
+    "pr_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "GitHub PR URL (if a PR was opened or already exists)"
+    }
+  },
+  "additionalProperties": false
+}
