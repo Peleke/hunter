@@ -410,6 +410,19 @@ Body: The full post text from Phase 2, preceded by a `## Seed Context` section w
 
 These seeds flow into the content-planner pipeline: seed → operator review (via PR) → content-planner generates full brief → schedule → publish.
 
+### 2.5 LinkedIn Launch Post Convention (`::linkedin`)
+
+For LinkedIn launch posts, write them to Obsidian with the `::linkedin` prefix in the note body (before the post content). This triggers the OpenClaw ambient pipeline:
+
+1. OpenClaw detects the `::linkedin` prefix in the Obsidian note
+2. Pipes the note content to LinWheel (the LinkedIn content generator + scheduler)
+3. The operator reviews and approves the post in LinWheel
+4. LinWheel schedules and publishes to LinkedIn
+
+**Format**: Write the LinkedIn seed to `{vault}/Writing/Content-Briefs/{product-slug}-linkedin-seed-{YYYY-MM-DD}.md` with the `::linkedin` prefix as the first line of the body (after frontmatter). This makes it a live launch post that can be approved and scheduled, not just a draft.
+
+The full pipeline: pitch skill → Obsidian seed → OpenClaw → LinWheel → LinkedIn publication.
+
 ---
 
 ## Phase 3: GitHub Product README
