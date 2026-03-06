@@ -1,13 +1,11 @@
 ---
 name: content-planner
 description: >
-  Scans recent GitHub activity AND buildlog entries across repos, synthesizes
-  engineering work into publishable content opportunities with fan-out analysis,
-  and outputs an Obsidian-compatible content plan (kanban board + instrumented briefs).
-  Use when the user wants to plan content, update their content calendar, generate
-  writing ideas from recent engineering work, or populate their Obsidian vault with
-  content tasks. Invoked via /content-planner or when user asks about content
-  scheduling, writing plans, or "what should I write about."
+  Scan GitHub activity and buildlog entries, synthesize engineering work into
+  publishable content opportunities with fan-out analysis, and output an
+  Obsidian-compatible content plan (kanban board + instrumented briefs). Use when
+  planning content, updating the content calendar, or generating writing ideas
+  from recent engineering work.
 metadata:
   openclaw:
     emoji: "\U0001F4F0"

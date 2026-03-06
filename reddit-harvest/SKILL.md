@@ -7,6 +7,7 @@ description: >
   directly into wild-scan Phase 3+ (scoring, clustering, briefs).
 license: MIT
 metadata:
+  context: fork
   openclaw:
     emoji: "\U0001F4E1"
     requires:
