@@ -16,7 +16,7 @@ Take signal scan output and operator preferences, run them through the Signal-to
 Before doing ANYTHING, read the shared conventions file:
 
 ```
-Read /Users/peleke/Documents/Projects/skills/skills/custom/_conventions.md
+Read ${SKILLS_DIR}/_conventions.md
 ```
 
 This file defines: canonical vault path, folder-to-type mapping, frontmatter contract, valid statuses, tag hierarchy, cross-reference syntax, and the PipelineEnvelope schema. All output from this skill MUST conform to those conventions. If there is a conflict between this SKILL.md and `_conventions.md`, the conventions file wins.
@@ -459,7 +459,7 @@ signal_scan_ref: "{signal-scan-slug}"
 Both output files are written to the Obsidian vault (iCloud-synced):
 
 ```
-/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/Admin/Product-Discovery/Decisions/
+${VAULT}/Admin/Product-Discovery/Decisions/
 ```
 
 - Filename format: `{domain-slug}-{YYYY-MM-DD}.md` and `{domain-slug}-{YYYY-MM-DD}.json`

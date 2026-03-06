@@ -22,7 +22,7 @@ Drive a logged-in Reddit browser session via Playwright MCP to harvest pain quot
 Before doing ANYTHING, read the shared conventions file:
 
 ```
-Read /Users/peleke/Documents/Projects/skills/skills/custom/_conventions.md
+Read ${SKILLS_DIR}/_conventions.md
 ```
 
 This file defines: canonical vault path, folder-to-type mapping, frontmatter contract, valid statuses, tag hierarchy, cross-reference syntax, and the PipelineEnvelope schema. All output from this skill MUST conform to those conventions. If there is a conflict between this SKILL.md and `_conventions.md`, the conventions file wins.
@@ -53,7 +53,7 @@ Before starting, establish with the user:
 1. **Topic focus** — What specific area to harvest (e.g., "Kubernetes deployment pain", "Terraform state management")
 2. **Target subreddits** — Specific subreddits to search, or use defaults from [references/subreddit-targets.md](references/subreddit-targets.md)
 3. **Min engagement threshold** — Minimum upvotes to consider a post worth drilling into (default: 10)
-4. **Pain queries** — Specific search terms, or use defaults from wild-scan's [search-playbook.md](/Users/peleke/Documents/Projects/skills/skills/custom/wild-scan/references/search-playbook.md)
+4. **Pain queries** — Specific search terms, or use defaults from wild-scan's [search-playbook.md](${SKILLS_DIR}/wild-scan/references/search-playbook.md)
 5. **Posts per subreddit** — How many top posts to drill into per subreddit (default: 10)
 
 If the user says "just go" with a topic, use these defaults:
@@ -97,10 +97,10 @@ Phase 5: Export — Write vault Markdown + JSON in wild-scan format
 Read these files before starting:
 
 ```
-Read /Users/peleke/Documents/Projects/skills/skills/custom/reddit-harvest/references/selectors.md
-Read /Users/peleke/Documents/Projects/skills/skills/custom/reddit-harvest/references/subreddit-targets.md
-Read /Users/peleke/Documents/Projects/skills/skills/custom/wild-scan/references/scoring-rubric.md
-Read /Users/peleke/Documents/Projects/skills/skills/custom/wild-scan/references/search-playbook.md
+Read ${SKILLS_DIR}/reddit-harvest/references/selectors.md
+Read ${SKILLS_DIR}/reddit-harvest/references/subreddit-targets.md
+Read ${SKILLS_DIR}/wild-scan/references/scoring-rubric.md
+Read ${SKILLS_DIR}/wild-scan/references/search-playbook.md
 ```
 
 ### Verify Login
@@ -249,7 +249,7 @@ Harvested 5/30 threads. 23 quotes so far. Continuing...
 Apply wild-scan's 4-dimension scoring rubric to every harvested quote. See the full rubric at:
 
 ```
-/Users/peleke/Documents/Projects/skills/skills/custom/wild-scan/references/scoring-rubric.md
+${SKILLS_DIR}/wild-scan/references/scoring-rubric.md
 ```
 
 ### Scoring Summary
@@ -296,7 +296,7 @@ overall: 7.7
 
 Produce two output files matching wild-scan's format exactly.
 
-**Vault path:** `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/`
+**Vault path:** `${VAULT}/`
 
 ### 1. Markdown Quote Index
 
@@ -485,9 +485,9 @@ Run this before delivering results:
 - `references/subreddit-targets.md` — Priority subreddits by domain
 
 ### Wild-Scan References (consumed, not duplicated)
-- `/Users/peleke/Documents/Projects/skills/skills/custom/wild-scan/references/scoring-rubric.md` — 4-dimension scoring calibration
-- `/Users/peleke/Documents/Projects/skills/skills/custom/wild-scan/references/search-playbook.md` — Pain query templates
-- `/Users/peleke/Documents/Projects/skills/skills/custom/wild-scan/references/output-schema.json` — JSON output schema
+- `${SKILLS_DIR}/wild-scan/references/scoring-rubric.md` — 4-dimension scoring calibration
+- `${SKILLS_DIR}/wild-scan/references/search-playbook.md` — Pain query templates
+- `${SKILLS_DIR}/wild-scan/references/output-schema.json` — JSON output schema
 
 ### Playwright MCP Tools Used
 - `browser_navigate` — Load Reddit URLs

@@ -16,7 +16,7 @@ Transform decision-log output and signal scan data into deep, evidence-based buy
 Before doing ANYTHING, read the shared conventions file:
 
 ```
-Read /Users/peleke/Documents/Projects/skills/skills/custom/_conventions.md
+Read ${SKILLS_DIR}/_conventions.md
 ```
 
 This file defines: canonical vault path, folder-to-type mapping, frontmatter contract, valid statuses, tag hierarchy, cross-reference syntax, and the PipelineEnvelope schema. All output from this skill MUST conform to those conventions. If there is a conflict between this SKILL.md and `_conventions.md`, the conventions file wins.
@@ -303,7 +303,7 @@ The extraction produces two files:
 
 Save to: `Admin/Product-Discovery/Personas/{domain-slug}-{YYYY-MM-DD}.md`
 
-Vault path: `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/Admin/Product-Discovery/Personas/`
+Vault path: `${VAULT}/Admin/Product-Discovery/Personas/`
 
 ### 1. JSON: `persona-extract-[domain-slug]-[date].json`
 

@@ -16,7 +16,7 @@ Transform an offer-scope build spec into a complete go-to-market launch kit. Pro
 Before doing ANYTHING, read the shared conventions file:
 
 ```
-Read /Users/peleke/Documents/Projects/skills/skills/custom/_conventions.md
+Read ${SKILLS_DIR}/_conventions.md
 ```
 
 This file defines: canonical vault path, folder-to-type mapping, frontmatter contract, valid statuses, tag hierarchy, cross-reference syntax, and the PipelineEnvelope schema. All output from this skill MUST conform to those conventions. If there is a conflict between this SKILL.md and `_conventions.md`, the conventions file wins.
@@ -1069,7 +1069,7 @@ If the operator has not specified a launch date, use `📅 TBD` and note that da
 
 The pitch produces multiple output artifacts across the vault and launchpad repo:
 
-**Vault path:** `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/`
+**Vault path:** `${VAULT}/`
 
 ### Primary Outputs (Vault)
 
@@ -1311,7 +1311,7 @@ signal_scan_ref: "{signal-scan-slug}"
 All vault output files are written to the Obsidian vault (iCloud-synced):
 
 ```
-/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/
+${VAULT}/
 ```
 
 **Pitch files:** `Admin/Product-Discovery/Pitches/`

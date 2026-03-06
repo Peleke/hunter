@@ -10,26 +10,38 @@ All skills in the hunter product discovery pipeline MUST follow these convention
 
 ---
 
+## Path Variables
+
+These variables are used throughout all pipeline skills. The current values for this installation are listed below. When the pipeline is ejected to a standalone repo, these are set via `.hunter-config.yaml`.
+
+| Variable | Current Value |
+|---|---|
+| `${VAULT}` | `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious` |
+| `${SKILLS_DIR}` | `/Users/peleke/Documents/Projects/skills/skills/custom` |
+| `${HUNTER_DIR}` | `/Users/peleke/Documents/Projects/hunter` |
+
+---
+
 ## Canonical Paths
 
 ### Obsidian Vault (PRIMARY output target)
 ```
-/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious
+${VAULT}
 ```
 
 **IMPORTANT**: This is the iCloud-synced vault. Do NOT write to `/Users/peleke/Documents/Vaults/ClawTheCurious/` — that path is stale.
 
 ### Skills Directory
 ```
-/Users/peleke/Documents/Projects/skills/skills/custom/
+${SKILLS_DIR}/
 ```
 
 ### Hunter Project (repo-relative docs, NOT primary output)
 ```
-/Users/peleke/Documents/Projects/hunter/
+${HUNTER_DIR}/
 ```
 
-Use `hunter/docs/` for internal working documents only. All publishable/queryable output goes to the vault.
+Use `${HUNTER_DIR}/docs/` for internal working documents only. All publishable/queryable output goes to the vault.
 
 ---
 
@@ -57,6 +69,7 @@ Every document type maps to exactly one folder. This is the "table" in our vault
 | Content Board | `Writing/Content-Plan.kanban.md` | `content-planner` |
 | Draft | `Writing/Drafts/` | `content-planner` / manual |
 | Wild Index | `Writing/From-The-Wild/` | `wild-scan` |
+| One-Pager | `Admin/Product-Discovery/One-Pagers/` | `one-pager` |
 | Research Note | `Writing/Research/` | manual |
 
 **Rules:**
@@ -213,7 +226,7 @@ This is the vault-as-database pattern:
 ## Pipeline Data Flow
 
 ```
-signal-scan ──→ decision-log ──→ persona-extract ──→ swot-analysis ──→ offer-scope ──→ pitch ──→ hunter-log
+signal-scan ──→ decision-log ──→ persona-extract ──→ swot-analysis ──→ offer-scope ──→ pitch ──→ one-pager ──→ hunter-log
                                         │                                    │
                                         │                              community-pitch ──→ hunter-log
                                         │                              skool-pitch ──→ hunter-log
@@ -235,6 +248,32 @@ Every skill:
 3. Calls hunter-log to persist to the vault (OR writes directly following these conventions)
 4. Links backward to upstream artifacts via `*_ref` fields in frontmatter
 5. Updates Pipeline.kanban.md (see Pipeline Kanban Contract below)
+
+---
+
+## Context Metadata
+
+Skills that perform extensive web search or analysis SHOULD declare `context: fork` in their YAML frontmatter:
+
+| Skill | context: fork? | Reason |
+|---|---|---|
+| signal-scan | Yes | Extensive web search |
+| decision-log | Yes | Multi-phase scoring |
+| persona-extract | Yes | Web search + raw stories |
+| swot-analysis | Yes | 4-quadrant research |
+| reddit-harvest | Yes | Playwright session |
+| offer-scope | No | Reads upstream, no search |
+| pitch | No | Generates from data |
+| hunter-log | No | Pure I/O |
+
+---
+
+## Skill Description Guidelines
+
+- `description` in YAML frontmatter MUST be under 100 tokens (~75 words)
+- First sentence: what the skill does (verb phrase)
+- Second sentence: when to use it
+- No framework names or output format details in descriptions
 
 ---
 
@@ -288,7 +327,7 @@ Friday:    operator moves      "- [ ] [[pitch-ref|DevOps Decision Kit ($29)]] �
 Every skill output wraps in:
 ```json
 {
-  "skill": "signal-scan | decision-log | persona-extract | swot-analysis | offer-scope | pitch | community-pitch | skool-pitch | content-planner",
+  "skill": "signal-scan | decision-log | persona-extract | swot-analysis | offer-scope | pitch | one-pager | community-pitch | skool-pitch | content-planner",
   "version": "1.0",
   "session_id": "session-YYYY-MM-DD-NNN",
   "timestamp": "ISO 8601",

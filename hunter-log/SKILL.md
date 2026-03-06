@@ -16,7 +16,7 @@ Persistence layer for the hunter product discovery pipeline. Receives structured
 Before doing ANYTHING, read the shared conventions file:
 
 ```
-Read /Users/peleke/Documents/Projects/skills/skills/custom/_conventions.md
+Read ${SKILLS_DIR}/_conventions.md
 ```
 
 This file defines: canonical vault path, folder-to-type mapping, frontmatter contract, valid statuses, tag hierarchy, cross-reference syntax, and the PipelineEnvelope schema. All output from this skill MUST conform to those conventions. If there is a conflict between this SKILL.md and `_conventions.md`, the conventions file wins.
@@ -66,7 +66,7 @@ hunter-log sits below every pipeline skill. It does NOT do analysis. It only for
 All files are written under the Obsidian vault base path (iCloud-synced):
 
 ```
-/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/Admin/Product-Discovery/
+${VAULT}/Admin/Product-Discovery/
 ```
 
 ```
@@ -249,7 +249,7 @@ Render the document body from the envelope's `output` field using the templates 
 
 ## Phase 5: Write to Vault
 
-**Base path:** `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/Admin/Product-Discovery/`
+**Base path:** `${VAULT}/Admin/Product-Discovery/`
 
 **New file:**
 - Write complete document: YAML frontmatter block + rendered body
@@ -372,5 +372,5 @@ Run this checklist before confirming the write:
 - It can also be called directly with a PipelineEnvelope payload
 - Always use wikilinks `[[]]` for cross-references, not markdown links
 - Keep frontmatter values as strings, arrays, or numbers -- no nested objects
-- The vault base path is `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious/Admin/Product-Discovery/`
+- The vault base path is `${VAULT}/Admin/Product-Discovery/`
 - Dataview, kanban, and tasks plugins are available in the vault
