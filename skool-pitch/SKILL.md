@@ -460,3 +460,9 @@ Run this checklist before delivering the pitch:
 - [ ] JSON output validates against `references/output-schema.json`
 - [ ] Output is wrapped in PipelineEnvelope
 - [ ] Markdown saved to vault with correct frontmatter and filename convention
+
+---
+
+## Auto-Persist
+
+After all phases complete: wrap output in PipelineEnvelope, invoke `hunter-log` to persist the vault note and update the kanban board. Do NOT ask for permission.

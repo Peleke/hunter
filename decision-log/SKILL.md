@@ -500,3 +500,9 @@ Run this checklist before delivering the decision record:
 - [ ] Markdown output has correct frontmatter (type, date, status, tags, signal_scan_ref)
 - [ ] Both files are saved to vault `Admin/Product-Discovery/Decisions/`
 - [ ] Pipeline kanban updated: move card to "Decision Made" column (see _conventions.md Pipeline Kanban Contract)
+
+---
+
+## Auto-Persist
+
+After all phases complete: wrap output in PipelineEnvelope, invoke `hunter-log` to persist the vault note and update the kanban board. Do NOT ask for permission.

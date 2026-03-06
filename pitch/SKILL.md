@@ -574,3 +574,9 @@ Run this checklist before delivering the pitch:
 - [ ] Pipeline tracker updated with new product row
 - [ ] All prose content reviewed by buildlog_gauntlet Bragi persona (all rules)
 - [ ] Deploy-only mode: all deployment phases either succeeded or were skipped with warnings (no silent failures)
+
+---
+
+## Auto-Persist
+
+After all phases complete: wrap output in PipelineEnvelope, invoke `hunter-log` to persist the vault note and update the kanban board. Do NOT ask for permission.

@@ -485,3 +485,9 @@ Run this checklist before delivering the spec:
 - [ ] Both JSON and markdown files are saved to vault `Admin/Product-Discovery/Offers/`
 - [ ] All upstream references (persona_ref, decision_ref, signal_scan_ref) are linked
 - [ ] Pipeline kanban updated: move card to "Offer Scoped" column (see _conventions.md Pipeline Kanban Contract)
+
+---
+
+## Auto-Persist
+
+After all phases complete: wrap output in PipelineEnvelope, invoke `hunter-log` to persist the vault note and update the kanban board. Do NOT ask for permission.

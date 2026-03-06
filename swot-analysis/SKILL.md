@@ -499,3 +499,9 @@ Run this checklist before delivering the SWOT:
 - [ ] Both files are saved to vault `Admin/Product-Discovery/SWOT/`
 - [ ] All upstream references (persona_ref, decision_ref, signal_scan_ref) are linked
 - [ ] Next-step hint is populated for offer-scope with validated strengths, key risks, and recommended modifications
+
+---
+
+## Auto-Persist
+
+After all phases complete: wrap output in PipelineEnvelope, invoke `hunter-log` to persist the vault note and update the kanban board. Do NOT ask for permission.

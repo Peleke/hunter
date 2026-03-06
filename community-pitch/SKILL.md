@@ -437,3 +437,9 @@ Run this checklist before delivering the pitch:
 - [ ] Output is wrapped in PipelineEnvelope with correct input_refs
 - [ ] Both JSON and markdown files are saved to vault `Admin/Product-Discovery/Offers/`
 - [ ] All upstream references (persona_ref, decision_ref, signal_scan_ref) are linked
+
+---
+
+## Auto-Persist
+
+After all phases complete: wrap output in PipelineEnvelope, invoke `hunter-log` to persist the vault note and update the kanban board. Do NOT ask for permission.

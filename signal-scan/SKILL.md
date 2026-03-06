@@ -283,3 +283,9 @@ Run this checklist before delivering the scan:
 - [ ] Landing page copy hooks use actual PAIN language from the scan
 - [ ] Both JSON and markdown files are saved to vault `Admin/Product-Discovery/Signal-Scans/`
 - [ ] Pipeline kanban updated: add card to "Signal Scanned" column (see _conventions.md Pipeline Kanban Contract)
+
+---
+
+## Auto-Persist
+
+After all phases complete: wrap output in PipelineEnvelope, invoke `hunter-log` to persist the vault note and update the kanban board. Do NOT ask for permission.

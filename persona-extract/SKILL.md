@@ -469,3 +469,9 @@ Run this checklist before delivering the extraction:
 - [ ] Markdown is saved to vault at `Admin/Product-Discovery/Personas/`
 - [ ] All upstream references (decision_ref, signal_scan_ref) are linked
 - [ ] Pipeline kanban updated: move card to "Persona Researched" column (see _conventions.md Pipeline Kanban Contract)
+
+---
+
+## Auto-Persist
+
+After all phases complete: wrap output in PipelineEnvelope, invoke `hunter-log` to persist the vault note and update the kanban board. Do NOT ask for permission.
