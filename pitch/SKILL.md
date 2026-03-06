@@ -246,6 +246,8 @@ Phase 6: A/B Test Spec (what to test once traffic flows)
     |
 Phase 7: Kill Criteria Refinement (time-bounded, measurable)
     |
+Phase 8: Slide Deck (Slidev presentation with extracted SVG diagrams)
+    |
 Output: JSON spec + Markdown summary -> vault
 ```
 
@@ -419,7 +421,7 @@ For LinkedIn launch posts, write them to Obsidian with the `::linkedin` prefix i
 3. The operator reviews and approves the post in LinWheel
 4. LinWheel schedules and publishes to LinkedIn
 
-**Format**: Write the LinkedIn seed to `{vault}/Writing/Content-Briefs/{product-slug}-linkedin-seed-{YYYY-MM-DD}.md` with the `::linkedin` prefix as the first line of the body (after frontmatter). This makes it a live launch post that can be approved and scheduled, not just a draft.
+**Format**: Write the LinkedIn seed to `{vault}/Writing/Content-Briefs/{product-slug}-linkedin-seed-{YYYY-MM-DD}.md` with `::linkedin` as the **very first line of the file** (line 1, before frontmatter). NOT after frontmatter — BEFORE it. The `::linkedin` trigger must be byte 0 of the file or the OpenClaw pipeline won't fire. Frontmatter follows on line 2+. This makes it a live launch post that can be approved and scheduled, not just a draft.
 
 The full pipeline: pitch skill → Obsidian seed → OpenClaw → LinWheel → LinkedIn publication.
 
@@ -939,6 +941,90 @@ After generating kill criteria, write review reminder tasks to the pitch vault d
 Replace all `{placeholder}` values with the actual numbers from Phase 7 thresholds. The `📅` date and `#hunter/review` tag make these queryable by Obsidian Tasks and Dataview.
 
 If the operator has not specified a launch date, use `📅 TBD` and note that dates should be filled in when a launch date is set.
+
+---
+
+## Phase 8: Slide Deck (Slidev)
+
+Generate a Slidev presentation summarizing the validation pipeline output. The deck lives in `launchpad/deck/` and deploys alongside the landing page.
+
+### 8.1 Structure
+
+The deck is a single `slides.md` file using Slidev's markdown syntax. Global config in frontmatter, per-slide frontmatter between `---` separators. Speaker notes go in `<!-- -->` comments at the bottom of each slide.
+
+Required slides (in order):
+1. **Cover** — product name + validation date (use `layout: cover` in global frontmatter)
+2. **Opportunity** — the gap diagram
+3. **Evidence Wall** — signal count + key stats
+4. **Reddit Voices** — 3 direct quotes with source citations
+5. **SDP Scoring** — bar chart of opportunity ranking
+6. **Personas** — persona cards with WTP
+7. **Four Forces** — push/pull/inertia/anxiety
+8. **Two Offers** — offer tiers side by side
+9. **Curriculum Stack** — week-by-week breakdown
+10. **Revenue Model** — bar chart of revenue streams
+11. **Revenue Breakdown** — table with unit economics (Stream / Unit Economics / Annual Estimate)
+12. **Competitive Map** — price vs depth scatter plot
+13. **Execution Calendar** — timeline with milestones and kill gate
+14. **Kill Criteria** — gate cards with thresholds
+15. **Bias Check** — status indicators per bias type
+16. **Next Steps** — table with Milestone / Deadline / Kill Condition columns
+17. **Appendix** — asset map linking to all pipeline artifacts
+18. **Closing** — pipeline attribution
+
+### 8.2 SVG Conventions
+
+All diagrams are extracted SVG files in `deck/public/`. Reference them with `<img src="/filename.svg">` tags. NEVER inline complex SVGs in the markdown — Vue's template compiler will mangle them.
+
+SVG style rules:
+- **Font**: `font-family="'Inter', sans-serif"` on all text elements. Never use Caveat, cursive, or handwriting fonts.
+- **Displacement filter**: `feDisplacementMap scale="0.4"` max. Subtle texture, not wobbly hand-drawn.
+- **Color palette**: background `#0d1117`, text `#eee0cc`, muted `#8b949e`, coral `#e88072`, red `#f87171`, green `#4ade80`, yellow `#facc15`
+- **XML safety**: Always escape `<` as `&lt;` in SVG text content. Unescaped `<` breaks the SVG parser.
+- **Sizing**: Use `viewBox` for dimensions. Set `style="width:100%;max-width:NNNpx;"` on the root `<svg>` element.
+- **Text overflow**: Ensure text fits inside containing boxes. For label text inside bounded shapes, measure the text width against the shape width and reduce font-size or widen the shape if needed.
+- **Overlap**: Maintain minimum 50px center-to-center spacing between elements with labels. Check that label text from one element doesn't collide with the heading of the next.
+
+SVG animation rules:
+- Use CSS `@keyframes` inside `<style>` blocks within the SVG for auto-playing animations (pulse, blink, breathe). These work in `<img>` tags.
+- For hover interactivity, use `<object data="..." type="image/svg+xml">` instead of `<img>`. Add `:hover` CSS rules inside the SVG's `<style>` block.
+- Good candidates for animation: alert indicators (blink), kill/flag states (pulse), highlighted elements (breathe/glow).
+
+### 8.3 Slidev Config
+
+```yaml
+theme: default
+fonts:
+  sans: Inter
+  mono: Fira Code
+  provider: google
+transition: slide-left
+css: unocss
+drawings:
+  persist: false
+```
+
+Use `style.css` for global styles (background, heading colors, v-click animation overrides). Do not use scoped `<style>` blocks in slides.
+
+### 8.4 Speaker Notes
+
+Every slide gets presenter notes in `<!-- -->` comments. Notes must:
+- State what the slide shows and why it matters
+- Reference specific numbers, sources, or upstream pipeline data
+- Be written in direct, conversational tone — not LLM summary voice
+- Avoid em-dash chains, tricolons, performative honesty, or "landscape/tapestry/crucible" vocabulary
+
+### 8.5 Content Seed Trigger
+
+If generating a LinkedIn content seed, the `::linkedin` trigger tag MUST be byte 0, line 1 of the file — BEFORE frontmatter. This triggers the OpenClaw → LinWheel → LinkedIn pipeline.
+
+```markdown
+::linkedin
+
+---
+type: content-brief
+...
+```
 
 ---
 
