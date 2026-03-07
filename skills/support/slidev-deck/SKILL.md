@@ -219,9 +219,193 @@ Right content
 
 Slides are separated by `---` on their own line. Layout directives go in the slide's frontmatter block (the `---` block at the top of each slide).
 
+### Phase 4.5: Narrative Layer
+
+**This phase transforms slides from a data dump into a story people feel in their bodies.**
+
+The difference between a forgettable deck and one that gets funded: forgettable decks present information. Funded decks make the audience *become* someone with a problem, *feel* the pain of that problem, and *see* themselves in the solution. This is neuroscience, not opinion (Warnick et al., 2018: displayed founder passion → neural engagement → investor interest).
+
+**Core principle**: Don't tell the audience about a market. Introduce them to a person. Make them *be* that person for 15 minutes. Then show them the gap between where that person is and where they could be.
+
+References:
+- Neuroscience of pitching: passion → neural engagement → investor interest (Warnick et al., PMC4445577)
+- YC: "How to Design a Better Pitch Deck" — story-driven, not data-driven
+- SPIN Selling: diagnose pain through questions, never pitch features first
+- Gap Selling (Keenan): sell the gap between current state and future state
+- Aegir outline-writer: starting state → war story → tension → resolution → bridge
+
+---
+
+#### Step 1: Anchor Persona
+
+**Before anything else, choose a protagonist.**
+
+Pick ONE persona from the pipeline's persona-extract output. This person is the emotional anchor for the entire deck. Every slide either shows their pain, validates their pain, or solves their pain.
+
+Write the persona card:
+
+```
+ANCHOR PERSONA: Maya
+Role: Content lead at a 30-person SaaS startup
+Current state: Drowning. 5 tools. Manual reshaping. Publishing slop she hates.
+Emotional state: Ashamed of what she publishes. Afraid her CEO will notice.
+The gap: She needs a full-loop pipeline. She doesn't know it exists.
+What she'd say: "I spend 4 hours a week turning blog posts into LinkedIn carousels and I hate every second of it."
+```
+
+**Why this matters (neuroscience)**: Investors don't fund markets. They fund the *feeling* of a market — the visceral recognition of "oh, I know someone like Maya." Displayed passion about a real person's real pain activates mirror neurons. Abstract market data does not. (Chen et al., 2009; Warnick et al., 2018)
+
+**Rules:**
+- The persona must be drawn from REAL quotes in the signal scan (not invented)
+- Use their actual words from Reddit/community sources where possible
+- Give them a name (even if fictional) — named characters create 2.5x more neural engagement than abstractions
+- The persona's pain must map directly to the product's solution
+
+---
+
+#### Step 2: Story Arc (Persona-Anchored)
+
+The story arc is NOT about your product. It's about the persona's journey from pain to possibility. The product enters the story late — only after the audience is already rooting for the persona.
+
+**The SPIN Arc** (adapted from SPIN Selling for decks):
+
+```
+Situation  → "This is Maya. Here's her world."
+Problem    → "Here's what's broken. Here's the cost."
+Implication → "Here's how bad it gets if nothing changes."
+Need-Payoff → "Here's what her world looks like when it's fixed."
+```
+
+Every deck follows this arc. The specific implementation varies by deck type:
+
+| Deck Type | S (Situation) | P (Problem) | I (Implication) | N (Need-Payoff) |
+|-----------|--------------|-------------|-----------------|-----------------|
+| **Pitch** | Meet Maya. Her world. | The fragmentation. The cost. | What happens if nobody fixes this. Evidence wall. | The full loop. Revenue. Proof it works. |
+| **Validation** | The market we scanned. | What we found (pain signals). | How deep the problem goes (scoring, quotes). | What we're building and why we'll win. |
+| **Technical** | The system before. | Where it breaks. | What that costs (latency, failures, $). | The architecture that fixes it. Trade-offs. |
+
+Write the SPIN map for your deck:
+
+```
+S: "Maya runs content for a 30-person SaaS. She uses Jasper + Taplio + Castmagic + a Google Sheet."
+P: "None of them talk to each other. She spends 4 hours reshaping each piece. Her CEO thinks AI handles it."
+I: "65% of AI agent tasks fail (Salesforce). $2K/mo on tools that produce slop she's embarrassed to publish."
+N: "A pipeline that does the full loop: research → write → reshape → publish → measure → iterate. Open-source, so she owns it."
+```
+
+---
+
+#### Step 3: Beat Map (Emotional Sequence)
+
+Map every slide to a **beat** — NOT "what's on the slide" but "what the audience should FEEL."
+
+The beat sequence must follow the **tension curve** from the aegir outline-writer: build tension through the first half, deliver the turn at the midpoint, build conviction through the second half.
+
+```
+TENSION BUILDING (audience should feel increasingly uncomfortable)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Slide 1:  INTRIGUE     — "Who is this person? This feels specific."
+Slide 2:  RECOGNITION  — "Oh. I know someone like Maya. Maybe I AM Maya."
+Slide 3:  DISCOMFORT   — "Shit, the numbers are worse than I thought."
+Slide 4:  EMPATHY      — "These are real people saying this. I feel it."
+
+THE TURN (the moment the story pivots from pain to possibility)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Slide 5:  RESPECT      — "They scored this. This isn't vibes — it's data."
+
+CONVICTION BUILDING (audience should feel increasingly excited)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Slide 6:  CLARITY      — "I see exactly who wants this."
+Slide 7:  INSIGHT      — "I understand why they'd switch."
+Slide 8:  RELIEF       — "There's a plan. It's not just an idea."
+Slide 9:  CONFIDENCE   — "They know who else is trying. They've mapped the field."
+Slide 10: TRUST        — "They have kill criteria. They're not delusional."
+Slide N:  URGENCY      — "I need to be part of this / I need to act."
+
+CLOSING (circular — callback to the persona)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Last:     RESOLUTION   — "Maya's world after. The pipeline that built this deck."
+```
+
+**Rules:**
+- Adjacent slides CANNOT have the same beat. If they do, cut or combine.
+- The emotional step between beats must be walkable — no jumping from INTRIGUE to URGENCY.
+- The persona must be referenced at minimum 3 times: opening (introduce), middle (their specific pain), closing (their transformation).
+- The TURN slide is the most important slide in the deck. It's where "this is bad" becomes "but there's a way."
+
+---
+
+#### Step 4: Transition Lines
+
+The most important words in the deck are NOT on any slide. They're the words the speaker says BETWEEN slides. These are the connective tissue that turns a slideshow into a story.
+
+**Write every transition as a persona callback or a question:**
+
+```
+[Slide 1 → Slide 2]
+"So that's the product. But let me tell you about someone who needs it. Let me tell you about Maya."
+
+[Slide 2 → Slide 3]
+"Maya's not alone. We didn't cherry-pick her — we went looking for how widespread this really is. Here's what we found."
+
+[Slide 3 → Slide 4]
+"Those are the numbers. But numbers don't bleed. Let me show you what this sounds like when real people talk about it."
+
+[Slide 4 → Slide 5]  ← THE TURN
+"Three voices, three angles, same pain. So we asked ourselves: is this real enough to build for? We built a scoring framework to find out."
+
+[Slide 5 → Slide 6]
+"54 out of 60. Highest score the pipeline has produced. So who exactly is the customer? We found four."
+
+[Last-1 → Last]
+"Remember Maya? [pause] This deck was built by the same pipeline we're selling her. The pipeline ran on itself. If you're wondering whether it works — you just watched the proof."
+```
+
+**Transition rules (tightened):**
+1. **Never say "next slide" / "moving on" / "let's look at"** — the audience should forget they're watching slides
+2. **Every transition either references the persona by name OR asks a question** — no naked segues
+3. **The TURN transition is the longest** — max 3 sentences. All others: max 2.
+4. **Vary register**: conspiratorial ("Now here's what nobody talks about."), vulnerable ("Honestly, we almost killed this."), punchy ("Here's the kicker."), reflective ("So what does this actually mean for Maya?")
+5. **The closing transition MUST callback to Slide 1** — circular stories are 22% more memorable (Stanford research)
+6. **Include delivery cues in brackets**: [pause], [lower voice], [lean forward], [click to reveal]
+
+---
+
+#### Step 5: Slide Personality Review (SPIN Check)
+
+Review each slide against the **Gap Selling test**: does this slide make the audience feel the gap between the persona's current state and their possible future state?
+
+For each slide, check:
+
+1. **Whose story is this?** — If you removed the persona's name, would this slide work in any generic pitch deck? If yes, it's too abstract. Make it specific to the persona.
+2. **What's the question?** (SPIN) — Every slide should implicitly ask a question the audience is thinking. If there's no implicit question, the slide is dead air.
+3. **What's the pain?** — Even solution slides should reference the pain they solve. "Revenue Model" → "When Maya stops spending $2K/mo on slop, here's where that money goes instead."
+4. **What's the specificity?** — Replace every instance of "users", "customers", "the market" with the persona's name or a specific number. "65% of AI agent tasks fail" > "most agents struggle."
+5. **What's the voice?** — Read the slide headline out loud. Does it sound like a human talking, or a template? "Revenue Model" → "When the Money Shows Up." "Competitive Map" → "Why Nobody Else Can Do This."
+6. **Where's the callback?** — Can this slide reference something from an earlier slide? ("Remember the $2K/mo stat? Here's who's paying it.")
+
+---
+
+#### Step 6: Story Audit
+
+Before proceeding to speaker notes:
+
+- [ ] **One-sentence test**: Can I summarize the deck in one sentence that includes the persona's name? ("Maya spends $2K/mo on content tools that produce slop — we built the full-loop pipeline that fixes it, and this deck is the proof.")
+- [ ] **Persona count**: Does the persona appear by name in at minimum 3 slides (open, middle, close)?
+- [ ] **Pain-first check**: Does the audience feel pain before they see the solution? (Solution should not appear before slide 6 at earliest.)
+- [ ] **SPIN sequence**: Do the slides follow Situation → Problem → Implication → Need-Payoff without breaking order?
+- [ ] **Circular check**: Does the closing callback to the opening? (Best decks end where they began, transformed.)
+- [ ] **Deletion test**: For each slide, ask "if I cut this, does the story still work?" If yes, cut it.
+- [ ] **Mirror test**: Will the audience see THEMSELVES in the persona? (If the persona is too niche, they won't. If too generic, they won't care.)
+- [ ] **3-slide resilience**: Could someone who missed 3 random slides still follow the story?
+
+---
+
 ### Phase 5: Add Speaker Notes
 
-Every slide MUST have speaker notes. Add them as HTML comments at the end of each slide:
+Speaker notes are the **performance script** — the actual words the speaker says, including delivery cues, persona references, and emotional beats. They are NOT slide summaries.
+
+Every slide MUST have speaker notes as HTML comments:
 
 ```md
 # Slide Title
@@ -229,19 +413,38 @@ Every slide MUST have speaker notes. Add them as HTML comments at the end of eac
 content
 
 <!--
-Speaker notes here. These appear in presenter view.
-- Key talking point 1
-- Key talking point 2
-- Data reference: [which pipeline artifact, which field]
+[PERSONA THREAD]: Maya — introduce / deepen / callback / resolve
+
+[TRANSITION IN]: "So that's the landscape. But let me tell you who actually feels this. Her name is Maya."
+
+[BEAT]: RECOGNITION — audience should think "I know someone like this."
+
+[THE GAP]: Current state: 5 tools, manual reshaping, publishing slop.
+           Future state: One pipeline, ambient content, proud of every post.
+           This slide shows: current state (pain side of the gap).
+
+[TALKING POINTS]:
+- [lean forward] "Maya runs content for a 30-person SaaS. She uses five different tools that don't talk to each other."
+- "Her CEO thinks AI handles content. It doesn't. Maya handles content. AI just makes more work."
+- [pause] "She spends four hours a week turning blog posts into LinkedIn carousels. And she hates every single one she publishes."
+- [lower voice] "She told us: 'I'm ashamed of what we put out there.'"
+
+[TRANSITION OUT]: "Maya's not alone. We went looking for how widespread this is. [click] Here's what we found."
+
+[DATA SOURCE]: persona-extract → personas[0].pain_stories, signal-scan → signals[type=PAIN]
+[IF ASKED]: "Is Maya a real person?" → "Maya is a composite of 12 interviews and 40+ Reddit threads. Every quote attributed to her is verbatim from a real source."
 -->
 ```
 
-Speaker notes should:
-- Provide context the slide doesn't show
-- Include exact data references (which pipeline artifact, which field)
-- Suggest transitions to the next slide
-- Anticipate audience questions
-- Never exceed 6 bullet points
+Speaker notes structure:
+1. **PERSONA THREAD** — which phase of the persona arc this slide serves (introduce / deepen / callback / resolve)
+2. **TRANSITION IN** — exact words to say arriving at this slide, referencing persona or posing a question
+3. **BEAT** — emotional function from the beat map
+4. **THE GAP** — current state vs. future state, and which side this slide shows
+5. **TALKING POINTS** — 2-4 bullets with delivery cues: [pause], [lean forward], [lower voice], [click to reveal], [make eye contact]
+6. **TRANSITION OUT** — exact words leaving this slide, connecting to the next
+7. **DATA SOURCE** — pipeline artifact + field
+8. **IF ASKED** — prepared answers to likely audience questions
 
 ### Phase 6: Quality Check
 
@@ -401,6 +604,17 @@ Run before delivering any deck:
 - [ ] Fabricated data is flagged with `[DATA NEEDED]` markers
 - [ ] Speaker notes exist on every slide
 - [ ] Speaker notes reference specific pipeline artifacts
+
+### Narrative Quality (Phase 4.5)
+- [ ] Story arc defined (Discovery / Problem-Solution / Hero's Journey)
+- [ ] Beat map complete — every slide has an emotional function
+- [ ] No two adjacent slides have the same beat
+- [ ] Transition lines written for every slide boundary
+- [ ] No transition uses "next slide" or "moving on"
+- [ ] At least 2 callbacks to earlier slides exist in the second half
+- [ ] One-sentence story summary passes the clarity test
+- [ ] Story audit questions all answered affirmatively
+- [ ] Speaker notes use the structured format (TRANSITION IN/BEAT/TALKING POINTS/TRANSITION OUT/DATA SOURCE)
 
 ### SVG Quality
 - [ ] Every key slide (problem, evidence, solution, architecture, pricing, CTA) has an inline SVG

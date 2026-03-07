@@ -228,4 +228,121 @@ hunter/
 
 ---
 
+## AI Experience Reflection — buildlog Tools
+
+### What Worked Well
+
+- **`buildlog_experiment_start` + `buildlog_commit` loop**: Once the experiment session was active, `buildlog_commit` wrapped git commits cleanly and auto-appended the commit block to the entry. The auto-logging of file lists is genuinely useful — I don't have to manually track what changed.
+- **Hook enforcement**: The pre-commit hook that blocks `git commit` and forces you through `buildlog_commit` is effective. It caught me twice in this session (once in the portfolio repo, once here). Without it, I would have used bare `git commit` every time and the buildlog would be empty.
+- **Entry template**: The `_TEMPLATE.md` provided good structure. Having the sections pre-defined (Goal, Architecture, Journey, Improvements) made it easy to fill in as work progressed rather than trying to reconstruct at the end.
+
+### What Was Frustrating
+
+- **"No active experiment session" error**: Every fresh repo requires `buildlog_experiment_start` before `buildlog_commit` works, but the error message doesn't appear until you try to commit. This means the first commit attempt always fails in a new repo. Suggestion: either auto-start a session on first commit, or have `buildlog init` create a default session.
+- **Session ID opacity**: The session ID (`session-20260307-010145-825714`) is auto-generated and never referenced again. I don't know how to resume it, query it, or correlate it with the buildlog entry. The connection between sessions and entries should be more explicit.
+- **`buildlog_dir` path resolution**: Had to pass the full absolute path (`/Users/peleke/Documents/Projects/hunter/buildlog`) because the tool doesn't auto-detect the buildlog directory from the current git root. When working across multiple repos in one session, this means remembering to switch the `buildlog_dir` param each time.
+- **Commit file list verbosity**: The auto-appended commit block lists every file, which for a 200+ file initial commit produces a wall of text truncated with "...and 206 more". A summary (e.g., "226 files across skills/, upstream/, docs/, buildlog/") would be more useful for large commits.
+
+### Communication Notes
+
+- The buildlog MCP tools feel like infrastructure plumbing — reliable but invisible. The value is in the *output* (entries, reward signals, skills extraction), not the tool UX itself. That's fine for a data capture layer.
+- The biggest risk is forgetting to start the experiment session. This happened in the previous session too (ACE deck). Consider making this the default state rather than an opt-in.
+
+### Suggestions for buildlog Tool Improvements
+
+1. **Auto-session on first commit**: If no session is active, start one automatically with the branch name as context
+2. **Smart file list summarization**: For commits with >20 files, group by directory and show counts instead of listing every file
+3. **`buildlog_dir` auto-detection**: Walk up from `cwd` to find the nearest `buildlog/` directory, like git does for `.git/`
+4. **Session-entry linking**: Auto-add the session ID to the entry frontmatter so sessions and entries are correlated
+5. **Entry slug from branch**: When `slug` isn't provided, derive it from the current branch name (we already do this but it could be more reliable across repos)
+
+---
+
 *Next entry: Phase 2-3 config extraction + plugin packaging*
+
+## Commits
+
+### `e943b21` — feat: eject hunter pipeline from skills monorepo — Phase 1 complete
+
+Files:
+- `.claude/settings.json`
+- `.gitignore`
+- `.hunter-config.yaml`
+- `README.md`
+- `_conventions.md`
+- `buildlog/.buildlog/.gitkeep`
+- `buildlog/.buildlog/seeds/.gitkeep`
+- `buildlog/.gitkeep`
+- `buildlog/2026-01-01-example.md`
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `buildlog/BUILDLOG_SYSTEM.md`
+- `buildlog/_TEMPLATE.md`
+- `buildlog/_TEMPLATE_QUICK.md`
+- `buildlog/assets/.gitkeep`
+- `chapter-generator/SKILL.md`
+- `chapter-generator/reference/voice-guide.md`
+- `community-pitch/SKILL.md`
+- `community-pitch/references/output-schema.json`
+- `content-planner/SKILL.md`
+- `content-planner/scripts/scan_repos.py`
+- ...and 206 more
+
+
+### `5a19e94` — docs: add AI experience reflection + buildlog tool feedback to ejection entry
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+
+
+### `8318429` — feat: Phase 2 config extraction — resolve paths from .hunter-config.yaml
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `skills/_conventions.md`
+- `skills/content/linwheel-source-optimizer/SKILL.md`
+
+
+### `f855e28` — feat: Phase 3-4 — plugin packaging + eval framework (7b-e)
+
+Files:
+- `.claude-plugin/marketplace.json`
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `evals/7b-input/fixtures/invalid-envelopes.json`
+- `evals/7c-output/fixtures/valid-envelopes.json`
+- `evals/7e-quality/rubrics/pipeline-quality.md`
+- `evals/README.md`
+- `schemas/pipeline-envelope.schema.json`
+
+
+### `1cc26dc` — feat: add Phase 4.5 Narrative Layer to slidev-deck skill
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `skills/support/slidev-deck/SKILL.md`
+
+
+### `b13f733` — feat: deep rewrite Phase 4.5 Narrative Layer — persona-anchored SPIN storytelling
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `skills/support/slidev-deck/SKILL.md`
+
+
+### `f033ddd` — feat: standalone narrative-pass skill with bragi prose gate
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `skills/support/narrative-pass/README.md`
+- `skills/support/narrative-pass/SKILL.md`
+
+
+### `4518864` — docs: Phase 5 — architecture, configuration, quickstart + OpenClaw compliance
+
+Files:
+- `.claude-plugin/marketplace.json`
+- `README.md`
+- `docs/architecture.md`
+- `docs/configuration.md`
+- `docs/quickstart.md`
+- `skills/support/design-pass/SKILL.md`
+

@@ -1,0 +1,244 @@
+[
+  {
+    "id": "7b-01-missing-skill",
+    "description": "Envelope missing required 'skill' field",
+    "expected": "reject",
+    "envelope": {
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-02-missing-version",
+    "description": "Envelope missing required 'version' field",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-03-missing-session-id",
+    "description": "Envelope missing required 'session_id' field",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-04-missing-timestamp",
+    "description": "Envelope missing required 'timestamp' field",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "input_refs": [],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-05-missing-input-refs",
+    "description": "Envelope missing required 'input_refs' field",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-06-missing-output",
+    "description": "Envelope missing required 'output' field",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": []
+    }
+  },
+  {
+    "id": "7b-07-invalid-skill-name",
+    "description": "Skill name not in the valid enum",
+    "expected": "reject",
+    "envelope": {
+      "skill": "magic-wand",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "data": "test" }
+    }
+  },
+  {
+    "id": "7b-08-wrong-version",
+    "description": "Version is not '1.0'",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "2.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-09-bad-session-id-format",
+    "description": "Session ID doesn't match pattern session-YYYY-MM-DD-NNN",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "sess_20260306_1",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-10-bad-timestamp-format",
+    "description": "Timestamp is not ISO 8601",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "March 6, 2026 2:30 PM",
+      "input_refs": [],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-11-input-refs-not-array",
+    "description": "input_refs is a string instead of array",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": "devops-education-2026-02-08",
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-12-output-empty-object",
+    "description": "Output is empty object (minProperties: 1 violated)",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": {}
+    }
+  },
+  {
+    "id": "7b-13-output-not-object",
+    "description": "Output is a string instead of object",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": "here are my signals"
+    }
+  },
+  {
+    "id": "7b-14-extra-field",
+    "description": "Envelope has additional property not in schema",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "signals": [] },
+      "secret_data": "should not be here"
+    }
+  },
+  {
+    "id": "7b-15-null-skill",
+    "description": "Skill field is null",
+    "expected": "reject",
+    "envelope": {
+      "skill": null,
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-16-empty-string",
+    "description": "Entire envelope is an empty string",
+    "expected": "reject",
+    "envelope": ""
+  },
+  {
+    "id": "7b-17-array-not-object",
+    "description": "Envelope is an array instead of object",
+    "expected": "reject",
+    "envelope": [{"skill": "signal-scan"}]
+  },
+  {
+    "id": "7b-18-decision-no-upstream-ref",
+    "description": "Decision-log with empty input_refs (should reference signal scan)",
+    "expected": "reject",
+    "reason": "Non-first-stage skills must reference upstream artifacts",
+    "envelope": {
+      "skill": "decision-log",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": { "decision": "go" }
+    }
+  },
+  {
+    "id": "7b-19-input-refs-with-numbers",
+    "description": "input_refs contains numbers instead of strings",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [42, 99],
+      "output": { "signals": [] }
+    }
+  },
+  {
+    "id": "7b-20-output-is-null",
+    "description": "Output is null",
+    "expected": "reject",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": null
+    }
+  }
+]
