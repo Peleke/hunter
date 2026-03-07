@@ -320,3 +320,10 @@ Files:
 - `buildlog/2026-03-06-hunter-ejection.md`
 - `skills/support/slidev-deck/SKILL.md`
 
+
+### `b13f733` — feat: deep rewrite Phase 4.5 Narrative Layer — persona-anchored SPIN storytelling
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `skills/support/slidev-deck/SKILL.md`
+
