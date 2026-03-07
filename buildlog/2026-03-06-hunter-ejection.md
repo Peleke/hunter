@@ -313,3 +313,10 @@ Files:
 - `evals/README.md`
 - `schemas/pipeline-envelope.schema.json`
 
+
+### `1cc26dc` — feat: add Phase 4.5 Narrative Layer to slidev-deck skill
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `skills/support/slidev-deck/SKILL.md`
+
