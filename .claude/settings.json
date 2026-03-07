@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "buildlog": {
+      "command": "buildlog-mcp",
+      "args": []
+    }
+  }
+}

@@ -1,0 +1,34 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (for eval framework)
+node_modules/
+dist/
+.env
+.env.local
+
+# Python (for eval framework)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Playwright
+.playwright-mcp/
+
+# Eval artifacts
+evals/results/
+evals/.cache/
+
+# buildlog internals
+buildlog/.buildlog/reward_events.jsonl
+buildlog/.buildlog/promoted.json
+buildlog/.buildlog/review_learnings.json

@@ -1,0 +1,35 @@
+# Hunter Pipeline Configuration
+# Override defaults for your environment
+
+# Obsidian vault root (iCloud-synced recommended)
+vault: ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious
+
+# Pipeline output directories (relative to vault)
+paths:
+  signal_scans: Admin/Product-Discovery/Signal-Scans
+  decisions: Admin/Product-Discovery/Decisions
+  personas: Admin/Product-Discovery/Personas
+  swot: Admin/Product-Discovery/SWOT
+  offers: Admin/Product-Discovery/Offers
+  pitches: Admin/Product-Discovery/Pitches
+  sessions: Admin/Product-Discovery/Sessions
+  content_briefs: Writing/Content-Briefs
+  kanban: Admin/Product-Discovery/Pipeline.kanban.md
+
+# Skills directory (auto-resolved from plugin install path)
+skills_dir: null  # Set to override auto-detection
+
+# Launchpad repo for pitch deployment
+launchpad:
+  repo: Peleke/launchpad
+  branch_prefix: pitch/
+
+# Bragi prose reviewer
+reviewer: reviewers/bragi.md
+
+# Pipeline defaults
+defaults:
+  design_tier: high        # high | medium | full | custom
+  include_swot: true       # Run SWOT analysis between persona and offer
+  auto_kanban: true        # Auto-move kanban cards on stage completion
+  session_tracking: true   # Log session start/end in vault
