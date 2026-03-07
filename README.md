@@ -5,7 +5,7 @@
 ### Opportunity-to-Launch in Six Skills
 
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Plugin-4DCFC9?style=for-the-badge&logo=anthropic&logoColor=white)]()
-[![Skills](https://img.shields.io/badge/Skills-20-4DCFC9?style=for-the-badge)]()
+[![Skills](https://img.shields.io/badge/Skills-21-4DCFC9?style=for-the-badge)]()
 [![Eval Framework](https://img.shields.io/badge/Evals-7b--e-4ade80?style=for-the-badge)]()
 [![License](https://img.shields.io/badge/License-MIT-4ade80?style=for-the-badge)]()
 
@@ -51,6 +51,7 @@ Hunter Pipeline does the full loop. Six core skills, chained through a typed env
                                         └──────────────┘                   │  landing-page      │
                                                                            │  one-pager         │
                                                                            │  design-pass       │
+                                                                           │  narrative-pass    │
                                                                            └────────────────────┘
 ```
 
@@ -87,6 +88,7 @@ Each stage consumes the output of the previous stage via a typed `PipelineEnvelo
 | 🌐 | **[landing-page](skills/support/landing-page/)** | Single-file HTML landing page from pitch copy, zero deps |
 | 📄 | **[one-pager](skills/support/one-pager/)** | Print-ready one-pager as React JSX, exported to PDF |
 | 🎨 | **[design-pass](skills/support/design-pass/)** | Tiered aesthetic upgrades (CSS/SVG) for decks, pages, one-pagers |
+| 🎭 | **[narrative-pass](skills/support/narrative-pass/)** | Persona-anchored storytelling with SPIN arc + bragi prose gate |
 
 ### Content & Distribution (`skills/content/`)
 

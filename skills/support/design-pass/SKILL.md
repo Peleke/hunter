@@ -1,6 +1,9 @@
 ---
 name: design-pass
 description: "Apply aesthetic upgrades to visual assets (Slidev decks, landing pages, one-pagers). Configurable upgrade tiers from safe CSS additions to full animated polish."
+metadata:
+  openclaw:
+    emoji: "\U0001F3A8"
 ---
 
 # Design Pass

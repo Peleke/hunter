@@ -30,7 +30,8 @@
         "skills/support/slidev-deck",
         "skills/support/landing-page",
         "skills/support/one-pager",
-        "skills/support/design-pass"
+        "skills/support/design-pass",
+        "skills/support/narrative-pass"
       ],
       "shared": [
         "skills/_conventions.md"
