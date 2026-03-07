@@ -1,0 +1,235 @@
+[
+  {
+    "id": "7c-01-signal-scan-minimal",
+    "description": "Minimal valid signal-scan envelope",
+    "expected": "pass",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T14:30:00Z",
+      "input_refs": [],
+      "output": {
+        "domain": "devops-education",
+        "signals": [
+          {
+            "type": "pain",
+            "signal": "Teams struggle with decision fatigue choosing between competing DevOps tools",
+            "evidence": "Reddit r/devops: 'There are too many tools and nobody knows which to pick'",
+            "source_url": "https://reddit.com/r/devops/comments/example",
+            "strength": 7
+          }
+        ],
+        "ship_candidates": ["devops-decision-kit"]
+      }
+    }
+  },
+  {
+    "id": "7c-02-decision-log-with-refs",
+    "description": "Valid decision-log referencing upstream signal scan",
+    "expected": "pass",
+    "envelope": {
+      "skill": "decision-log",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T15:00:00Z",
+      "input_refs": ["devops-education-2026-02-08"],
+      "output": {
+        "opportunity": "DevOps Decision Kit",
+        "verdict": "proceed",
+        "sdp_score": 48,
+        "sdp_max": 60,
+        "kill_criteria": [
+          {
+            "gate": 1,
+            "deadline": "2026-03-15",
+            "condition": "<50 LinkedIn impressions AND <20 Reddit upvotes",
+            "action": "reassess format"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "7c-03-persona-extract-with-refs",
+    "description": "Valid persona-extract referencing decision + signal scan",
+    "expected": "pass",
+    "envelope": {
+      "skill": "persona-extract",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T16:00:00Z",
+      "input_refs": ["devops-education-2026-02-08", "devops-first-2026-02-08"],
+      "output": {
+        "personas": [
+          {
+            "name": "The Overwhelmed Operator",
+            "archetype": "Mid-level DevOps engineer drowning in tool choices",
+            "pain_stories": ["Too many dashboards", "Alert fatigue from 5 monitoring tools"],
+            "willingness_to_pay": "$49-199/mo"
+          }
+        ],
+        "four_forces": {
+          "push": ["Tool sprawl", "$2K/mo wasted on overlapping SaaS"],
+          "pull": ["Single pane of glass", "Decision framework"],
+          "anxiety": ["Yet another tool", "Learning curve"],
+          "habit": ["Current stack barely works but it works"]
+        }
+      }
+    }
+  },
+  {
+    "id": "7c-04-swot-analysis",
+    "description": "Valid SWOT analysis with verdict",
+    "expected": "pass",
+    "envelope": {
+      "skill": "swot-analysis",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T16:30:00Z",
+      "input_refs": ["devops-first-2026-02-08", "mid-level-devops-2026-02-08"],
+      "output": {
+        "strengths": ["Unique scoring framework", "Open-source credibility"],
+        "weaknesses": ["Solo operator", "No existing audience"],
+        "opportunities": ["LinkedIn carousel format 3x engagement", "No full-loop competitor"],
+        "threats": ["Jasper/Taplio could add features", "Market saturation in DevOps content"],
+        "verdict": "proceed_with_modifications",
+        "modifications": ["Gate pilot on inbound", "Open-source pipeline core"]
+      }
+    }
+  },
+  {
+    "id": "7c-05-offer-scope",
+    "description": "Valid offer-scope with revenue model",
+    "expected": "pass",
+    "envelope": {
+      "skill": "offer-scope",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T17:00:00Z",
+      "input_refs": ["mid-level-devops-2026-02-08"],
+      "output": {
+        "product_name": "DevOps Decision Kit",
+        "format": "PDF + interactive web tool",
+        "price": "$29",
+        "positioning": "The decision framework DevOps teams actually use",
+        "distribution": ["LinkedIn", "Reddit r/devops", "Dev.to"],
+        "revenue_model": {
+          "month_1": 0,
+          "month_3": 3000,
+          "month_6": 8000
+        }
+      }
+    }
+  },
+  {
+    "id": "7c-06-pitch-full",
+    "description": "Valid pitch with all upstream refs",
+    "expected": "pass",
+    "envelope": {
+      "skill": "pitch",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T18:00:00Z",
+      "input_refs": [
+        "devops-education-2026-02-08",
+        "devops-first-2026-02-08",
+        "mid-level-devops-2026-02-08",
+        "offer-devops-decision-kit-2026-02-08"
+      ],
+      "output": {
+        "landing_page_copy": "Ship the right stack, not the popular one.",
+        "launch_posts": [
+          {
+            "platform": "linkedin",
+            "content": "80% of DevOps teams regret at least one major tool decision..."
+          }
+        ],
+        "email_sequence": ["welcome", "value_1", "value_2", "case_study", "offer"],
+        "launch_checklist": ["Landing page live", "Email sequence loaded", "LinkedIn post scheduled"]
+      }
+    }
+  },
+  {
+    "id": "7c-07-wild-scan",
+    "description": "Valid wild-scan with scored quotes",
+    "expected": "pass",
+    "envelope": {
+      "skill": "wild-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-002",
+      "timestamp": "2026-03-06T10:00:00Z",
+      "input_refs": [],
+      "output": {
+        "domain": "ai-agents",
+        "quotes": [
+          {
+            "text": "I only have one computer... it makes me very nervous to give AI control",
+            "source": "u/Mindless-Fly2086",
+            "platform": "reddit",
+            "url": "https://reddit.com/r/ClaudeAI/comments/example",
+            "pain_score": 8,
+            "category": "security-fear"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "7c-08-hunter-log",
+    "description": "Valid hunter-log persistence envelope",
+    "expected": "pass",
+    "envelope": {
+      "skill": "hunter-log",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T19:00:00Z",
+      "input_refs": ["pitch-devops-decision-kit-2026-02-08"],
+      "output": {
+        "action": "persist",
+        "vault_path": "Admin/Product-Discovery/Pitches/devops-decision-kit-2026-02-08.md",
+        "kanban_column": "Offer Scoped",
+        "files_written": 1
+      }
+    }
+  },
+  {
+    "id": "7c-09-signal-scan-first-stage-empty-refs",
+    "description": "First-stage skill (signal-scan) correctly has empty input_refs",
+    "expected": "pass",
+    "envelope": {
+      "skill": "signal-scan",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-003",
+      "timestamp": "2026-03-06T09:00:00Z",
+      "input_refs": [],
+      "output": {
+        "domain": "cybersecurity-education",
+        "signals": [],
+        "ship_candidates": []
+      }
+    }
+  },
+  {
+    "id": "7c-10-content-planner",
+    "description": "Valid content-planner envelope",
+    "expected": "pass",
+    "envelope": {
+      "skill": "content-planner",
+      "version": "1.0",
+      "session_id": "session-2026-03-06-001",
+      "timestamp": "2026-03-06T20:00:00Z",
+      "input_refs": ["pitch-devops-decision-kit-2026-02-08"],
+      "output": {
+        "content_briefs": [
+          {
+            "title": "Why Your DevOps Tool Stack Is Costing You $2K/mo",
+            "format": "linkedin-carousel",
+            "target_date": "2026-03-15",
+            "status": "backlog"
+          }
+        ]
+      }
+    }
+  }
+]

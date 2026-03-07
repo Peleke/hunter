@@ -293,3 +293,11 @@ Files:
 Files:
 - `buildlog/2026-03-06-hunter-ejection.md`
 
+
+### `8318429` — feat: Phase 2 config extraction — resolve paths from .hunter-config.yaml
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `skills/_conventions.md`
+- `skills/content/linwheel-source-optimizer/SKILL.md`
+
