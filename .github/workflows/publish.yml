@@ -1,0 +1,77 @@
+name: Publish to ClawHub
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    name: Publish Skills
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install ClawHub CLI
+        run: npm install -g clawhub@latest
+
+      - name: Validate skill frontmatter
+        run: |
+          echo "=== Validating skill frontmatter ==="
+          ERRORS=0
+          for skill_dir in skills/*/*/; do
+            if [ -f "$skill_dir/SKILL.md" ]; then
+              SKILL_NAME=$(head -10 "$skill_dir/SKILL.md" | grep "^name:" | sed 's/name: *//')
+              SKILL_DESC=$(head -10 "$skill_dir/SKILL.md" | grep "^description:" | head -1)
+              if [ -z "$SKILL_NAME" ]; then
+                echo "FAIL: Missing name in $skill_dir/SKILL.md"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if [ -z "$SKILL_DESC" ]; then
+                echo "FAIL: Missing description in $skill_dir/SKILL.md"
+                ERRORS=$((ERRORS + 1))
+              fi
+              echo "OK: $SKILL_NAME ($skill_dir)"
+            fi
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo "ERROR: $ERRORS skills have invalid frontmatter"
+            exit 1
+          fi
+          echo "All skills validated."
+
+      - name: Publish to ClawHub
+        env:
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          echo "Publishing hunter-pipeline $TAG to ClawHub..."
+
+          for skill_dir in skills/*/*/; do
+            if [ -f "$skill_dir/SKILL.md" ]; then
+              SKILL_NAME=$(head -10 "$skill_dir/SKILL.md" | grep "^name:" | sed 's/name: *//')
+              echo "Publishing: $SKILL_NAME from $skill_dir"
+              (cd "$skill_dir" && clawhub publish --version "$TAG" 2>&1) || echo "WARN: Failed to publish $SKILL_NAME (may need manual publish)"
+            fi
+          done
+
+          echo "Publish complete for $TAG"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Published Skills" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          for skill_dir in skills/*/*/; do
+            if [ -f "$skill_dir/SKILL.md" ]; then
+              SKILL_NAME=$(head -10 "$skill_dir/SKILL.md" | grep "^name:" | sed 's/name: *//')
+              CATEGORY=$(echo "$skill_dir" | cut -d'/' -f2)
+              echo "- **$SKILL_NAME** ($CATEGORY)" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
