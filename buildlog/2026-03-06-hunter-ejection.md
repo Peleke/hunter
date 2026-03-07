@@ -301,3 +301,15 @@ Files:
 - `skills/_conventions.md`
 - `skills/content/linwheel-source-optimizer/SKILL.md`
 
+
+### `f855e28` — feat: Phase 3-4 — plugin packaging + eval framework (7b-e)
+
+Files:
+- `.claude-plugin/marketplace.json`
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `evals/7b-input/fixtures/invalid-envelopes.json`
+- `evals/7c-output/fixtures/valid-envelopes.json`
+- `evals/7e-quality/rubrics/pipeline-quality.md`
+- `evals/README.md`
+- `schemas/pipeline-envelope.schema.json`
+

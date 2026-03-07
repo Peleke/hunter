@@ -219,9 +219,102 @@ Right content
 
 Slides are separated by `---` on their own line. Layout directives go in the slide's frontmatter block (the `---` block at the top of each slide).
 
+### Phase 4.5: Narrative Layer
+
+**This phase transforms slides from a data dump into a story.**
+
+Before writing speaker notes, design the spoken narrative. The deck is a vehicle for a story — the slides are set pieces, the speaker is the storyteller. This phase creates the script.
+
+#### Step 1: Story Arc Design
+
+Define the emotional journey of the deck. Every deck has one of these arcs:
+
+| Arc | Emotion Sequence | Best For |
+|-----|-----------------|----------|
+| **Discovery** | Curiosity → Shock → Understanding → Conviction → Urgency | Validation summaries, pitches |
+| **Problem-Solution** | Frustration → Recognition → Relief → Confidence → Action | Product pitches, sales decks |
+| **Hero's Journey** | Status quo → Disruption → Struggle → Breakthrough → New world | Technical architecture, case studies |
+
+Write the arc as a one-liner:
+
+```
+Arc: Discovery
+"You think you know the problem → here's how bad it actually is → here's who feels it → here's the gap nobody fills → here's how we fill it → here's proof → here's what happens next"
+```
+
+#### Step 2: Beat Map
+
+Map every slide to a **beat** — the emotional function it serves in the arc. A beat is NOT "what's on the slide." It's "what the audience should FEEL after this slide."
+
+```
+Slide 1 (Cover):        INTRIGUE    — "What is this? Sounds specific."
+Slide 2 (Opportunity):  RECOGNITION — "Oh, I've seen this problem."
+Slide 3 (Evidence):     SHOCK       — "Wow, it's worse than I thought."
+Slide 4 (Quotes):       EMPATHY     — "These are real people. I relate."
+Slide 5 (Scoring):      TRUST       — "They did their homework."
+...
+Slide N (CTA):          URGENCY     — "I need to act on this."
+```
+
+If two adjacent slides have the same beat, one is redundant. Cut or combine.
+
+If the emotional step between adjacent beats is too large (e.g., SHOCK → URGENCY), insert a bridge slide.
+
+#### Step 3: Transition Lines
+
+Write the exact words the speaker says to bridge between slides. These are the most important words in the deck — they're what makes the difference between "next slide" and "let me show you why that matters."
+
+Format:
+```
+[Slide 2 → Slide 3]
+"So everyone handles one step. Nobody does the full loop. But don't take my word for it — let me show you the receipts."
+
+[Slide 3 → Slide 4]
+"Those are the numbers. But numbers don't bleed. Let me show you what this looks like for real people."
+
+[Slide 4 → Slide 5]
+"Three voices, three different angles, same underlying pain. We didn't cherry-pick these — we scored them."
+```
+
+Rules for transition lines:
+- **Never say "next slide"** or "moving on" — the transition should feel like a conversation, not a slideshow
+- **Each transition connects WHY the previous slide matters to WHAT the next slide shows**
+- **Use callbacks** — reference earlier slides to create narrative threads ("Remember the 65% stat? Here's who that 65% is.")
+- **Vary the register** — some transitions should be punchy ("Here's the kicker."), some reflective ("So what does this actually mean?"), some conspiratorial ("Now here's where it gets interesting.")
+- **Max 2 sentences per transition** — if it takes more, the slides are in the wrong order
+
+#### Step 4: Slide Personality Review
+
+Review each slide for personality elements:
+
+1. **Hook**: Does the slide headline create curiosity? "Revenue Model" → "When the Money Shows Up"
+2. **Contrast**: Does the slide use contrast to create impact? (before/after, us/them, cost/value)
+3. **Specificity**: Does the slide use specific numbers/names instead of generalities? ("65% of AI agent tasks fail" > "most AI agents struggle")
+4. **Voice**: Does the slide sound like a person, or a template? Remove anything that sounds like it was generated.
+5. **Callback**: Can this slide reference something from an earlier slide to create narrative cohesion?
+
+#### Step 5: Story Audit
+
+Before proceeding to speaker notes, answer these questions:
+
+- [ ] Can I summarize the entire deck's story in ONE sentence? (If not, the deck is unfocused.)
+- [ ] Does every slide advance the story? (If a slide doesn't move the audience emotionally, cut it.)
+- [ ] Are there any "wait, why are we talking about this now?" moments? (If so, reorder.)
+- [ ] Does the closing slide callback to the opening? (The best decks are circular.)
+- [ ] Could someone who missed 3 random slides still follow the story? (Resilience test.)
+
+Write the one-sentence story:
+```
+Story: "The content tool market automates fragments, real people are frustrated and burned, but a full-loop pipeline backed by receipts can earn the right to charge — if it ships articles first."
+```
+
+---
+
 ### Phase 5: Add Speaker Notes
 
-Every slide MUST have speaker notes. Add them as HTML comments at the end of each slide:
+Speaker notes are the **script** — not a summary of the slide, but the words the speaker actually says. They integrate the transition lines from Phase 4.5 and add the talking points.
+
+Every slide MUST have speaker notes as HTML comments:
 
 ```md
 # Slide Title
@@ -229,19 +322,29 @@ Every slide MUST have speaker notes. Add them as HTML comments at the end of eac
 content
 
 <!--
-Speaker notes here. These appear in presenter view.
-- Key talking point 1
-- Key talking point 2
-- Data reference: [which pipeline artifact, which field]
+[TRANSITION IN]: "So everyone handles one step. Nobody does the full loop. But don't take my word for it — let me show you the receipts."
+
+[BEAT]: SHOCK — audience should feel "it's worse than I thought"
+
+[TALKING POINTS]:
+- The evidence wall has six stats from five independent sources. Not one of them is from our own data.
+- Key stat to emphasize: 65% agent task failure rate from Salesforce CRMArena-Pro — this is the most rigorous benchmark we found.
+- Pause after revealing $2K/mo slop stat. Let it land.
+
+[TRANSITION OUT]: "Those are the numbers. But numbers don't bleed. Let me show you what this looks like for real people."
+
+[DATA SOURCE]: Signal scan → signals[type=PAIN], signals[type=SPEND]
+[ANTICIPATED QUESTIONS]: "Where does the 65% come from?" → CRMArena-Pro, Salesforce Research, 2025
 -->
 ```
 
-Speaker notes should:
-- Provide context the slide doesn't show
-- Include exact data references (which pipeline artifact, which field)
-- Suggest transitions to the next slide
-- Anticipate audience questions
-- Never exceed 6 bullet points
+Speaker notes structure:
+1. **TRANSITION IN** — the exact words to say arriving at this slide (from Phase 4.5)
+2. **BEAT** — the emotional function (from the beat map)
+3. **TALKING POINTS** — 2-4 bullets of what to say ABOUT the slide content, including delivery cues (pause, emphasize, lower voice)
+4. **TRANSITION OUT** — the exact words to say leaving this slide
+5. **DATA SOURCE** — which pipeline artifact and field (for credibility if questioned)
+6. **ANTICIPATED QUESTIONS** — 1-2 likely audience questions with prepared answers
 
 ### Phase 6: Quality Check
 
@@ -401,6 +504,17 @@ Run before delivering any deck:
 - [ ] Fabricated data is flagged with `[DATA NEEDED]` markers
 - [ ] Speaker notes exist on every slide
 - [ ] Speaker notes reference specific pipeline artifacts
+
+### Narrative Quality (Phase 4.5)
+- [ ] Story arc defined (Discovery / Problem-Solution / Hero's Journey)
+- [ ] Beat map complete — every slide has an emotional function
+- [ ] No two adjacent slides have the same beat
+- [ ] Transition lines written for every slide boundary
+- [ ] No transition uses "next slide" or "moving on"
+- [ ] At least 2 callbacks to earlier slides exist in the second half
+- [ ] One-sentence story summary passes the clarity test
+- [ ] Story audit questions all answered affirmatively
+- [ ] Speaker notes use the structured format (TRANSITION IN/BEAT/TALKING POINTS/TRANSITION OUT/DATA SOURCE)
 
 ### SVG Quality
 - [ ] Every key slide (problem, evidence, solution, architecture, pricing, CTA) has an inline SVG
