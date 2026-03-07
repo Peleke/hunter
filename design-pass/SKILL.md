@@ -44,7 +44,7 @@ Agent asks:
 | Tier | Techniques | Token Budget | Risk |
 |------|-----------|--------------|------|
 | **high** | 1B, 1C, 4A, 4D, 4E | ~2K CSS | Zero — pure CSS additions |
-| **medium** | high + 2A, 3A, 3B, 3C | ~4K CSS + minor HTML | Low — wrapper elements |
+| **medium** | high + 2A, 3A, 3B, 3C, 3F, 5C | ~4K CSS + minor HTML | Low — wrapper elements |
 | **full** | medium + 1A, 1E, 1F, 2B, 3E, 4B, 4C, 5A, 5B | ~8K CSS + HTML + SVG | Medium — animations, browser caveats |
 | **custom** | user-selected technique IDs | varies | varies |
 

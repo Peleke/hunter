@@ -362,6 +362,38 @@ Animated conic gradient border that rotates once and settles.
 }
 ```
 
+### 3F — Circuit Pattern Background
+
+**Tier**: medium | **Risk**: zero | **Target**: deck, landing
+
+Tileable SVG circuit pattern with L-shaped paths and node dots at intersections. Applied as a pseudo-element background on slide layouts. Cover slide is EXCLUDED (gets dot grid + halo instead).
+
+**SVG**: Create a tileable `circuit-pattern.svg` in `public/` with teal strokes at ~0.07 opacity and dot fills at ~0.10 opacity.
+
+```css
+.slidev-layout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/circuit-pattern.svg');
+  background-repeat: repeat;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Content must sit above the pattern */
+.slidev-layout > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Exclude cover slide — it uses dot grid + halo instead */
+.slidev-layout.cover::before {
+  background-image: none;
+}
+```
+
 ---
 
 ## Category 4: Animations & Transitions
@@ -578,6 +610,56 @@ Replaces table-based timelines.
 }
 ```
 
+### 5C — Card-Like Table Rows
+
+**Tier**: medium | **Risk**: zero | **Target**: all
+
+Replace flat table rows with card-like hover effects. Compatible with all targets including one-pager (no animations).
+
+```css
+table {
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  width: 100%;
+}
+
+table thead th {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(77, 207, 201, 0.2);
+  padding: 8px 12px;
+}
+
+table tbody tr {
+  background: rgba(77, 207, 201, 0.02);
+  transition: background 0.2s ease;
+}
+
+table tbody tr:hover {
+  background: rgba(77, 207, 201, 0.06);
+}
+
+table tbody td {
+  padding: 10px 12px;
+}
+
+table tbody td:first-child {
+  border-radius: 8px 0 0 8px;
+  border-left: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+table tbody td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+table tbody tr:hover td:first-child {
+  border-left-color: var(--accent);
+}
+```
+
 ---
 
 ## Technique Index
@@ -606,3 +688,5 @@ Quick reference for tier selection.
 | 4E | Blockquote slide-in | high | zero | yes | no | no |
 | 5A | Metric card grid | full | low | yes | yes | yes |
 | 5B | Vertical timeline | full | low | yes | yes | yes |
+| 3F | Circuit pattern bg | medium | zero | yes | yes | NO |
+| 5C | Card-like table rows | medium | zero | yes | yes | yes |
