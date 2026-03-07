@@ -327,3 +327,22 @@ Files:
 - `buildlog/2026-03-06-hunter-ejection.md`
 - `skills/support/slidev-deck/SKILL.md`
 
+
+### `f033ddd` — feat: standalone narrative-pass skill with bragi prose gate
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+- `skills/support/narrative-pass/README.md`
+- `skills/support/narrative-pass/SKILL.md`
+
+
+### `4518864` — docs: Phase 5 — architecture, configuration, quickstart + OpenClaw compliance
+
+Files:
+- `.claude-plugin/marketplace.json`
+- `README.md`
+- `docs/architecture.md`
+- `docs/configuration.md`
+- `docs/quickstart.md`
+- `skills/support/design-pass/SKILL.md`
+
