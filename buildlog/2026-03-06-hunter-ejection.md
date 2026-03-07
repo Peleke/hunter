@@ -260,6 +260,539 @@ hunter/
 
 *Next entry: Phase 2-3 config extraction + plugin packaging*
 
+<!-- buildlog:improvements:start -->
+## What Improved This Session
+
+**Clean session.** No mistakes were flagged.
+
+**Rules earning confidence**: `design-pass-dogfood:bragi:02959dda`, `design-pass-dogfood:bragi:2e966d45`, `design-pass-dogfood:bragi:41e6758f`, `design-pass-dogfood:bragi:463490f1`, `design-pass-dogfood:bragi:63cd491d`, `design-pass-dogfood:bragi:71344189`, `design-pass-dogfood:bragi:92b40f51`, `design-pass-dogfood:bragi:980ac190`, `design-pass-dogfood:bragi:9ecf1649`, `design-pass-dogfood:bragi:c33015a1`, `design-pass-dogfood:bragi:c651da02`, `design-pass-dogfood:bragi:ce0516df`, `design-pass-dogfood:bragi:d14b1a2d`, `design-pass-dogfood:bragi:d720e228`, `design-pass-dogfood:bragi:e1b5e53a`, `design-pass-dogfood:bragi:e30cf4d5`, `design-pass-dogfood:bragi:e4d6eee0`, `design-pass-dogfood:bragi:e96e9da4`, `design-pass-dogfood:bragi:eddf641e`, `design-pass-dogfood:bragi:f0384f94`, `design-pass-dogfood:qortex_design_patterns:009a418c`, `design-pass-dogfood:qortex_design_patterns:00c3a9ae`, `design-pass-dogfood:qortex_design_patterns:09ae8ef6`, `design-pass-dogfood:qortex_design_patterns:17b9abd6`, `design-pass-dogfood:qortex_design_patterns:1bbbbcd6`, `design-pass-dogfood:qortex_design_patterns:1c48dc87`, `design-pass-dogfood:qortex_design_patterns:20f54d8e`, `design-pass-dogfood:qortex_design_patterns:211f6637`, `design-pass-dogfood:qortex_design_patterns:316b0d61`, `design-pass-dogfood:qortex_design_patterns:48c2bf9e`, `design-pass-dogfood:qortex_design_patterns:52456083`, `design-pass-dogfood:qortex_design_patterns:539713dc`, `design-pass-dogfood:qortex_design_patterns:5421537f`, `design-pass-dogfood:qortex_design_patterns:604af93a`, `design-pass-dogfood:qortex_design_patterns:61562ff8`, `design-pass-dogfood:qortex_design_patterns:66aa7593`, `design-pass-dogfood:qortex_design_patterns:6895e4e3`, `design-pass-dogfood:qortex_design_patterns:77939dc5`, `design-pass-dogfood:qortex_design_patterns:7c32f1ce`, `design-pass-dogfood:qortex_design_patterns:95639de9`, `design-pass-dogfood:qortex_design_patterns:99cb1875`, `design-pass-dogfood:qortex_design_patterns:9e4ebfc8`, `design-pass-dogfood:qortex_design_patterns:af6223e4`, `design-pass-dogfood:qortex_design_patterns:bf779406`, `design-pass-dogfood:qortex_design_patterns:c07590d6`, `design-pass-dogfood:qortex_design_patterns:c1fd948b`, `design-pass-dogfood:qortex_design_patterns:c9566580`, `design-pass-dogfood:qortex_design_patterns:d1c0e664`, `design-pass-dogfood:qortex_design_patterns:d27ed782`, `design-pass-dogfood:qortex_design_patterns:d4f6ab83`, `design-pass-dogfood:qortex_design_patterns:ec1ddd87`, `design-pass-dogfood:qortex_design_patterns:f0aa24dd`, `design-pass-dogfood:qortex_impl_hiding:009a418c`, `design-pass-dogfood:qortex_impl_hiding:0ae292fe`, `design-pass-dogfood:qortex_impl_hiding:103c3fbf`, `design-pass-dogfood:qortex_impl_hiding:105cfe9f`, `design-pass-dogfood:qortex_impl_hiding:17b9abd6`, `design-pass-dogfood:qortex_impl_hiding:1bbbbcd6`, `design-pass-dogfood:qortex_impl_hiding:29c3da41`, `design-pass-dogfood:qortex_impl_hiding:2bf055c6`, `design-pass-dogfood:qortex_impl_hiding:2e300d8d`, `design-pass-dogfood:qortex_impl_hiding:42e88397`, `design-pass-dogfood:qortex_impl_hiding:44f68a58`, `design-pass-dogfood:qortex_impl_hiding:48c2bf9e`, `design-pass-dogfood:qortex_impl_hiding:4a9e5b86`, `design-pass-dogfood:qortex_impl_hiding:5ec0adfa`, `design-pass-dogfood:qortex_impl_hiding:6a975854`, `design-pass-dogfood:qortex_impl_hiding:6f219f32`, `design-pass-dogfood:qortex_impl_hiding:7974e474`, `design-pass-dogfood:qortex_impl_hiding:7c955b5d`, `design-pass-dogfood:qortex_impl_hiding:7dbbedeb`, `design-pass-dogfood:qortex_impl_hiding:9403a5c5`, `design-pass-dogfood:qortex_impl_hiding:9dafbed4`, `design-pass-dogfood:qortex_impl_hiding:9df38844`, `design-pass-dogfood:qortex_impl_hiding:a3edcfcd`, `design-pass-dogfood:qortex_impl_hiding:af6223e4`, `design-pass-dogfood:qortex_impl_hiding:c9566580`, `design-pass-dogfood:qortex_impl_hiding:c9c16146`, `design-pass-dogfood:qortex_impl_hiding:ca77185f`, `design-pass-dogfood:qortex_impl_hiding:d27ed782`, `design-pass-dogfood:qortex_impl_hiding:ded0c774`, `design-pass-dogfood:qortex_impl_hiding:e20d0f47`, `design-pass-dogfood:qortex_observer:04545c6d`, `design-pass-dogfood:qortex_observer:06600c9c`, `design-pass-dogfood:qortex_observer:09dfcf92`, `design-pass-dogfood:qortex_observer:0c77a1d2`, `design-pass-dogfood:qortex_observer:0c8ba2f8`, `design-pass-dogfood:qortex_observer:11fa7b98`, `design-pass-dogfood:qortex_observer:174f5a1b`, `design-pass-dogfood:qortex_observer:19c437b4`, `design-pass-dogfood:qortex_observer:19d8ee77`, `design-pass-dogfood:qortex_observer:1dc72bd4`, `design-pass-dogfood:qortex_observer:24343eba`, `design-pass-dogfood:qortex_observer:2743739e`, `design-pass-dogfood:qortex_observer:28f8af35`, `design-pass-dogfood:qortex_observer:2950435f`, `design-pass-dogfood:qortex_observer:2bc32ffe`, `design-pass-dogfood:qortex_observer:2dc10cf4`, `design-pass-dogfood:qortex_observer:2ec2b1ae`, `design-pass-dogfood:qortex_observer:2eebc331`, `design-pass-dogfood:qortex_observer:31d84cb5`, `design-pass-dogfood:qortex_observer:36576d68`, `design-pass-dogfood:qortex_observer:371ae9d9`, `design-pass-dogfood:qortex_observer:38723ff3`, `design-pass-dogfood:qortex_observer:39e88ecd`, `design-pass-dogfood:qortex_observer:3a4fec06`, `design-pass-dogfood:qortex_observer:3fed269e`, `design-pass-dogfood:qortex_observer:40645184`, `design-pass-dogfood:qortex_observer:434d864a`, `design-pass-dogfood:qortex_observer:436378ee`, `design-pass-dogfood:qortex_observer:44130d7d`, `design-pass-dogfood:qortex_observer:4875e202`, `design-pass-dogfood:qortex_observer:48a4251a`, `design-pass-dogfood:qortex_observer:4a0879c4`, `design-pass-dogfood:qortex_observer:4c1c9f4b`, `design-pass-dogfood:qortex_observer:4e97c534`, `design-pass-dogfood:qortex_observer:4e9e5c68`, `design-pass-dogfood:qortex_observer:4ff04b79`, `design-pass-dogfood:qortex_observer:507dc23d`, `design-pass-dogfood:qortex_observer:51783efd`, `design-pass-dogfood:qortex_observer:54ed2186`, `design-pass-dogfood:qortex_observer:59b7e51a`, `design-pass-dogfood:qortex_observer:59deb741`, `design-pass-dogfood:qortex_observer:5b87c2a4`, `design-pass-dogfood:qortex_observer:5bd02b0d`, `design-pass-dogfood:qortex_observer:5cd6a960`, `design-pass-dogfood:qortex_observer:5d7d7338`, `design-pass-dogfood:qortex_observer:5d85527d`, `design-pass-dogfood:qortex_observer:5df8aa0a`, `design-pass-dogfood:qortex_observer:5f14d5c7`, `design-pass-dogfood:qortex_observer:610bcbcf`, `design-pass-dogfood:qortex_observer:61865b50`, `design-pass-dogfood:qortex_observer:64c6645d`, `design-pass-dogfood:qortex_observer:685b1c2e`, `design-pass-dogfood:qortex_observer:6a17181c`, `design-pass-dogfood:qortex_observer:6d945803`, `design-pass-dogfood:qortex_observer:7180acf9`, `design-pass-dogfood:qortex_observer:72bfc672`, `design-pass-dogfood:qortex_observer:76c35779`, `design-pass-dogfood:qortex_observer:78868c08`, `design-pass-dogfood:qortex_observer:78d156fc`, `design-pass-dogfood:qortex_observer:7930bb43`, `design-pass-dogfood:qortex_observer:7b88ef97`, `design-pass-dogfood:qortex_observer:7dd1e3da`, `design-pass-dogfood:qortex_observer:821a35c2`, `design-pass-dogfood:qortex_observer:856a93fc`, `design-pass-dogfood:qortex_observer:882600a9`, `design-pass-dogfood:qortex_observer:884e7f55`, `design-pass-dogfood:qortex_observer:888dd5da`, `design-pass-dogfood:qortex_observer:8fe1f256`, `design-pass-dogfood:qortex_observer:9042bdf1`, `design-pass-dogfood:qortex_observer:90765dde`, `design-pass-dogfood:qortex_observer:93dcbbb5`, `design-pass-dogfood:qortex_observer:961a4140`, `design-pass-dogfood:qortex_observer:964c28c2`, `design-pass-dogfood:qortex_observer:98b12a07`, `design-pass-dogfood:qortex_observer:9acc67a4`, `design-pass-dogfood:qortex_observer:9c164033`, `design-pass-dogfood:qortex_observer:9cea5fef`, `design-pass-dogfood:qortex_observer:a090c803`, `design-pass-dogfood:qortex_observer:a09a384e`, `design-pass-dogfood:qortex_observer:a168c23d`, `design-pass-dogfood:qortex_observer:a27f3212`, `design-pass-dogfood:qortex_observer:a2963f43`, `design-pass-dogfood:qortex_observer:a7057853`, `design-pass-dogfood:qortex_observer:a70b45d7`, `design-pass-dogfood:qortex_observer:a7831e52`, `design-pass-dogfood:qortex_observer:acd19207`, `design-pass-dogfood:qortex_observer:ad55572c`, `design-pass-dogfood:qortex_observer:aeecbb13`, `design-pass-dogfood:qortex_observer:b33f203d`, `design-pass-dogfood:qortex_observer:b3719375`, `design-pass-dogfood:qortex_observer:b41546f0`, `design-pass-dogfood:qortex_observer:b64ee8c5`, `design-pass-dogfood:qortex_observer:b6974baf`, `design-pass-dogfood:qortex_observer:b791f0e4`, `design-pass-dogfood:qortex_observer:b7ea108c`, `design-pass-dogfood:qortex_observer:b8a35b68`, `design-pass-dogfood:qortex_observer:ba12377b`, `design-pass-dogfood:qortex_observer:bc1ed82a`, `design-pass-dogfood:qortex_observer:bd25541d`, `design-pass-dogfood:qortex_observer:bfacd8f2`, `design-pass-dogfood:qortex_observer:c00364fb`, `design-pass-dogfood:qortex_observer:c33a134a`, `design-pass-dogfood:qortex_observer:c4508df9`, `design-pass-dogfood:qortex_observer:c472e9de`, `design-pass-dogfood:qortex_observer:c58e848d`, `design-pass-dogfood:qortex_observer:c71db8cf`, `design-pass-dogfood:qortex_observer:c7a3f40b`, `design-pass-dogfood:qortex_observer:ccacaac7`, `design-pass-dogfood:qortex_observer:cce7f57f`, `design-pass-dogfood:qortex_observer:d04277bb`, `design-pass-dogfood:qortex_observer:d16ddc1a`, `design-pass-dogfood:qortex_observer:d4ec3d47`, `design-pass-dogfood:qortex_observer:d641d620`, `design-pass-dogfood:qortex_observer:d9ac86a0`, `design-pass-dogfood:qortex_observer:db9b4f80`, `design-pass-dogfood:qortex_observer:dca6f43e`, `design-pass-dogfood:qortex_observer:de7f125f`, `design-pass-dogfood:qortex_observer:e0efc527`, `design-pass-dogfood:qortex_observer:e1c642cc`, `design-pass-dogfood:qortex_observer:e2ea8829`, `design-pass-dogfood:qortex_observer:e344e802`, `design-pass-dogfood:qortex_observer:e84d8a73`, `design-pass-dogfood:qortex_observer:ea45fa14`, `design-pass-dogfood:qortex_observer:ea8a6567`, `design-pass-dogfood:qortex_observer:eaa94cdd`, `design-pass-dogfood:qortex_observer:ec063658`, `design-pass-dogfood:qortex_observer:ed0c2afb`, `design-pass-dogfood:qortex_observer:f210e7bb`, `design-pass-dogfood:qortex_observer:f29d590a`, `design-pass-dogfood:qortex_observer:f54cbe55`, `design-pass-dogfood:qortex_observer:f6488555`, `design-pass-dogfood:qortex_observer:f74947ec`, `design-pass-dogfood:qortex_observer:f9f7c90a`, `design-pass-dogfood:qortex_observer:fd4d1087`, `design-pass-dogfood:qortex_observer:fd9ca42b`, `design-pass-dogfood:security_karen:031981ce`, `design-pass-dogfood:security_karen:131cd1fa`, `design-pass-dogfood:security_karen:1af5a81f`, `design-pass-dogfood:security_karen:1cef48d5`, `design-pass-dogfood:security_karen:2896ba0c`, `design-pass-dogfood:security_karen:2bd9ec09`, `design-pass-dogfood:security_karen:3309a549`, `design-pass-dogfood:security_karen:35d8a3ad`, `design-pass-dogfood:security_karen:5f3ca636`, `design-pass-dogfood:security_karen:8caefcda`, `design-pass-dogfood:security_karen:a3bb96fb`, `design-pass-dogfood:security_karen:d05a9ea0`, `design-pass-dogfood:security_karen:fc20c8cd`, `design-pass-dogfood:test_persona:c17a1a6f`, `design-pass-dogfood:test_terrorist:0405a43f`, `design-pass-dogfood:test_terrorist:09a7159c`, `design-pass-dogfood:test_terrorist:1d2bd4c0`, `design-pass-dogfood:test_terrorist:1de18f9c`, `design-pass-dogfood:test_terrorist:206021f2`, `design-pass-dogfood:test_terrorist:2c42a90c`, `design-pass-dogfood:test_terrorist:2fb2bc96`, `design-pass-dogfood:test_terrorist:3016b866`, `design-pass-dogfood:test_terrorist:395ff740`, `design-pass-dogfood:test_terrorist:4790f26a`, `design-pass-dogfood:test_terrorist:81a6f504`, `design-pass-dogfood:test_terrorist:946b7a06`, `design-pass-dogfood:test_terrorist:9f320811`, `design-pass-dogfood:test_terrorist:a3d7df0e`, `design-pass-dogfood:test_terrorist:b7868f66`, `design-pass-dogfood:test_terrorist:bdd2bcbd`, `design-pass-dogfood:test_terrorist:c1ee7155`, `design-pass-dogfood:test_terrorist:eb977154`, `design-pass-dogfood:test_terrorist:efbb38b3`, `design-pass-dogfood:test_terrorist:f1378eae`, `design-pass-dogfood:test_terrorist:fe8aa547`, `general:bragi:02959dda`, `general:bragi:41e6758f`, `general:bragi:463490f1`, `general:bragi:63cd491d`, `general:bragi:92b40f51`, `general:bragi:9ecf1649`, `general:bragi:ce0516df`, `general:bragi:e1b5e53a`, `general:bragi:e30cf4d5`, `general:bragi:e4d6eee0`, `general:bragi:e96e9da4`, `general:bragi:eddf641e`, `general:bragi:f0384f94`, `general:qortex_design_patterns:009a418c`, `general:qortex_design_patterns:00c3a9ae`, `general:qortex_design_patterns:09ae8ef6`, `general:qortex_design_patterns:17b9abd6`, `general:qortex_design_patterns:1bbbbcd6`, `general:qortex_design_patterns:1c48dc87`, `general:qortex_design_patterns:20f54d8e`, `general:qortex_design_patterns:211f6637`, `general:qortex_design_patterns:316b0d61`, `general:qortex_design_patterns:48c2bf9e`, `general:qortex_design_patterns:52456083`, `general:qortex_design_patterns:539713dc`, `general:qortex_design_patterns:5421537f`, `general:qortex_design_patterns:604af93a`, `general:qortex_design_patterns:61562ff8`, `general:qortex_design_patterns:66aa7593`, `general:qortex_design_patterns:6895e4e3`, `general:qortex_design_patterns:77939dc5`, `general:qortex_design_patterns:7c32f1ce`, `general:qortex_design_patterns:95639de9`, `general:qortex_design_patterns:99cb1875`, `general:qortex_design_patterns:9e4ebfc8`, `general:qortex_design_patterns:af6223e4`, `general:qortex_design_patterns:bf779406`, `general:qortex_design_patterns:c07590d6`, `general:qortex_design_patterns:c1fd948b`, `general:qortex_design_patterns:c9566580`, `general:qortex_design_patterns:d1c0e664`, `general:qortex_design_patterns:d27ed782`, `general:qortex_design_patterns:d4f6ab83`, `general:qortex_design_patterns:ec1ddd87`, `general:qortex_design_patterns:f0aa24dd`, `general:qortex_impl_hiding:009a418c`, `general:qortex_impl_hiding:0ae292fe`, `general:qortex_impl_hiding:103c3fbf`, `general:qortex_impl_hiding:105cfe9f`, `general:qortex_impl_hiding:17b9abd6`, `general:qortex_impl_hiding:1bbbbcd6`, `general:qortex_impl_hiding:29c3da41`, `general:qortex_impl_hiding:2bf055c6`, `general:qortex_impl_hiding:2e300d8d`, `general:qortex_impl_hiding:42e88397`, `general:qortex_impl_hiding:44f68a58`, `general:qortex_impl_hiding:48c2bf9e`, `general:qortex_impl_hiding:4a9e5b86`, `general:qortex_impl_hiding:5ec0adfa`, `general:qortex_impl_hiding:6a975854`, `general:qortex_impl_hiding:6f219f32`, `general:qortex_impl_hiding:7974e474`, `general:qortex_impl_hiding:7c955b5d`, `general:qortex_impl_hiding:7dbbedeb`, `general:qortex_impl_hiding:9403a5c5`, `general:qortex_impl_hiding:9dafbed4`, `general:qortex_impl_hiding:9df38844`, `general:qortex_impl_hiding:a3edcfcd`, `general:qortex_impl_hiding:af6223e4`, `general:qortex_impl_hiding:c9566580`, `general:qortex_impl_hiding:c9c16146`, `general:qortex_impl_hiding:ca77185f`, `general:qortex_impl_hiding:d27ed782`, `general:qortex_impl_hiding:ded0c774`, `general:qortex_impl_hiding:e20d0f47`, `general:qortex_observer:04545c6d`, `general:qortex_observer:06600c9c`, `general:qortex_observer:09dfcf92`, `general:qortex_observer:0c77a1d2`, `general:qortex_observer:0c8ba2f8`, `general:qortex_observer:11fa7b98`, `general:qortex_observer:174f5a1b`, `general:qortex_observer:19c437b4`, `general:qortex_observer:19d8ee77`, `general:qortex_observer:1dc72bd4`, `general:qortex_observer:24343eba`, `general:qortex_observer:2743739e`, `general:qortex_observer:28f8af35`, `general:qortex_observer:2950435f`, `general:qortex_observer:2bc32ffe`, `general:qortex_observer:2dc10cf4`, `general:qortex_observer:2ec2b1ae`, `general:qortex_observer:2eebc331`, `general:qortex_observer:31d84cb5`, `general:qortex_observer:36576d68`, `general:qortex_observer:371ae9d9`, `general:qortex_observer:38723ff3`, `general:qortex_observer:39e88ecd`, `general:qortex_observer:3a4fec06`, `general:qortex_observer:3fed269e`, `general:qortex_observer:40645184`, `general:qortex_observer:434d864a`, `general:qortex_observer:436378ee`, `general:qortex_observer:44130d7d`, `general:qortex_observer:4875e202`, `general:qortex_observer:48a4251a`, `general:qortex_observer:4a0879c4`, `general:qortex_observer:4c1c9f4b`, `general:qortex_observer:4e97c534`, `general:qortex_observer:4e9e5c68`, `general:qortex_observer:4ff04b79`, `general:qortex_observer:507dc23d`, `general:qortex_observer:51783efd`, `general:qortex_observer:54ed2186`, `general:qortex_observer:59b7e51a`, `general:qortex_observer:59deb741`, `general:qortex_observer:5b87c2a4`, `general:qortex_observer:5bd02b0d`, `general:qortex_observer:5cd6a960`, `general:qortex_observer:5d7d7338`, `general:qortex_observer:5d85527d`, `general:qortex_observer:5df8aa0a`, `general:qortex_observer:5f14d5c7`, `general:qortex_observer:610bcbcf`, `general:qortex_observer:61865b50`, `general:qortex_observer:64c6645d`, `general:qortex_observer:685b1c2e`, `general:qortex_observer:6a17181c`, `general:qortex_observer:6d945803`, `general:qortex_observer:7180acf9`, `general:qortex_observer:72bfc672`, `general:qortex_observer:76c35779`, `general:qortex_observer:78868c08`, `general:qortex_observer:78d156fc`, `general:qortex_observer:7930bb43`, `general:qortex_observer:7b88ef97`, `general:qortex_observer:7dd1e3da`, `general:qortex_observer:821a35c2`, `general:qortex_observer:856a93fc`, `general:qortex_observer:882600a9`, `general:qortex_observer:884e7f55`, `general:qortex_observer:888dd5da`, `general:qortex_observer:8fe1f256`, `general:qortex_observer:9042bdf1`, `general:qortex_observer:90765dde`, `general:qortex_observer:93dcbbb5`, `general:qortex_observer:961a4140`, `general:qortex_observer:964c28c2`, `general:qortex_observer:98b12a07`, `general:qortex_observer:9acc67a4`, `general:qortex_observer:9c164033`, `general:qortex_observer:9cea5fef`, `general:qortex_observer:a090c803`, `general:qortex_observer:a09a384e`, `general:qortex_observer:a168c23d`, `general:qortex_observer:a27f3212`, `general:qortex_observer:a2963f43`, `general:qortex_observer:a7057853`, `general:qortex_observer:a70b45d7`, `general:qortex_observer:a7831e52`, `general:qortex_observer:acd19207`, `general:qortex_observer:ad55572c`, `general:qortex_observer:aeecbb13`, `general:qortex_observer:b33f203d`, `general:qortex_observer:b3719375`, `general:qortex_observer:b41546f0`, `general:qortex_observer:b64ee8c5`, `general:qortex_observer:b6974baf`, `general:qortex_observer:b791f0e4`, `general:qortex_observer:b7ea108c`, `general:qortex_observer:b8a35b68`, `general:qortex_observer:ba12377b`, `general:qortex_observer:bc1ed82a`, `general:qortex_observer:bd25541d`, `general:qortex_observer:bfacd8f2`, `general:qortex_observer:c00364fb`, `general:qortex_observer:c33a134a`, `general:qortex_observer:c4508df9`, `general:qortex_observer:c472e9de`, `general:qortex_observer:c58e848d`, `general:qortex_observer:c71db8cf`, `general:qortex_observer:c7a3f40b`, `general:qortex_observer:ccacaac7`, `general:qortex_observer:cce7f57f`, `general:qortex_observer:d04277bb`, `general:qortex_observer:d16ddc1a`, `general:qortex_observer:d4ec3d47`, `general:qortex_observer:d641d620`, `general:qortex_observer:d9ac86a0`, `general:qortex_observer:db9b4f80`, `general:qortex_observer:dca6f43e`, `general:qortex_observer:de7f125f`, `general:qortex_observer:e0efc527`, `general:qortex_observer:e1c642cc`, `general:qortex_observer:e2ea8829`, `general:qortex_observer:e344e802`, `general:qortex_observer:e84d8a73`, `general:qortex_observer:ea45fa14`, `general:qortex_observer:ea8a6567`, `general:qortex_observer:eaa94cdd`, `general:qortex_observer:ec063658`, `general:qortex_observer:ed0c2afb`, `general:qortex_observer:f210e7bb`, `general:qortex_observer:f29d590a`, `general:qortex_observer:f54cbe55`, `general:qortex_observer:f6488555`, `general:qortex_observer:f74947ec`, `general:qortex_observer:f9f7c90a`, `general:qortex_observer:fd4d1087`, `general:qortex_observer:fd9ca42b`, `general:security_karen:031981ce`, `general:security_karen:131cd1fa`, `general:security_karen:1af5a81f`, `general:security_karen:1cef48d5`, `general:security_karen:2896ba0c`, `general:security_karen:2bd9ec09`, `general:security_karen:3309a549`, `general:security_karen:35d8a3ad`, `general:security_karen:5f3ca636`, `general:security_karen:8caefcda`, `general:security_karen:a3bb96fb`, `general:security_karen:d05a9ea0`, `general:security_karen:fc20c8cd`, `general:test_persona:c17a1a6f`, `general:test_terrorist:0405a43f`, `general:test_terrorist:09a7159c`, `general:test_terrorist:1d2bd4c0`, `general:test_terrorist:1de18f9c`, `general:test_terrorist:206021f2`, `general:test_terrorist:2c42a90c`, `general:test_terrorist:2fb2bc96`, `general:test_terrorist:3016b866`, `general:test_terrorist:395ff740`, `general:test_terrorist:4790f26a`, `general:test_terrorist:81a6f504`, `general:test_terrorist:946b7a06`, `general:test_terrorist:9f320811`, `general:test_terrorist:a3d7df0e`, `general:test_terrorist:b7868f66`, `general:test_terrorist:bdd2bcbd`, `general:test_terrorist:c1ee7155`, `general:test_terrorist:eb977154`, `general:test_terrorist:efbb38b3`, `general:test_terrorist:f1378eae`, `general:test_terrorist:fe8aa547` (mean ≥ 0.7).
+
+Session ran for 41.8 minutes. with 252 rules at start → 252 at end.
+
+> Every session that measures improvement is evidence that the learning loop works. buildlog tracks what changed, learns which rules help, and improves automatically.
+
+### Metrics
+
+| Metric | This Session | Prior | Trend |
+|--------|-------------|-------|-------|
+| Mistakes caught | 0 | — | — |
+| Repeated mistakes | 0 | — | — |
+| Rules at start | 252 | — | — |
+| Rules at end | 252 | — | — |
+| Mean reward | — | — | — |
+
+### Top Rules
+
+| Rule | Mean | Observations | Status |
+|------|------|-------------|--------|
+| `design-pass-dogfood:bragi:02959dda` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:2e966d45` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:41e6758f` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:463490f1` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:63cd491d` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:71344189` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:92b40f51` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:980ac190` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:9ecf1649` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:c33015a1` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:c651da02` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:ce0516df` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:d14b1a2d` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:d720e228` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:e1b5e53a` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:e30cf4d5` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:e4d6eee0` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:e96e9da4` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:eddf641e` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:bragi:f0384f94` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:4a9e5b86` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:031981ce` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:131cd1fa` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:1af5a81f` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:1cef48d5` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:2896ba0c` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:2bd9ec09` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:3309a549` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:35d8a3ad` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:5f3ca636` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:8caefcda` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:a3bb96fb` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:d05a9ea0` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:security_karen:fc20c8cd` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_persona:c17a1a6f` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:0405a43f` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:09a7159c` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:1d2bd4c0` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:1de18f9c` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:206021f2` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:2c42a90c` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:2fb2bc96` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:3016b866` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:395ff740` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:4790f26a` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:81a6f504` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:946b7a06` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:9f320811` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:a3d7df0e` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:b7868f66` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:bdd2bcbd` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:c1ee7155` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:eb977154` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:efbb38b3` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:f1378eae` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:test_terrorist:fe8aa547` | 0.7500 | 2 | earned confidence |
+| `general:bragi:02959dda` | 0.7500 | 2 | earned confidence |
+| `general:bragi:41e6758f` | 0.7500 | 2 | earned confidence |
+| `general:bragi:463490f1` | 0.7500 | 2 | earned confidence |
+| `general:bragi:63cd491d` | 0.7500 | 2 | earned confidence |
+| `general:bragi:92b40f51` | 0.7500 | 2 | earned confidence |
+| `general:bragi:9ecf1649` | 0.7500 | 2 | earned confidence |
+| `general:bragi:ce0516df` | 0.7500 | 2 | earned confidence |
+| `general:bragi:e1b5e53a` | 0.7500 | 2 | earned confidence |
+| `general:bragi:e30cf4d5` | 0.7500 | 2 | earned confidence |
+| `general:bragi:e4d6eee0` | 0.7500 | 2 | earned confidence |
+| `general:bragi:e96e9da4` | 0.7500 | 2 | earned confidence |
+| `general:bragi:eddf641e` | 0.7500 | 2 | earned confidence |
+| `general:bragi:f0384f94` | 0.7500 | 2 | earned confidence |
+| `general:qortex_impl_hiding:4a9e5b86` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:031981ce` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:131cd1fa` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:1af5a81f` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:1cef48d5` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:2896ba0c` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:2bd9ec09` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:3309a549` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:35d8a3ad` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:5f3ca636` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:8caefcda` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:a3bb96fb` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:d05a9ea0` | 0.7500 | 2 | earned confidence |
+| `general:security_karen:fc20c8cd` | 0.7500 | 2 | earned confidence |
+| `general:test_persona:c17a1a6f` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:0405a43f` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:09a7159c` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:1d2bd4c0` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:1de18f9c` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:206021f2` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:2c42a90c` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:2fb2bc96` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:3016b866` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:395ff740` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:4790f26a` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:81a6f504` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:946b7a06` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:9f320811` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:a3d7df0e` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:b7868f66` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:bdd2bcbd` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:c1ee7155` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:eb977154` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:efbb38b3` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:f1378eae` | 0.7500 | 2 | earned confidence |
+| `general:test_terrorist:fe8aa547` | 0.7500 | 2 | earned confidence |
+| `design-pass-dogfood:qortex_observer:1dc72bd4` | 0.7475 | 1 | earned confidence |
+| `general:qortex_observer:1dc72bd4` | 0.7475 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:b33f203d` | 0.7449 | 1 | earned confidence |
+| `general:qortex_observer:b33f203d` | 0.7449 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:48c2bf9e` | 0.7436 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:04545c6d` | 0.7436 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:06600c9c` | 0.7436 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:19c437b4` | 0.7436 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:78d156fc` | 0.7436 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:b64ee8c5` | 0.7436 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:f6488555` | 0.7436 | 1 | earned confidence |
+| `general:qortex_impl_hiding:48c2bf9e` | 0.7436 | 1 | earned confidence |
+| `general:qortex_observer:04545c6d` | 0.7436 | 1 | earned confidence |
+| `general:qortex_observer:06600c9c` | 0.7436 | 1 | earned confidence |
+| `general:qortex_observer:19c437b4` | 0.7436 | 1 | earned confidence |
+| `general:qortex_observer:78d156fc` | 0.7436 | 1 | earned confidence |
+| `general:qortex_observer:b64ee8c5` | 0.7436 | 1 | earned confidence |
+| `general:qortex_observer:f6488555` | 0.7436 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:7180acf9` | 0.7423 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:e1c642cc` | 0.7423 | 1 | earned confidence |
+| `general:qortex_observer:7180acf9` | 0.7423 | 1 | earned confidence |
+| `general:qortex_observer:e1c642cc` | 0.7423 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:7930bb43` | 0.7409 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:884e7f55` | 0.7409 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:8fe1f256` | 0.7409 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:9acc67a4` | 0.7409 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:c4508df9` | 0.7409 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:c7a3f40b` | 0.7409 | 1 | earned confidence |
+| `general:qortex_observer:7930bb43` | 0.7409 | 1 | earned confidence |
+| `general:qortex_observer:884e7f55` | 0.7409 | 1 | earned confidence |
+| `general:qortex_observer:8fe1f256` | 0.7409 | 1 | earned confidence |
+| `general:qortex_observer:9acc67a4` | 0.7409 | 1 | earned confidence |
+| `general:qortex_observer:c4508df9` | 0.7409 | 1 | earned confidence |
+| `general:qortex_observer:c7a3f40b` | 0.7409 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:2743739e` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:36576d68` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:48a4251a` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:5bd02b0d` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:61865b50` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:685b1c2e` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:c71db8cf` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:db9b4f80` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:ed0c2afb` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:f210e7bb` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:2743739e` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:36576d68` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:48a4251a` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:5bd02b0d` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:61865b50` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:685b1c2e` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:c71db8cf` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:db9b4f80` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:ed0c2afb` | 0.7396 | 1 | earned confidence |
+| `general:qortex_observer:f210e7bb` | 0.7396 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:09dfcf92` | 0.7382 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:28f8af35` | 0.7382 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:40645184` | 0.7382 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:5d7d7338` | 0.7382 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:7b88ef97` | 0.7382 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:90765dde` | 0.7382 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:ba12377b` | 0.7382 | 1 | earned confidence |
+| `general:qortex_observer:09dfcf92` | 0.7382 | 1 | earned confidence |
+| `general:qortex_observer:28f8af35` | 0.7382 | 1 | earned confidence |
+| `general:qortex_observer:40645184` | 0.7382 | 1 | earned confidence |
+| `general:qortex_observer:5d7d7338` | 0.7382 | 1 | earned confidence |
+| `general:qortex_observer:7b88ef97` | 0.7382 | 1 | earned confidence |
+| `general:qortex_observer:90765dde` | 0.7382 | 1 | earned confidence |
+| `general:qortex_observer:ba12377b` | 0.7382 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:009a418c` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:00c3a9ae` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:09ae8ef6` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:17b9abd6` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:1bbbbcd6` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:1c48dc87` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:20f54d8e` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:211f6637` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:316b0d61` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:48c2bf9e` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:52456083` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:539713dc` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:5421537f` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:604af93a` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:61562ff8` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:66aa7593` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:6895e4e3` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:77939dc5` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:7c32f1ce` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:95639de9` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:99cb1875` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:9e4ebfc8` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:af6223e4` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:bf779406` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:c07590d6` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:c1fd948b` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:c9566580` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:d1c0e664` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:d27ed782` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:d4f6ab83` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:ec1ddd87` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_design_patterns:f0aa24dd` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:0ae292fe` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:103c3fbf` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:105cfe9f` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:17b9abd6` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:1bbbbcd6` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:29c3da41` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:42e88397` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:44f68a58` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:6a975854` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:7974e474` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:7dbbedeb` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:9403a5c5` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:a3edcfcd` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:c9566580` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:ca77185f` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:d27ed782` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:ded0c774` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:e20d0f47` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:0c8ba2f8` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:19d8ee77` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:2ec2b1ae` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:31d84cb5` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:5cd6a960` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:78868c08` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:7dd1e3da` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:a27f3212` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:b3719375` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:bc1ed82a` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:c00364fb` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:c472e9de` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:ccacaac7` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:d04277bb` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:e84d8a73` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:ea8a6567` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:eaa94cdd` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:f9f7c90a` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:fd4d1087` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:009a418c` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:00c3a9ae` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:09ae8ef6` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:17b9abd6` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:1bbbbcd6` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:1c48dc87` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:20f54d8e` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:211f6637` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:316b0d61` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:48c2bf9e` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:52456083` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:539713dc` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:5421537f` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:604af93a` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:61562ff8` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:66aa7593` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:6895e4e3` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:77939dc5` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:7c32f1ce` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:95639de9` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:99cb1875` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:9e4ebfc8` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:af6223e4` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:bf779406` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:c07590d6` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:c1fd948b` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:c9566580` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:d1c0e664` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:d27ed782` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:d4f6ab83` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:ec1ddd87` | 0.7368 | 1 | earned confidence |
+| `general:qortex_design_patterns:f0aa24dd` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:0ae292fe` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:103c3fbf` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:105cfe9f` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:17b9abd6` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:1bbbbcd6` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:29c3da41` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:42e88397` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:44f68a58` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:6a975854` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:7974e474` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:7dbbedeb` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:9403a5c5` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:a3edcfcd` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:c9566580` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:ca77185f` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:d27ed782` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:ded0c774` | 0.7368 | 1 | earned confidence |
+| `general:qortex_impl_hiding:e20d0f47` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:0c8ba2f8` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:19d8ee77` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:2ec2b1ae` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:31d84cb5` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:5cd6a960` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:78868c08` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:7dd1e3da` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:a27f3212` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:b3719375` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:bc1ed82a` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:c00364fb` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:c472e9de` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:ccacaac7` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:d04277bb` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:e84d8a73` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:ea8a6567` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:eaa94cdd` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:f9f7c90a` | 0.7368 | 1 | earned confidence |
+| `general:qortex_observer:fd4d1087` | 0.7368 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:0c77a1d2` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:11fa7b98` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:2dc10cf4` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:38723ff3` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:3a4fec06` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:4ff04b79` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:6a17181c` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:b7ea108c` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:b8a35b68` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:d641d620` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:0c77a1d2` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:11fa7b98` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:2dc10cf4` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:38723ff3` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:3a4fec06` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:4ff04b79` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:6a17181c` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:b7ea108c` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:b8a35b68` | 0.7354 | 1 | earned confidence |
+| `general:qortex_observer:d641d620` | 0.7354 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:174f5a1b` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:24343eba` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:2950435f` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:4a0879c4` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:4c1c9f4b` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:5b87c2a4` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:5f14d5c7` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:882600a9` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:9042bdf1` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:964c28c2` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:98b12a07` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:a2963f43` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:a7831e52` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:b791f0e4` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:cce7f57f` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:d4ec3d47` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:d9ac86a0` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:dca6f43e` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:e0efc527` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:ec063658` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:f29d590a` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:f54cbe55` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:f74947ec` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:174f5a1b` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:24343eba` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:2950435f` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:4a0879c4` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:4c1c9f4b` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:5b87c2a4` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:5f14d5c7` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:882600a9` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:9042bdf1` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:964c28c2` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:98b12a07` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:a2963f43` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:a7831e52` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:b791f0e4` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:cce7f57f` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:d4ec3d47` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:d9ac86a0` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:dca6f43e` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:e0efc527` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:ec063658` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:f29d590a` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:f54cbe55` | 0.7340 | 1 | earned confidence |
+| `general:qortex_observer:f74947ec` | 0.7340 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:371ae9d9` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:436378ee` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:44130d7d` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:4875e202` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:59deb741` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:64c6645d` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:821a35c2` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:856a93fc` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:9c164033` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:a168c23d` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:a7057853` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:acd19207` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:aeecbb13` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:c58e848d` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:d16ddc1a` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:fd9ca42b` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:371ae9d9` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:436378ee` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:44130d7d` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:4875e202` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:59deb741` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:64c6645d` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:821a35c2` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:856a93fc` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:9c164033` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:a168c23d` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:a7057853` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:acd19207` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:aeecbb13` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:c58e848d` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:d16ddc1a` | 0.7326 | 1 | earned confidence |
+| `general:qortex_observer:fd9ca42b` | 0.7326 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:4e97c534` | 0.7312 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:4e9e5c68` | 0.7312 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:6d945803` | 0.7312 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:72bfc672` | 0.7312 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:961a4140` | 0.7312 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:a090c803` | 0.7312 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:a09a384e` | 0.7312 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:bd25541d` | 0.7312 | 1 | earned confidence |
+| `general:qortex_observer:4e97c534` | 0.7312 | 1 | earned confidence |
+| `general:qortex_observer:4e9e5c68` | 0.7312 | 1 | earned confidence |
+| `general:qortex_observer:6d945803` | 0.7312 | 1 | earned confidence |
+| `general:qortex_observer:72bfc672` | 0.7312 | 1 | earned confidence |
+| `general:qortex_observer:961a4140` | 0.7312 | 1 | earned confidence |
+| `general:qortex_observer:a090c803` | 0.7312 | 1 | earned confidence |
+| `general:qortex_observer:a09a384e` | 0.7312 | 1 | earned confidence |
+| `general:qortex_observer:bd25541d` | 0.7312 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:009a418c` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:af6223e4` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:2eebc331` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:39e88ecd` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:3fed269e` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:434d864a` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:507dc23d` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:51783efd` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:59b7e51a` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:5d85527d` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:5df8aa0a` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:610bcbcf` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:76c35779` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:93dcbbb5` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:9cea5fef` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:a70b45d7` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:ad55572c` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:b41546f0` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:bfacd8f2` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:c33a134a` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:de7f125f` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:e2ea8829` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:e344e802` | 0.7297 | 1 | earned confidence |
+| `general:qortex_impl_hiding:009a418c` | 0.7297 | 1 | earned confidence |
+| `general:qortex_impl_hiding:af6223e4` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:2eebc331` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:39e88ecd` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:3fed269e` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:434d864a` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:507dc23d` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:51783efd` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:59b7e51a` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:5d85527d` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:5df8aa0a` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:610bcbcf` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:76c35779` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:93dcbbb5` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:9cea5fef` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:a70b45d7` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:ad55572c` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:b41546f0` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:bfacd8f2` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:c33a134a` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:de7f125f` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:e2ea8829` | 0.7297 | 1 | earned confidence |
+| `general:qortex_observer:e344e802` | 0.7297 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:2bc32ffe` | 0.7283 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:888dd5da` | 0.7283 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:ea45fa14` | 0.7283 | 1 | earned confidence |
+| `general:qortex_observer:2bc32ffe` | 0.7283 | 1 | earned confidence |
+| `general:qortex_observer:888dd5da` | 0.7283 | 1 | earned confidence |
+| `general:qortex_observer:ea45fa14` | 0.7283 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:b6974baf` | 0.7268 | 1 | earned confidence |
+| `general:qortex_observer:b6974baf` | 0.7268 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:2bf055c6` | 0.7222 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:2e300d8d` | 0.7222 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:5ec0adfa` | 0.7222 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:6f219f32` | 0.7222 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:7c955b5d` | 0.7222 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:9dafbed4` | 0.7222 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:9df38844` | 0.7222 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_observer:54ed2186` | 0.7222 | 1 | earned confidence |
+| `general:qortex_impl_hiding:2bf055c6` | 0.7222 | 1 | earned confidence |
+| `general:qortex_impl_hiding:2e300d8d` | 0.7222 | 1 | earned confidence |
+| `general:qortex_impl_hiding:5ec0adfa` | 0.7222 | 1 | earned confidence |
+| `general:qortex_impl_hiding:6f219f32` | 0.7222 | 1 | earned confidence |
+| `general:qortex_impl_hiding:7c955b5d` | 0.7222 | 1 | earned confidence |
+| `general:qortex_impl_hiding:9dafbed4` | 0.7222 | 1 | earned confidence |
+| `general:qortex_impl_hiding:9df38844` | 0.7222 | 1 | earned confidence |
+| `general:qortex_observer:54ed2186` | 0.7222 | 1 | earned confidence |
+| `design-pass-dogfood:qortex_impl_hiding:c9c16146` | 0.7059 | 1 | earned confidence |
+| `general:qortex_impl_hiding:c9c16146` | 0.7059 | 1 | earned confidence |
+| `general:bragi:2e966d45` | 0.6667 | 1 | stable |
+| `general:bragi:71344189` | 0.6667 | 1 | stable |
+| `general:bragi:980ac190` | 0.6667 | 1 | stable |
+| `general:bragi:c33015a1` | 0.6667 | 1 | stable |
+| `general:bragi:c651da02` | 0.6667 | 1 | stable |
+| `general:bragi:d14b1a2d` | 0.6667 | 1 | stable |
+| `general:bragi:d720e228` | 0.6667 | 1 | stable |
+
+<!-- buildlog:session-summary:session-20260307-010145-825714 -->
+<!-- buildlog:improvements:end -->
+
 ## Commits
 
 ### `e943b21` — feat: eject hunter pipeline from skills monorepo — Phase 1 complete
@@ -345,4 +878,18 @@ Files:
 - `docs/configuration.md`
 - `docs/quickstart.md`
 - `skills/support/design-pass/SKILL.md`
+
+
+### `731882e` — chore: buildlog entry update for Phase 5 + PR #2
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+
+
+### `3e4f8c8` — feat: Phase 6 — SVG pipeline diagram, CI/CD eval gate, v1.0.0 prep
+
+Files:
+- `.github/workflows/eval-gate.yml`
+- `README.md`
+- `public/pipeline-diagram.svg`
 
