@@ -1,0 +1,97 @@
+name: Eval Gate (7b/7c)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  envelope-validation:
+    name: Envelope Schema Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install ajv-cli
+        run: npm install -g ajv-cli ajv-formats
+
+      - name: "7b: Reject invalid envelopes"
+        run: |
+          echo "=== 7b: Input Validation ==="
+          echo "Every invalid envelope must be REJECTED by the schema."
+          echo ""
+
+          SCHEMA="schemas/pipeline-envelope.schema.json"
+          FIXTURES="evals/7b-input/fixtures/invalid-envelopes.json"
+          PASS=0
+          FAIL=0
+          TOTAL=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$FIXTURES','utf8')).length)")
+
+          for i in $(seq 0 $((TOTAL - 1))); do
+            ENVELOPE=$(node -e "console.log(JSON.stringify(JSON.parse(require('fs').readFileSync('$FIXTURES','utf8'))[$i].envelope))")
+            DESC=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$FIXTURES','utf8'))[$i].description)")
+
+            if echo "$ENVELOPE" | ajv validate -s "$SCHEMA" --strict=false -d /dev/stdin 2>/dev/null; then
+              echo "FAIL: Should have rejected: $DESC"
+              FAIL=$((FAIL + 1))
+            else
+              echo "PASS: Correctly rejected: $DESC"
+              PASS=$((PASS + 1))
+            fi
+          done
+
+          echo ""
+          echo "=== Results: $PASS/$TOTAL rejected correctly ==="
+
+          if [ $FAIL -gt 0 ]; then
+            echo "ERROR: $FAIL invalid envelopes were incorrectly accepted"
+            exit 1
+          fi
+
+      - name: "7c: Accept valid envelopes"
+        run: |
+          echo "=== 7c: Output Conformance ==="
+          echo "Every valid envelope must PASS schema validation."
+          echo ""
+
+          SCHEMA="schemas/pipeline-envelope.schema.json"
+          FIXTURES="evals/7c-output/fixtures/valid-envelopes.json"
+          PASS=0
+          FAIL=0
+          TOTAL=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$FIXTURES','utf8')).length)")
+
+          for i in $(seq 0 $((TOTAL - 1))); do
+            ENVELOPE=$(node -e "console.log(JSON.stringify(JSON.parse(require('fs').readFileSync('$FIXTURES','utf8'))[$i].envelope))")
+            DESC=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$FIXTURES','utf8'))[$i].description)")
+
+            if echo "$ENVELOPE" | ajv validate -s "$SCHEMA" --strict=false -d /dev/stdin 2>/dev/null; then
+              echo "PASS: Correctly accepted: $DESC"
+              PASS=$((PASS + 1))
+            else
+              echo "FAIL: Should have accepted: $DESC"
+              FAIL=$((FAIL + 1))
+            fi
+          done
+
+          echo ""
+          echo "=== Results: $PASS/$TOTAL accepted correctly ==="
+
+          if [ $FAIL -gt 0 ]; then
+            echo "ERROR: $FAIL valid envelopes were incorrectly rejected"
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Eval Gate Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Level | Description | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 7b | Invalid envelopes rejected | ${{ steps.*.outcome == 'success' && 'Pass' || 'Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 7c | Valid envelopes accepted | ${{ steps.*.outcome == 'success' && 'Pass' || 'Fail' }} |" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,84 @@
+{
+  "name": "hunter-pipeline",
+  "version": "1.0.0",
+  "description": "Opportunity-to-launch pipeline: signal scan, decision log, persona extract, offer scope, pitch, and deploy — chained through typed envelopes with Obsidian vault persistence.",
+  "author": "Peleke Sengstacke",
+  "repository": "https://github.com/Peleke/hunter",
+  "license": "MIT",
+  "packages": [
+    {
+      "name": "hunter-core",
+      "description": "Core pipeline: signal-scan → decision-log → persona-extract → swot-analysis → offer-scope → pitch",
+      "skills": [
+        "skills/core/signal-scan",
+        "skills/core/decision-log",
+        "skills/core/persona-extract",
+        "skills/core/swot-analysis",
+        "skills/core/offer-scope",
+        "skills/core/pitch"
+      ],
+      "shared": [
+        "skills/_conventions.md",
+        "reviewers/bragi.md"
+      ]
+    },
+    {
+      "name": "hunter-deploy",
+      "description": "Output and deployment skills: slidev decks, landing pages, one-pagers, design passes, vault persistence",
+      "skills": [
+        "skills/support/hunter-log",
+        "skills/support/slidev-deck",
+        "skills/support/landing-page",
+        "skills/support/one-pager",
+        "skills/support/design-pass",
+        "skills/support/narrative-pass"
+      ],
+      "shared": [
+        "skills/_conventions.md"
+      ],
+      "depends_on": ["hunter-core"]
+    },
+    {
+      "name": "hunter-research",
+      "description": "Research and harvesting skills: Reddit scraping, wild pain-quote scanning, quote-to-persona bridging",
+      "skills": [
+        "skills/research/reddit-harvest",
+        "skills/research/wild-scan",
+        "skills/research/quote-to-persona"
+      ],
+      "shared": [
+        "skills/_conventions.md"
+      ]
+    },
+    {
+      "name": "hunter-content",
+      "description": "Content planning and LinkedIn distribution via LinWheel integration",
+      "skills": [
+        "skills/content/content-planner",
+        "skills/content/linwheel-content-engine",
+        "skills/content/linwheel-source-optimizer"
+      ],
+      "shared": [
+        "skills/_conventions.md"
+      ],
+      "depends_on": ["hunter-core"]
+    },
+    {
+      "name": "hunter-community",
+      "description": "Community platform planning: paid community design with Skool integration",
+      "skills": [
+        "skills/community/community-pitch",
+        "skills/community/skool-pitch"
+      ],
+      "shared": [
+        "skills/_conventions.md"
+      ],
+      "depends_on": ["hunter-core"]
+    }
+  ],
+  "config": {
+    "file": ".hunter-config.yaml",
+    "required_fields": ["vault"],
+    "optional_fields": ["skills_dir", "launchpad", "defaults"]
+  }
+}

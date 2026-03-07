@@ -12,13 +12,15 @@ All skills in the hunter product discovery pipeline MUST follow these convention
 
 ## Path Variables
 
-These variables are used throughout all pipeline skills. The current values for this installation are listed below. When the pipeline is ejected to a standalone repo, these are set via `.hunter-config.yaml`.
+These variables are resolved at runtime from `.hunter-config.yaml` at the repo root. If no config file is found, the defaults below are used.
 
-| Variable | Current Value |
-|---|---|
-| `${VAULT}` | `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious` |
-| `${SKILLS_DIR}` | `/Users/peleke/Documents/Projects/skills/skills/custom` |
-| `${HUNTER_DIR}` | `/Users/peleke/Documents/Projects/hunter` |
+| Variable | Default | Config Key |
+|---|---|---|
+| `${VAULT}` | `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious` | `vault` |
+| `${SKILLS_DIR}` | `${REPO_ROOT}/skills` | `skills_dir` (null = auto-detect from repo root) |
+| `${HUNTER_DIR}` | `${REPO_ROOT}` | n/a (always the repo root) |
+
+**Resolution order:** `.hunter-config.yaml` → environment variables → defaults above.
 
 ---
 
@@ -29,11 +31,16 @@ These variables are used throughout all pipeline skills. The current values for 
 ${VAULT}
 ```
 
-**IMPORTANT**: This is the iCloud-synced vault. Do NOT write to `/Users/peleke/Documents/Vaults/ClawTheCurious/` — that path is stale.
+**IMPORTANT**: This is the iCloud-synced vault. Do NOT write to stale local copies.
 
 ### Skills Directory
 ```
 ${SKILLS_DIR}/
+├── core/           # signal-scan, decision-log, persona-extract, swot-analysis, offer-scope, pitch
+├── support/        # hunter-log, design-pass, slidev-deck, landing-page, one-pager
+├── research/       # reddit-harvest, wild-scan, quote-to-persona
+├── content/        # content-planner, linwheel-content-engine, linwheel-source-optimizer
+└── community/      # community-pitch, skool-pitch
 ```
 
 ### Hunter Project (repo-relative docs, NOT primary output)
