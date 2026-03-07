@@ -27,33 +27,9 @@ Hunter Pipeline does the full loop. Six core skills, chained through a typed env
 
 ## The Pipeline
 
-```
-                                    ┌─────────────────┐
-                                    │   wild-scan      │ ─── reddit-harvest
-                                    │   (research)     │ ─── quote-to-persona
-                                    └────────┬────────┘
-                                             │ feeds
-                                             ▼
-┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│              │    │              │    │              │    │              │    │              │    │              │
-│  signal-scan │───▶│ decision-log │───▶│persona-extract│──▶│  offer-scope │───▶│    pitch     │───▶│  hunter-log  │
-│              │    │              │    │              │    │              │    │              │    │              │
-│   Stage 1    │    │   Stage 2    │    │   Stage 3    │    │   Stage 4    │    │   Stage 5    │    │  Persistence │
-│   Signals    │    │   Decide     │    │   Personas   │    │   Scope      │    │   Launch Kit │    │  Vault I/O   │
-│              │    │              │    │              │    │              │    │              │    │              │
-└──────────────┘    └──────────────┘    └──────┬───────┘    └──────────────┘    └──────┬───────┘    └──────────────┘
-                                               │                                      │
-                                               ▼                                      ▼
-                                        ┌──────────────┐                   ┌────────────────────┐
-                                        │swot-analysis │                   │  Output Skills     │
-                                        │  (optional)  │                   │                    │
-                                        │ stress-test  │                   │  slidev-deck       │
-                                        └──────────────┘                   │  landing-page      │
-                                                                           │  one-pager         │
-                                                                           │  design-pass       │
-                                                                           │  narrative-pass    │
-                                                                           └────────────────────┘
-```
+<p align="center">
+  <img src="public/pipeline-diagram.svg" alt="Hunter Pipeline Diagram" width="960"/>
+</p>
 
 Each stage consumes the output of the previous stage via a typed `PipelineEnvelope`. Every skill reads `_conventions.md` before executing, ensuring consistent vault paths, frontmatter schemas, and cross-reference syntax across the entire pipeline.
 
