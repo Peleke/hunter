@@ -287,3 +287,9 @@ Files:
 - `content-planner/scripts/scan_repos.py`
 - ...and 206 more
 
+
+### `5a19e94` — docs: add AI experience reflection + buildlog tool feedback to ejection entry
+
+Files:
+- `buildlog/2026-03-06-hunter-ejection.md`
+
