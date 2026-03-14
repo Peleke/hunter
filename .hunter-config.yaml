@@ -11,6 +11,7 @@ paths:
   personas: Admin/Product-Discovery/Personas
   swot: Admin/Product-Discovery/SWOT
   offers: Admin/Product-Discovery/Offers
+  positioning: Admin/Product-Discovery/Positioning
   pitches: Admin/Product-Discovery/Pitches
   sessions: Admin/Product-Discovery/Sessions
   content_briefs: Writing/Content-Briefs
