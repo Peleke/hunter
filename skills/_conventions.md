@@ -12,15 +12,13 @@ All skills in the hunter product discovery pipeline MUST follow these convention
 
 ## Path Variables
 
-These variables are resolved at runtime from `.hunter-config.yaml` at the repo root. If no config file is found, the defaults below are used.
+These variables are used throughout all pipeline skills. The current values for this installation are listed below. When the pipeline is ejected to a standalone repo, these are set via `.hunter-config.yaml`.
 
-| Variable | Default | Config Key |
-|---|---|---|
-| `${VAULT}` | `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious` | `vault` |
-| `${SKILLS_DIR}` | `${REPO_ROOT}/skills` | `skills_dir` (null = auto-detect from repo root) |
-| `${HUNTER_DIR}` | `${REPO_ROOT}` | n/a (always the repo root) |
-
-**Resolution order:** `.hunter-config.yaml` → environment variables → defaults above.
+| Variable | Current Value |
+|---|---|
+| `${VAULT}` | `/Users/peleke/Library/Mobile Documents/iCloud~md~obsidian/Documents/ClawTheCurious` |
+| `${SKILLS_DIR}` | `/Users/peleke/Documents/Projects/skills/skills/custom` |
+| `${HUNTER_DIR}` | `/Users/peleke/Documents/Projects/hunter` |
 
 ---
 
@@ -31,16 +29,11 @@ These variables are resolved at runtime from `.hunter-config.yaml` at the repo r
 ${VAULT}
 ```
 
-**IMPORTANT**: This is the iCloud-synced vault. Do NOT write to stale local copies.
+**IMPORTANT**: This is the iCloud-synced vault. Do NOT write to `/Users/peleke/Documents/Vaults/ClawTheCurious/` — that path is stale.
 
 ### Skills Directory
 ```
 ${SKILLS_DIR}/
-├── core/           # signal-scan, decision-log, persona-extract, swot-analysis, offer-scope, pitch
-├── support/        # hunter-log, design-pass, slidev-deck, landing-page, one-pager
-├── research/       # reddit-harvest, wild-scan, quote-to-persona
-├── content/        # content-planner, linwheel-content-engine, linwheel-source-optimizer
-└── community/      # community-pitch, skool-pitch
 ```
 
 ### Hunter Project (repo-relative docs, NOT primary output)
@@ -63,8 +56,11 @@ Every document type maps to exactly one folder. This is the "table" in our vault
 | Persona | `Admin/Product-Discovery/Personas/` | `persona-extract` |
 | SWOT Analysis | `Admin/Product-Discovery/SWOT/` | `swot-analysis` |
 | Offer Spec | `Admin/Product-Discovery/Offers/` | `offer-scope` |
+| Positioning Canvas | `Admin/Product-Discovery/Positioning/` | `positioning` |
+| Messaging Hierarchy | `Admin/Product-Discovery/Positioning/` | `positioning` |
+| ICP Profile | `Admin/Product-Discovery/Positioning/` | `positioning` |
+| Competitive Landscape | `Admin/Product-Discovery/Positioning/` | `positioning` |
 | Pitch | `Admin/Product-Discovery/Pitches/` | `pitch` |
-| Landing Page | `Admin/Product-Discovery/Landing-Pages/` | `landing-page` |
 | Community Pitch | `Admin/Product-Discovery/Offers/` | `community-pitch` |
 | Skool Pitch | `Admin/Product-Discovery/Offers/` | `skool-pitch` |
 | Session Log | `Admin/Product-Discovery/Sessions/` | `hunter-log` |
@@ -94,9 +90,11 @@ Every document MUST have YAML frontmatter with AT MINIMUM these fields:
 ### Required (all types)
 ```yaml
 type: string        # one of: signal-scan | decision | persona | swot-analysis |
-                    # offer-spec | pitch | landing-page | community-pitch |
-                    # skool-pitch | session | content-brief | wild-index |
-                    # lead | conversation | draft | research-note
+                    # offer-spec | positioning-canvas | messaging-hierarchy |
+                    # icp-profile | competitive-landscape |
+                    # pitch | community-pitch | skool-pitch |
+                    # session | content-brief | wild-index | lead |
+                    # conversation | draft | research-note
 date: YYYY-MM-DD    # creation date
 status: string      # see valid statuses below
 tags: string[]      # MUST include hunter/{type} or content/{type} at minimum
@@ -111,8 +109,11 @@ tags: string[]      # MUST include hunter/{type} or content/{type} at minimum
 | persona | `complete`, `partial` |
 | swot-analysis | `complete`, `partial` |
 | offer-spec | `spec`, `building`, `shipped`, `killed` |
+| positioning-canvas | `complete`, `partial` |
+| messaging-hierarchy | `complete`, `partial` |
+| icp-profile | `complete`, `partial` |
+| competitive-landscape | `complete`, `partial` |
 | pitch | `draft`, `review`, `final`, `shipped` |
-| landing-page | `draft`, `review`, `live`, `killed` |
 | community-pitch | `spec`, `building`, `launched`, `killed` |
 | skool-pitch | `spec`, `building`, `launched`, `killed` |
 | session | `in-progress`, `complete` |
@@ -134,8 +135,8 @@ hunter/
 ├── persona           # all persona research
 ├── swot              # all SWOT analyses
 ├── offer             # all offer specs
+├── positioning        # all positioning artifacts
 ├── pitch             # all pitches (go-to-market packages)
-├── landing-page      # all landing pages (deployed HTML from pitch)
 ├── community         # all community pitches
 ├── skool             # all Skool-specific pitches
 ├── session           # all session logs
@@ -236,7 +237,7 @@ This is the vault-as-database pattern:
 ## Pipeline Data Flow
 
 ```
-signal-scan ──→ decision-log ──→ persona-extract ──→ swot-analysis ──→ offer-scope ──→ pitch ──→ landing-page ──→ one-pager ──→ hunter-log
+signal-scan ──→ decision-log ──→ persona-extract ──→ swot-analysis ──→ offer-scope ──→ positioning ──→ pitch ──→ one-pager ──→ hunter-log
                                         │                                    │
                                         │                              community-pitch ──→ hunter-log
                                         │                              skool-pitch ──→ hunter-log
@@ -273,8 +274,8 @@ Skills that perform extensive web search or analysis SHOULD declare `context: fo
 | swot-analysis | Yes | 4-quadrant research |
 | reddit-harvest | Yes | Playwright session |
 | offer-scope | No | Reads upstream, no search |
+| positioning | Yes | Competitive alternatives + category validation |
 | pitch | No | Generates from data |
-| landing-page | No | Renders pitch copy as HTML |
 | hunter-log | No | Pure I/O |
 
 ---
@@ -317,9 +318,8 @@ The Pipeline kanban tracks every product idea from scan to shipped/killed. Skill
 ### Skills That Do NOT Move the Card
 
 - `swot-analysis`: runs between persona and offer, does not advance the pipeline stage (card stays in "Persona Researched")
+- `positioning`: runs between offer-scope and pitch, does not advance the pipeline stage (card stays in "Offer Scoped")
 - `pitch`: the pitch generates launch materials but does not mean the operator has committed to launching. Card stays in "Offer Scoped" until the operator sets a launch date and moves it to "Building" manually.
-- `landing-page`: renders pitch copy as HTML and deploys to launchpad branch. Card stays in whatever column pitch left it in (typically "Offer Scoped").
-- `one-pager`: generates a PDF one-pager from pitch data. Card stays in whatever column pitch left it in.
 - `content-planner`: operates on a separate content pipeline, does not touch the product discovery kanban
 
 ### Card Lifecycle Example
@@ -340,7 +340,7 @@ Friday:    operator moves      "- [ ] [[pitch-ref|DevOps Decision Kit ($29)]] �
 Every skill output wraps in:
 ```json
 {
-  "skill": "signal-scan | decision-log | persona-extract | swot-analysis | offer-scope | pitch | landing-page | one-pager | community-pitch | skool-pitch | content-planner",
+  "skill": "signal-scan | decision-log | persona-extract | swot-analysis | offer-scope | positioning | pitch | one-pager | community-pitch | skool-pitch | content-planner",
   "version": "1.0",
   "session_id": "session-YYYY-MM-DD-NNN",
   "timestamp": "ISO 8601",
@@ -354,6 +354,7 @@ Every skill output wraps in:
 ## Prose Quality Gate
 
 **MANDATORY**: Any skill that produces prose content (landing page copy, launch posts, README copy, email sequences, content briefs, pitch summaries) MUST run `buildlog_gauntlet` with the **Bragi** persona and **ALL rules** before finalizing output. This applies to:
+- `positioning` (Phase 6 emotional hooks, messaging hierarchy)
 - `pitch` (Phases 1, 2, 3b, 4)
 - `community-pitch` / `skool-pitch` (all copy sections)
 - `content-planner` (content briefs and drafts)
